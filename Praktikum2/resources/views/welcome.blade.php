@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Kua dej
+                    Kua dej, pizdu mater
                 </div>
 
                 <div class="links">
