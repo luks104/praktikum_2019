@@ -1,5 +1,4 @@
 # praktikum_2019
-Praktikum 2
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
