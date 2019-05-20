@@ -66,6 +66,12 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
+## Avtorji
+
+[<img alt="Tomaž Zajc" src="https://avatars3.githubusercontent.com/u/39370620?s=400&v=4" width="117">](https://github.com/Muziiix) [<img alt="Marko Zmazek" src="https://avatars0.githubusercontent.com/u/39406652?s=400&v=4" width="117">](https://github.com/zmazk123) [<img alt="Jure Turk" src="https://avatars3.githubusercontent.com/u/39335691?s=400&v=4" width="117">](https://github.com/Jure4321) [<img alt="Luka Gričar" src="https://avatars2.githubusercontent.com/u/33715913?s=400&v=4" width="117">](https://github.com/luks104) <br>
+[Tomaž Zajc](https://github.com/Muziiix) |[Marko Zmazek](https://github.com/zmazk123) |[Jure Turk](https://github.com/Jure4321)|[Luka Gričar](https://github.com/luks104)
+
+
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
