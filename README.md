@@ -1,5 +1,5 @@
-<p align="center"><h2>Praktikum2</h2></p>
-<p align="center"><h5>with</h5></p>
+<h2 align="center">Praktikum2</h2>
+<h5 align="center">with</h5>
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
