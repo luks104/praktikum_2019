@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Kua dej, pizdu mater 2
+                   Pametni obrazci
                 </div>
 
                 <div class="links">
