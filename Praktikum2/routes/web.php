@@ -19,10 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//routi gredo v homecontroller?
-Route::get('/main', function () { 
-    return view('main');
-});
 Route::get('/test', function () { 
     return view('test');
 });
