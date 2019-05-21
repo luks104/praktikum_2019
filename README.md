@@ -22,9 +22,8 @@ Pametni obrazci so namenjeni uporabnikom, ki želijo sestaviti obrazce oziroma v
 - mySql
 
 ### Avtorji
-[<img alt="Tomaž Zajc" src="https://avatars3.githubusercontent.com/u/39370620?s=400&v=4" width="117">](https://github.com/Muziiix) |
-[<img alt="Marko Zmazek" src="https://avatars0.githubusercontent.com/u/39406652?s=400&v=4" width="117">](https://github.com/zmazk123) |[<img alt="Jure Turk" src="https://avatars3.githubusercontent.com/u/39335691?s=400&v=4" width="117">](https://github.com/Jure4321) |
-[<img alt="Luka Gričar" src="https://avatars2.githubusercontent.com/u/33715913?s=400&v=4" width="117">](https://github.com/luks104) |
-:---: |:---: |:---: |:---: |:---: |
-[Tomaž Zajc](https://github.com/Muziiix) |[Marko Zmazek](https://github.com/zmazk123) |[Jure Turk](https://github.com/Jure4321) |
-[Luka Gričar](https://github.com/luks104)
+
+[<img alt="Tomaž Zajc" src="https://avatars2.githubusercontent.com/u/49161955?s=400&v=4" width="117">](https://github.com/KnightFury1)
+[<img alt="Jure Turk" src="https://avatars3.githubusercontent.com/u/50578730?s=400&v=4" width="117">](https://github.com/Ajerspajz)
+[<img alt="Marko Zmazek" src="https://avatars0.githubusercontent.com/u/39406652?s=400&v=4" width="117">](https://github.com/zmazk123)
+[<img alt="Luka Gričar" src="https://avatars2.githubusercontent.com/u/33715913?s=400&v=4" width="117">](https://github.com/luks104)
