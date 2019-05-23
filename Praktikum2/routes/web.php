@@ -23,6 +23,3 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/testerinojure', function () { 
-    return view('testerinojure');
-});

@@ -36,7 +36,7 @@ var me=this, dynamicallyEditable;
   
 
   selector: 'textarea#editor',
-  toolbar: 'komponenta | ime | priimek |undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | nekaj ',
+  toolbar: 'komponenta | ime | priimek |undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | input',
   plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -48,10 +48,15 @@ var me=this, dynamicallyEditable;
       editor.ui.registry.addButton('komponenta', {
         text: 'Komponenta',
         tooltip: 'Insert Current Date',
+        
       onAction: function (_) {
-        editor.insertContent("<input id='ena' style='margin-left:5px;margin-right:5px;border-radius:2px;' placeholder='Enterlabel' data-label='nekiLabel' class='komponenta'>");
+        
+        editor.insertContent("<input id='ena' style='margin-left:5px;margin-right:5px;border-radius:2px;' placeholder='Enterlabel' data-label='a' class='komponenta'>");
+        
       }
       });
+
+     
 
       editor.ui.registry.addButton('ime', {
         text: 'ime',
@@ -71,54 +76,53 @@ var me=this, dynamicallyEditable;
 
       
 
-
-      editor.ui.registry.addContextForm('nekaj', {
-        
-        text: 'nekaj',
-        tooltip: 'Insert Current Date',
-        id:'neki',
-      onAction: function (_) {
-        document.getElementById("neki").style.display="none";
-        editor.insertContent("<input style='margin-left:5px;margin-right:5px;border-radius:2px;' placeholder='Enterlabel' data-label='nekiLabel' class='do_3' visibility='hidden'>");
-      }
-      });
+   
 
       editor.on('click', function(evt) {
-          
-          if (evt.target.className == 'komponenta') {
-        
-            
-            var x= ocument.getElementsByTagName('label')[0].firstChild.data;
+         var id=null;
+         var clas;
 
+          if (evt.target.className == 'komponenta') {
+
+            id=tinyMCE.activeEditor.dom.get("ena").getAttribute("id");
+            data=tinyMCE.activeEditor.dom.get("ena").getAttribute("data-label");
+
+           
+            document.getElementById("hiddeninput").value =id;
+            document.getElementById("maininput").value =data;
             document.getElementById('maindiv').style.display = 'block';
-            document.getElementById("maininput").value ='awfa';
+         
+          
+      
             
           };
 
           if (evt.target.className == 'ime') {
-          var x= 
+        
+          
+          id=tinyMCE.activeEditor.dom.get("ime").getAttribute("id");
+          data=tinyMCE.activeEditor.dom.get("ime").getAttribute("data-label");
+          document.getElementById("hiddeninput").value =id;
+          document.getElementById("maininput").value =data;
           document.getElementById('maindiv').style.display = 'block';
-          document.getElementById("maininput").value ='awfa';
           
         };
 
         if (evt.target.className == 'priimek') {
           
     
-          var x= 
+          id=tinyMCE.activeEditor.dom.get("priimek").getAttribute("id");
+          data=tinyMCE.activeEditor.dom.get("priimek").getAttribute("data-label");
+          document.getElementById("hiddeninput").value =id;
+          document.getElementById("maininput").value =data;
           document.getElementById('maindiv').style.display = 'block';
-          document.getElementById("maininput").value ='awfa';
+       
           
         };
          
-          if (evt.target.className == 'test') alert('dafwfwaaw');
           
-          if (evt.targer.className== 'button'){
-            document.getElementById('main').style.display = 'none';
+          
          
-            document.getElementById('ena').value='kul';
-            document.getElementById('ena').innerHMTL='GEJ';
-          }
 
           
     
@@ -141,7 +145,9 @@ var me=this, dynamicallyEditable;
     <body>
     <div class="row">
             <div class="col-lg-2">
+
             </div>
+            
             <div class="col-lg-8">
             <form method="post" class="form-group">
                 <textarea id="editor" style="height:30em;">
@@ -162,19 +168,51 @@ var me=this, dynamicallyEditable;
               <p id='test'>test</p>
 
               <div id='maindiv' style="display:none">
-                <input id='maininput'  placeholder='Enterlabel' data-label='nekiLabel'>
-                <button type="button" class='button' onclick="a()">Shrani</button>
+              <div class="col-10">
+   
+    
+              <input id='hiddeninput' type='hidden'>
+                <button type="button" class="btn btn-success" onclick="b()">poisci element</button><br></br>
+                  <div id='isci' style="display:none">
+                    <input id='maininput'  placeholder='Enterlabel' data-label='nekiLabel' class='form-control '>
+                    <button type="button" class="btn btn-success" onclick="a()">Shrani labelo</button>
+                  </div>
+                </div>
+                <div class="col-2">
+                </div>
               <div>
               </form>
             </div>
     </div>
     
     <script>
+
+    var id;
+    function b(){
+
+          id=document.getElementById('hiddeninput').value;
+      
+          alert(id);
+        
+          
+          document.getElementById('isci').style.display = 'block';
+          
+    }
+
     function a(){
 
-      document.getElementById("test").innerHTML = 'kekec';
-      document.getElementById('maindiv').style.display = 'none';
+     var labela=document.getElementById('maininput').value;
+     
+     tinyMCE.activeEditor.dom.get(id).setAttribute("data-label", labela);
+     document.getElementById('maindiv').style.display = 'none';
+      
     }
+
+
+
+
+  
+
     
 
     </script>
