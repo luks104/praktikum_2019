@@ -98,12 +98,13 @@ let components = [];
 </script> 
 </head>
 <body>
-  <form method="post" class="form-group">
+<form action="{{ route('formStore') }}" method="POST" type="hidden" name="_token" class="form-group" enctype="multipart/form-data">
+{{ csrf_field() }}
     <div class="container">
 
-      <textarea id="editor" style="height:30em;"></textarea>
+      <textarea id="editor" style="height:30em;" name="formData"></textarea>
       <br>
-      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="submit" class="btn btn-primary">Primary</button>
       <br><br>
       <div class="row">
           <ul class="list-group">
