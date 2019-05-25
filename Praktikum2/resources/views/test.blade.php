@@ -10,33 +10,37 @@
 
 <script>
 
-tinymce.PluginManager.add('sample', function(ed, url) {
+class Component{
+  constructor(position,isSet){
+    this.position=position;
+    this.isSet = isSet;
+  }
+  getPosition(){
+    return this.position;
+  }
+  getIsSet(){
+    return this.isSet;
+  }
+}
 
-var me=this, dynamicallyEditable;
+function findComponent(){
+  let currentComponent=0 ;
+    for(let i =0;i<components.length;i++){
+      if(components[i].isSet === false){
+        currentComponent=i;break;
+      }
+      else {
+        currentComponent = components.length;
+      }
+    }
+    return currentComponent;
+}
+let components = [];
 
 
-
-
- me.refresh = function() {
-     if(dynamicallyEditable.dynamicallyAdded){
-       dynamicallyEditable.dynamicallyAdded.remove();
-       dynamicallyEditable.dynamicallyAdded = null;
-     }
-
-     dynamicallyEditable.settings.values = dynamicallyEditable.settings.dynamicallyAdded = getValues();
- };
-
- 
-});
-
-  
  var editor_config = {
-
-
-  
-
   selector: 'textarea#editor',
-  toolbar: 'komponenta | ime | priimek |undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | input',
+  toolbar: 'components | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media| saveComponent',
   plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -45,176 +49,75 @@ var me=this, dynamicallyEditable;
       ],
       
   setup: (editor) => {
-      editor.ui.registry.addButton('komponenta', {
-        text: 'Komponenta',
-        tooltip: 'Insert Current Date',
-        
-      onAction: function (_) {
-        
-        editor.insertContent("<input id='ena' style='margin-left:5px;margin-right:5px;border-radius:2px;' placeholder='Enterlabel' data-label='a' class='komponenta'>");
-        
-      }
-      });
-
-     
-
-      editor.ui.registry.addButton('ime', {
-        text: 'ime',
-        tooltip: 'Vpisite svoje ime',
-      onAction: function (_) {
-        editor.insertContent("<input id='ime' style='margin-left:5px;margin-right:5px;border-radius:2px;' placeholder='ime' data-label='nekiLabel' class='ime'>");
-      }
-      });
-
-      editor.ui.registry.addButton('priimek', {
-        text: 'priimek',
-        tooltip: 'Vpisite svoj priimek',
-      onAction: function (_) {
-        editor.insertContent("<input id='priimek' style='margin-left:5px;margin-right:5px;border-radius:2px;' placeholder='priimek' data-label='nekiLabel' class='priimek'>");
-      }
-      });
-
       
-
-   
-
-      editor.on('click', function(evt) {
-         var id=null;
-         var clas;
-
-          if (evt.target.className == 'komponenta') {
-
-            id=tinyMCE.activeEditor.dom.get("ena").getAttribute("id");
-            data=tinyMCE.activeEditor.dom.get("ena").getAttribute("data-label");
-
-           
-            document.getElementById("hiddeninput").value =id;
-            document.getElementById("maininput").value =data;
-            document.getElementById('maindiv').style.display = 'block';
-         
-          
-      
-            
-          };
-
-          if (evt.target.className == 'ime') {
-        
-          
-          id=tinyMCE.activeEditor.dom.get("ime").getAttribute("id");
-          data=tinyMCE.activeEditor.dom.get("ime").getAttribute("data-label");
-          document.getElementById("hiddeninput").value =id;
-          document.getElementById("maininput").value =data;
-          document.getElementById('maindiv').style.display = 'block';
-          
-        };
-
-        if (evt.target.className == 'priimek') {
-          
-    
-          id=tinyMCE.activeEditor.dom.get("priimek").getAttribute("id");
-          data=tinyMCE.activeEditor.dom.get("priimek").getAttribute("data-label");
-          document.getElementById("hiddeninput").value =id;
-          document.getElementById("maininput").value =data;
-          document.getElementById('maindiv').style.display = 'block';
-       
-          
-        };
-         
-          
-          
-         
-
-          
-    
-          
+      editor.ui.registry.addMenuButton('components', {
+        text: 'Components',
+        fetch: function (callback) {
+          var menuItems =[
+            {
+              type: 'menuitem',
+              text: 'Komponenta',
+              onAction: function(_){
+                let tempComp = findComponent();
+                components[tempComp] = new Component(tempComp,true);
+                console.log(components);
+                editor.insertContent("<input data-group='+ group + ' data-label='FOO_label' data-id=" + tempComp +" id='komponenta' type='text' class='form-control komponenta' style='width:15%;height:calc(0.59rem + 2px);padding:.375rem .75rem;font-size:.9rem;line-height:1.6;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;margin-left: .5rem;margin-right:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out' placeholder='Enterlabel'>");
+              }
+            }
+          ];
+          callback(menuItems);
+        }
       });
+      editor.on('DblClick', function(evt) {
+      if(evt.target.id == 'komponenta'){
+        let id = evt.target.getAttribute("data-id");
+        console.log("Removed component: "+id);
+        components[id] = new Component(id,false);
+        evt.target.remove();
 
-
+        //evt.target.setAttribute("data-label", evt.target.value);
+      }
       
+    });
+      editor.on('Click', function(evt) {
+      if(evt.target.id == 'komponenta'){
+        let id = evt.target.getAttribute("data-id");
+        console.log("Updated component: "+id +" with label: "+evt.target.value);
+
+        evt.target.setAttribute("data-label", evt.target.value);
+      }
+      
+    });
 
     }
-    
   };
-
  
     tinymce.init(editor_config);
 
     
-  </script> 
-  </head>
-    <body>
-    <div class="row">
-            <div class="col-lg-2">
+</script> 
+</head>
+<body>
+  <form method="post" class="form-group">
+    <div class="container">
 
-            </div>
-            
-            <div class="col-lg-8">
-            <form method="post" class="form-group">
-                <textarea id="editor" style="height:30em;">
-              
-                <!--
-                <p onclick="customMethod();" class="do_1">Call custom method.</p>
-                <p onclick="alert('alert called');" class="do_3" >Call Alert.</p>
-                <p class="test" onclick="myFunction()">Click me to change my HTML content (innerHTML).</p>
-                <p class="demo" onclick="myFunction()">Click me to change my HTML content (innerHTML).</p>-->
-                </textarea>
-                
-                <button type="button" class="btn btn-primary" onclick="a()">Primary</button>
-            </form>
-        
-            </div>
-            <div class="col-lg-2">
-              <form>
-              <p id='test'>test</p>
-
-              <div id='maindiv' style="display:none">
-              <div class="col-10">
-   
+      <textarea id="editor" style="height:30em;"></textarea>
+      <br>
+      <button type="button" class="btn btn-primary">Primary</button>
+      <br><br>
+      <div class="row">
+          <ul class="list-group">
+            <li class="list-group-item">Zgori lahk zberes komponento za dodat</li>
+            <li class="list-group-item">En klik na komponento (textbox) shrani tist kar napises kot data-label</li>
+            <li class="list-group-item">DVOJNI KLIK na textbox izbrise komponento. NE BRISI Z BACKSPACE-OM</li>
+            <li class="list-group-item">Komponente majo svoj data-id da jih lakha js locim</li>
+            <li class="list-group-item">F12-> Console izpisuje vn ka se dogaja ko klikas oz. dvojno-klikas</li>
+      
+      
+          </ul>
     
-              <input id='hiddeninput' type='hidden'>
-                <button type="button" class="btn btn-success" onclick="b()">poisci element</button><br></br>
-                  <div id='isci' style="display:none">
-                    <input id='maininput'  placeholder='Enterlabel' data-label='nekiLabel' class='form-control '>
-                    <button type="button" class="btn btn-success" onclick="a()">Shrani labelo</button>
-                  </div>
-                </div>
-                <div class="col-2">
-                </div>
-              <div>
-              </form>
-            </div>
     </div>
-    
-    <script>
+  </form>  
 
-    var id;
-    function b(){
-
-          id=document.getElementById('hiddeninput').value;
-      
-          alert(id);
-        
-          
-          document.getElementById('isci').style.display = 'block';
-          
-    }
-
-    function a(){
-
-     var labela=document.getElementById('maininput').value;
-     
-     tinyMCE.activeEditor.dom.get(id).setAttribute("data-label", labela);
-     document.getElementById('maindiv').style.display = 'none';
-      
-    }
-
-
-
-
-  
-
-    
-
-    </script>
-    </body>
-    @endsection
+</body>
+@endsection
