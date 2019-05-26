@@ -5,11 +5,11 @@
 <html lang="en">
   <head>
   <script src={{URL::to('vendor/tinymce/js/tinymce/tinymce.min.js')}}></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <!--Za vsak slučaj, če bo kdaj rabo lahko namesto poti toti link vstavi not 
   "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=u10v0g64egvz9bbbguv1pg14x0au3nus6yzv88vhiwbfwd8"-->
 
 <script>
-
 let currentComponent= -1;
 //Enables/Disables button depending on condition.
 function setDisabled(button,disabled){
@@ -36,13 +36,15 @@ function checkInputName(e){
 }
 //When user enters an input.
 function leaveInput(){
-  document.getElementById("saveComponent").style.visibility = "hidden";
+  //document.getElementById("saveComponent").style.visibility = "hidden";
+  $("#saveComponent").fadeOut("slow");
   currentComponent=-1;
 }
 //When user leaves an input.
 function enterInput(e){
   
-  document.getElementById("saveComponent").style.visibility = "visible";
+  //document.getElementById("saveComponent").style.visibility = "visible";
+  $("#saveComponent").fadeIn("slow");
   currentComponent=e.target.id;
 }
 //Saves the name of current selected component.
@@ -55,10 +57,12 @@ function saveCurrentComp(){
 //Enables sumbit button if enable = true;
 function enableSumbit(enable){
   if(!enable){
-    setDisabled("submitButton",true);
+    $("#submitButton").fadeOut();
+    //setDisabled("submitButton",true);
   }
   else{
-    setDisabled("submitButton",false);
+    $("#submitButton").fadeIn();
+    //setDisabled("submitButton",false);
   }
   
 }
@@ -146,26 +150,56 @@ function checkContent(){
  
 tinymce.init(editor_config);
 
-    
 </script> 
 </head>
 <body>
-<form action="{{ route('formStore') }}" method="POST" type="hidden" name="_token" class="form-group" enctype="multipart/form-data">
+<form action="{{ route('formStore') }}" method="POST" type="hidden" name="_token" class="form-group"  enctype="multipart/form-data">
 {{ csrf_field() }}
-    <div class="container">
-      <textarea id="editor" style="height:30em;" name="formData"></textarea>
+    <div class="container animated fadeInUp">
+      <textarea id="editor" style="height:30em;" name="formData" class=""></textarea>
       <br>
       <div class="row">
         <div class="col-lg-2">
-          <button type="button" id="saveComponent" onclick="saveCurrentComp()" style="visibility: hidden;" class="btn btn-success btn-block">Save component</button>
+          <button type="button" id="saveComponent" style="display:none" onclick="saveCurrentComp()"  class="btn btn-success btn-block">Save component</button>
         </div>
         
         <div class="col-lg-3 offset-lg-7">
-          <button type="submit" id="submitButton" disabled  class="disabled btn btn-primary btn-block">Save as template</button>
+          @guest
+          <a  href="{{ route('login') }}" class=" btn btn-lg btn-primary btn-block animated pulse infinite">Login to save template</a>
+          @else
+          <button type="button" id="submitButton"  style="display:none" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal1">Save as template</button>
+          @endguest
         </div>
       </div>
     </div>
-  </form>  
 
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="form-group animated fadeIn">
+                        <label for="nameTemplate" class="">Template name:</label>
+                        <input type="text" class="form-control form-control-lg" id="nameTemplate"  required placeholder="My Template">
+                      </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-3">
+                    <button type="button" class="btn btn-secondary btn-block animated fadeIn delay-1s" data-dismiss="modal">Close</button>
+                </div>
+                <div class="col-lg-3 offset-lg-6">
+                    <button type="submit" class="btn btn-primary btn-block animated fadeIn delay-1s">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
 </body>
 @endsection
