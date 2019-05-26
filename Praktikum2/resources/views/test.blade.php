@@ -10,8 +10,87 @@
 
 <script>
 
+let currentComponent= -1;
+//Enables/Disables button depending on condition.
+function setDisabled(button,disabled){
+  if(disabled){
+      document.getElementById(button).classList.add("disabled");
+      document.getElementById(button).setAttribute("disabled",true);
+  }
+  else{
+      document.getElementById(button).classList.remove("disabled");
+      document.getElementById(button).removeAttribute("disabled");
+  }
+}
+//Checks if the input has any value. The save component button acts accordingly.
+function checkInputName(e){
 
-
+  if(e.target.value ==='' || e.target.value === e.target.name)
+    {
+      setDisabled("saveComponent",true);
+      
+    }
+    else{
+      setDisabled("saveComponent",false);
+    }
+}
+//When user enters an input.
+function leaveInput(){
+  document.getElementById("saveComponent").style.visibility = "hidden";
+  currentComponent=-1;
+}
+//When user leaves an input.
+function enterInput(e){
+  
+  document.getElementById("saveComponent").style.visibility = "visible";
+  currentComponent=e.target.id;
+}
+//Saves the name of current selected component.
+function saveCurrentComp(){
+  let v = tinymce.activeEditor.dom.get(currentComponent).value;
+  tinymce.activeEditor.dom.setAttribs(currentComponent, {'name': v, placeholder: v});
+  leaveInput();
+  checkContent();
+}
+//Enables sumbit button if enable = true;
+function enableSumbit(enable){
+  if(!enable){
+    setDisabled("submitButton",true);
+  }
+  else{
+    setDisabled("submitButton",false);
+  }
+  
+}
+//Checks if all components are named.
+function checkContent(){
+  let comps = tinymce.activeEditor.dom.select('input.component');
+  let found = false;
+  
+  if(comps.length === 0){
+    
+    if(tinymce.activeEditor.getContent()===''){
+      enableSumbit(false);
+    }
+    else{
+      enableSumbit(true);
+    }
+  }
+  else{
+    for(let y =0;y<comps.length;y++){
+      if(tinymce.activeEditor.dom.getAttrib(comps[y], 'name')=== ''){
+        found=true; break;
+      }
+    }
+    if(found){
+      enableSumbit(false);
+    }
+    else{
+      enableSumbit(true);
+    }
+  }
+ 
+}
  var editor_config = {
   selector: 'textarea#editor',
   toolbar: 'components | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media| button1',
@@ -19,50 +98,53 @@
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
         "emoticons template paste textcolor colorpicker textpattern",
-       
       ],
-      
-  setup: (editor) => {
-      editor.ui.registry.addButton('button1', {
-        text: 'Yeet',
-        onAction: function (_) {
-          tinymce.activeEditor.dom.select('input');
-          let compets = tinymce.activeEditor.dom.select('input.component');
-          let label = [];
-          for(let y =0;y<compets.length;y++){
-             label.push(compets[y].attributes.name.value);
-          }
-
-      }
-      });
-
+  setup: (editor) => 
+    {
+      //Adding components
       editor.ui.registry.addMenuButton('components', {
         text: 'Components',
         fetch: function (callback) {
           var menuItems =[
             {
               type: 'menuitem',
-              text: 'Komponenta',
+              text: 'Component',
               onAction: function(_){
                 let compets = tinymce.activeEditor.dom.select('input.component');
-                editor.insertContent("<input name='' data-label='FOO_label' id="+compets.length+" type='text' class='form-control component' style='width:15%;height:calc(0.59rem + 2px);padding:.375rem .75rem;font-size:.9rem;line-height:1.6;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;margin-left: .5rem;margin-right:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out' placeholder='Enter your label...'>");
+                editor.insertContent("<input  name='' id="+compets.length+" type='text' class='form-control component' style='width:15%;height:calc(0.59rem + 2px);padding:.375rem .75rem;font-size:.9rem;line-height:1.6;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;margin-left: .5rem;margin-right:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out' placeholder='Enter your label...'>");
                 let compets2 = tinymce.activeEditor.dom.select('input.component');
-                console.log(compets2);
-                for(let y =0;y<compets2.length;y++){
-                  tinymce.activeEditor.dom.setAttrib(compets2[y], 'name', 'WEAREHERE');
-                } 
+                //console.log(compets2);
               }
             }
           ];
           callback(menuItems);
         }
       });
-      
-
+      //Adding click & keyUp events for inputs.
+      editor.on('click', function (e) {//Clicking on input selects current component.
+        if(e.target.nodeName === 'INPUT'){
+          checkInputName(e);
+          enterInput(e);
+        }
+        else{
+          leaveInput();
+        }
+      });
+      editor.on('keyup', function (e) {//Writing on input changes its name.
+      if(e.target.nodeName === 'INPUT'){
+        checkInputName(e);
+      }
+      else{
+        leaveInput();
+      }
+      }); 
+      editor.on('nodechange',function(e){
+        checkContent();
+      })
     }
   };
  
-    tinymce.init(editor_config);
+tinymce.init(editor_config);
 
     
 </script> 
@@ -71,20 +153,17 @@
 <form action="{{ route('formStore') }}" method="POST" type="hidden" name="_token" class="form-group" enctype="multipart/form-data">
 {{ csrf_field() }}
     <div class="container">
-
       <textarea id="editor" style="height:30em;" name="formData"></textarea>
       <br>
-      <button type="submit" class="btn btn-primary">Primary</button>
-      <br><br>
       <div class="row">
-          <ul class="list-group">
-            <li class="list-group-item">Zgori lahk zberes komponento za dodat</li>
-            <li class="list-group-item">En klik na komponento (textbox) shrani tist kar napises kot data-label</li>
-            <li class="list-group-item">DVOJNI KLIK na textbox izbrise komponento. NE BRISI Z BACKSPACE-OM</li>
-            <li class="list-group-item">Komponente majo svoj data-id da jih lakha js locim</li>
-            <li class="list-group-item">F12-> Console izpisuje vn ka se dogaja ko klikas oz. dvojno-klikas</li>
-          </ul>
-    
+        <div class="col-lg-2">
+          <button type="button" id="saveComponent" onclick="saveCurrentComp()" style="visibility: hidden;" class="btn btn-success btn-block">Save component</button>
+        </div>
+        
+        <div class="col-lg-3 offset-lg-7">
+          <button type="submit" id="submitButton" disabled  class="disabled btn btn-primary btn-block">Save as template</button>
+        </div>
+      </div>
     </div>
   </form>  
 

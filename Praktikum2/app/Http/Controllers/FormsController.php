@@ -22,10 +22,11 @@ class FormsController extends Controller
 
         foreach($html->find('input') as $element){
             $input = new Input;
-            $input->label = $element->getAttribute("data-label");
+            $input->label = $element->getAttribute("name");
             $input->form_id = $form->id;
             $input->input_type_id=1;
             $input->save();
         }
+        return redirect('/home');
     }
 }
