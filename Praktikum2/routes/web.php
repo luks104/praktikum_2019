@@ -23,3 +23,4 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::post('/test', 'FormsController@store')->name('formStore');
