@@ -5,6 +5,7 @@
 <html lang="en">
   <head>
   <script src={{URL::to('vendor/tinymce/js/tinymce/tinymce.min.js')}}></script>
+  <script src={{URL::to('vendor/parsley/parsley.min.js')}}></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <!--Za vsak slučaj, če bo kdaj rabo lahko namesto poti toti link vstavi not 
   "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=u10v0g64egvz9bbbguv1pg14x0au3nus6yzv88vhiwbfwd8"-->
