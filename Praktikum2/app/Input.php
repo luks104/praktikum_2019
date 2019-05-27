@@ -12,7 +12,7 @@ class Input extends Model
         return $this->belongsTo('App\Form');
     }
 
-    public function input_inputType() {
-        return $this->belongsTo('App\InputType');
+    public function input_inputTemplate() {
+        return $this->belongsTo('App\InputTemplate');
     }
 }
