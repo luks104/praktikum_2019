@@ -25,7 +25,7 @@ class FormsController extends Controller
             $input = new Input;
             $input->label = $element->getAttribute("name");
             $input->form_id = $form->id;
-            $input->input_type_id=1;
+            $input->input_template_id=1;
             $input->save();
         }
         
