@@ -20,7 +20,7 @@ class CreateInputsTable extends Migration
 
             //foreign keys
             $table->bigInteger('form_id')->unsigned();
-            $table->bigInteger('input_type_id')->unsigned();
+            $table->bigInteger('input_template_id')->unsigned();
         });
     }
 

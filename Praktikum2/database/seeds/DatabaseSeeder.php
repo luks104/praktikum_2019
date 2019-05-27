@@ -11,6 +11,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call('TableSeeder');
+        $this->command->info('Tables seeded!');
     }
+
 }
+
+class TableSeeder extends Seeder
+    {
+        public function run()
+        {
+            DB::table('input_templates')->insert([
+                'type' => ('<input type="text" >')
+            ]);
+            DB::table('input_templates')->insert([
+                'type' => ('<input type="password" >')
+            ]);
+        }
+    }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInputTypesTable extends Migration
+class CreateInputTemplatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateInputTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('input_types', function (Blueprint $table) {
+        Schema::create('input_templates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type',45);
+            $table->longText('type');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateInputTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('input_types');
+        Schema::dropIfExists('input_templates');
     }
 }
