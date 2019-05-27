@@ -8,7 +8,7 @@
     </div>
 
     <div>
-        {{$form->form_data}}
+        {!! $form->form_data !!}
     </div>
 
     <a href="/form/{{$form->id}}/wizard" class="btn btn-primary">Izpolni obrazec {{$form->form_name}}</a>
