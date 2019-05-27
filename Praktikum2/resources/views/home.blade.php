@@ -1,6 +1,12 @@
 @extends('layouts.app')
+<div id="app">
+        @include('layouts/alert')
 
+
+        @yield('content')
+</div>
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,7 +20,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <a type="button" class="btn btn-primary" href="{{ url('create') }}">Ustvari nov obrazec</a>
                 </div>
             </div>
         </div>

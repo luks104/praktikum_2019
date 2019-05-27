@@ -182,7 +182,7 @@ tinymce.init(editor_config);
                 <div class="col-lg-8 offset-lg-2">
                     <div class="form-group animated fadeIn">
                         <label for="nameTemplate" class="">Template name:</label>
-                        <input type="text" class="form-control form-control-lg" id="nameTemplate"  required placeholder="My Template">
+                        <input type="text" class="form-control form-control-lg" id="nameTemplate" name="formName" required placeholder="My Template">
                       </div>
                 </div>
               </div>

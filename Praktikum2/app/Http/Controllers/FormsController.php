@@ -18,6 +18,7 @@ class FormsController extends Controller
         $form = new Form;
         $form->form_data = $request->input('formData');
         $form->user_id = Auth::id();
+        $form->form_name = $request->input('formName');
         $form->save();
 
         foreach($html->find('input') as $element){
@@ -27,6 +28,7 @@ class FormsController extends Controller
             $input->input_type_id=1;
             $input->save();
         }
-        return redirect('/home');
+        
+        return redirect('/home')->with('success','Uspešno shranjen obrazec!');
     }
 }

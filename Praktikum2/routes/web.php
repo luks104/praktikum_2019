@@ -19,8 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function () { 
-    return view('test');
+
+Route::get('/create', function () {
+    return view('create');
 });
 
-Route::post('/test', 'FormsController@store')->name('formStore');
+Route::post('/create', 'FormsController@store')->name('formStore');
+
