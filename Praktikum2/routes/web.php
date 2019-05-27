@@ -25,7 +25,7 @@ Route::get('/create', function () {
 
 Route::post('/create', 'FormsController@store')->name('formStore');
 
-Route::get('/list', 'FormsController@returnForms')->name('formList');
+Route::get('/form', 'FormsController@returnForms')->name('formList');
 
 Route::get('/form/{id}', 'FormsController@selectForm')->name('formDetail');
 
