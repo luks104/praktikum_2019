@@ -1,12 +1,12 @@
 @extends('layouts.app')
+
+@section('content')
 <div id="app">
         @include('layouts/alert')
 
 
         @yield('content')
 </div>
-@section('content')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
