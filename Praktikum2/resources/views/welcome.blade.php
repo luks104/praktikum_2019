@@ -81,7 +81,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                   Pametni obrazci
+                <a class="btn btn-primary" href="{{ route('formList') }}">
+                    Seznam obrazcev
+                </a>
                 </div>
 
                 <div class="links">

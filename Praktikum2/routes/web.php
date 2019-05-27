@@ -19,10 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::get('/create', function () {
     return view('create');
 });
 
 Route::post('/create', 'FormsController@store')->name('formStore');
 
+Route::get('/form', 'FormsController@returnForms')->name('formList');
+
+Route::get('/form/{id}', 'FormsController@selectForm')->name('formDetail');
+
+Route::get('/form/{id}/wizard', 'FormsController@formWizard')->name('formWizard');

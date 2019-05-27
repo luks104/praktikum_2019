@@ -31,4 +31,21 @@ class FormsController extends Controller
         
         return redirect('/home')->with('success','Uspešno shranjen obrazec!');
     }
+
+    public function returnForms()
+    {
+        $forms = Form::orderBy('form_name')->paginate(10);
+        return view('list')->with('forms', $forms);
+    }
+
+    public function selectForm($id)
+    {
+        $form = Form::find($id);
+        return view('form')->with('form', $form);
+    }
+
+    public function formWizard($id)
+    {
+
+    }
 }
