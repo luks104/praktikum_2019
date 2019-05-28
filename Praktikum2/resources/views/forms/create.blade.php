@@ -180,7 +180,7 @@ tinymce.init(editor_config);
               <div class="row">
                 <div class="col m8 offset-m2">
                         <div class="input-field col s12 animated fadeIn">
-                            <input id="nameTemplate" type="text">
+                            <input id="nameTemplate" type="text" name="formName">
                              <label for="nameTemplate">Name your template</label>
                         </div>
                 </div>
