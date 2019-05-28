@@ -23,7 +23,7 @@
             <ul id="slide-out" class="sidenav"><!-- USER NAVBAR -->
                 <li>
                     <div class="user-view">
-                        <div class="background blue">
+                        <div class="background" style="background-color:#8EC5FC">
                     
                         </div>
                         <a href="#user"><img class="circle" src="https://materializecss.com/images/yuna.jpg"></a>
@@ -48,8 +48,8 @@
             </ul>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large blue sidenav-trigger" data-target="slide-out">
-                    <i class="large material-icons">account_circle</i>
+                <a class="btn-floating btn-large white sidenav-trigger " data-target="slide-out">
+                    <i class="large material-icons" style="background-color:#E0C3FC">account_circle</i>
                 </a>
             </div>
         @endif

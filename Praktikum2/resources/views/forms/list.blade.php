@@ -2,7 +2,9 @@
 
 @section('content')
 <div class='container'>
-        <h1 >Forms</h1>
+        <div>
+            <h3 class="ff-poppins" style="text-transform:uppercase;">Templates</h3>
+        </div>
         @if(count ($forms) > 0 )
             @foreach ($forms as $form)
                 <div class="card card-body bg-light" padding = '3px'>
