@@ -25,8 +25,8 @@
                 <a><span class="white-text name ff-poppins"><h5>{{ Auth::user()->name }}</h5></span></a>
                 <a><span class="white-text email"><h6>{{ Auth::user()->email }}<h6></span></a>
                 </div></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-                <li><a href="#!">Second Link</a></li>
+                <li><a href="#!"><i class="material-icons">user</i>User Settings</a></li>
+                <li><a href="#!">My Templates</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Subheader</a></li>
                 <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
@@ -43,7 +43,7 @@
                 <div class="nav-wrapper blue">
                     <a href="{{ route('home') }}" class="brand-logo">Smart Forms</a>
                     <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ route('formList')}}">My Templates</a></li>
+                    <li><a href="{{ route('formList')}}">Templates</a></li>
                         <li><a href="{{ route('formCreate') }}">Create</a></li>
                     @guest
                         <li id="login">
@@ -69,8 +69,27 @@
                 </div>
 
                 <ul class="sidenav" id="mobile-demo">
-                    <li><a href="#">Hello</a></li>
-                    <li><a href="#">Hello</a></li>
+                    <li><a href="{{ route('formList')}}">Templates</a></li>
+                        <li><a href="{{ route('formCreate') }}">Create</a></li>
+                    @guest
+                        <li id="login">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endif
+                    @else 
+                        <li id="login">
+                            <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                        </li>
+                    @endguest
                 </ul>
             </nav>
             
