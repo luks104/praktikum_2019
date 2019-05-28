@@ -15,11 +15,15 @@
         
     </head>
     <body>
+        
+        <div id="content">
+
+        
         @if(Auth::check())
             <ul id="slide-out" class="sidenav"><!-- USER NAVBAR -->
                 <li>
                     <div class="user-view">
-                        <div class="background blue">
+                        <div class="background" style="background-color:#8EC5FC">
                     
                         </div>
                         <a href="#user"><img class="circle" src="https://materializecss.com/images/yuna.jpg"></a>
@@ -42,13 +46,13 @@
                         </form>
                 </li>
             </ul>
-            @endif
+
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large blue sidenav-trigger" data-target="slide-out">
-                    <i class="large material-icons">account_circle</i>
+                <a class="btn-floating btn-large white sidenav-trigger " data-target="slide-out">
+                    <i class="large material-icons" style="background-color:#E0C3FC">account_circle</i>
                 </a>
             </div>
-       
+        @endif
 
             <nav><!-- MAIN NAVBAR -->
                 <div class="nav-wrapper blue">
@@ -67,7 +71,7 @@
                             </li>
                         @endif
                     @else 
-                        
+                    
                     @endguest
                     </ul>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -96,13 +100,23 @@
                         </li>
                     @endguest
                 </ul>
-            </nav>
-            
-            <div>
+            </nav>        
                 @yield('content')
             </div>
-            
-                  
+            <div id="loader">
+                    <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue-only">
+                              <div class="circle-clipper left">
+                                <div class="circle"></div>
+                              </div><div class="gap-patch">
+                                <div class="circle"></div>
+                              </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                              </div>
+                            </div>
+                          </div>
+            </div>
+        
     </body>
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/materialize.js')}}"></script>
@@ -110,6 +124,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
+    var options = {
+        "edge" : "left"
+    };
     var instances = M.Sidenav.init(elems, options);
   });
 
@@ -119,12 +136,15 @@
 
   // Or with jQuery
 
+
   $(document).ready(function(){
     $('.sidenav').sidenav();
-  });
-  $(document).ready(function(){
     $('.modal').modal();
   });
+
+  $(window).on('load',function(){
+      $("#loader").fadeOut("slow");
+  })
     </script>
 
 </html>
