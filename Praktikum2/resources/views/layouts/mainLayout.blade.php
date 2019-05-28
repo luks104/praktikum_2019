@@ -16,35 +16,66 @@
     </head>
     <body>
         @if(Auth::check())
-            <ul id="slide-out" class="sidenav">
-                <li><div class="user-view">
-                <div class="background blue">
+            <ul id="slide-out" class="sidenav"><!-- USER NAVBAR -->
+                <li>
+                    <div class="user-view">
+                        <div class="background blue">
                     
-                </div>
-                <a href="#user"><img class="circle" src="https://materializecss.com/images/yuna.jpg"></a>
-                <a><span class="white-text name ff-poppins"><h5>{{ Auth::user()->name }}</h5></span></a>
-                <a><span class="white-text email"><h6>{{ Auth::user()->email }}<h6></span></a>
-                </div></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-                <li><a href="#!">Second Link</a></li>
+                        </div>
+                        <a href="#user"><img class="circle" src="https://materializecss.com/images/yuna.jpg"></a>
+                        <a><span class="white-text name ff-poppins"><h5>{{ Auth::user()->name }}</h5></span></a>
+                        <a><span class="white-text email"><h6>{{ Auth::user()->email }}<h6></span></a>
+                    </div>
+                </li>
+                <li><a class="subheader">User</a></li>
+                <li><a href="#!"><i class="material-icons">settings</i>User Settings</a></li>
+                <li><a href="#!"><i class="material-icons">folder</i>My Templates</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Subheader</a></li>
                 <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Logout</a></li>
+                <li>
+                    <a class="waves-effect" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons">exit_to_app</i>Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                </li>
             </ul>
-
+            @endif
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large blue sidenav-trigger" data-target="slide-out">
                     <i class="large material-icons">account_circle</i>
                 </a>
             </div>
-        @endif
+       
 
-            <nav>
+            <nav><!-- MAIN NAVBAR -->
                 <div class="nav-wrapper blue">
                     <a href="{{ route('home') }}" class="brand-logo">Smart Forms</a>
                     <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ route('formList')}}">My Templates</a></li>
                         <li><a href="{{ route('formCreate') }}">Create</a></li>
+                        <li><a href="{{ route('formList')}}">Templates</a></li>
+                        
+                    @guest
+                        <li id="login">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endif
+                    @else 
+                        
+                    @endguest
+                    </ul>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+
+                <ul class="sidenav" id="mobile-demo"><!-- MOBILE NAVBAR -->
+                        <li><a href="{{ route('formCreate') }}">Create</a></li>
+                        <li><a href="{{ route('formList')}}">Templates</a></li>
                     @guest
                         <li id="login">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -64,13 +95,6 @@
                                 </form>
                         </li>
                     @endguest
-                    </ul>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                </div>
-
-                <ul class="sidenav" id="mobile-demo">
-                    <li><a href="#">Hello</a></li>
-                    <li><a href="#">Hello</a></li>
                 </ul>
             </nav>
             
