@@ -49,12 +49,12 @@ class FormsController extends Controller
     {
         $inputs = Form::find($id)->form_input()->get();
         
-        $genratedHTMLOutput = "";
+        $generatedHTMLOutput = "";
         foreach($inputs as $input){
             $idInput = $input->input_template_id;
-            $genratedHTMLOutput = $genratedHTMLOutput . InputTemplate::find($idInput)->type;
+            $generatedHTMLOutput = $generatedHTMLOutput . InputTemplate::find($idInput)->type;
         }
 
-        return $genratedHTMLOutput;
+        return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput);
     }
 }

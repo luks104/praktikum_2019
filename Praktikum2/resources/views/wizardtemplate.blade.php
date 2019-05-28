@@ -17,15 +17,9 @@
     <form id="demo-form" data-parsley-validate="" >
 
 
-    <label for="email">Email * :</label>
-    <input type="text" class="form-control" name="s" required="" data-parsley-palindrome-jao="">
-    
-    <label for="question">test</label>
-    <input type="text" class="form-control" name="nb" required="" data-parsley-zmazek="10">
+    {!! $generatedHTMLOutput !!}
 
-    <input type="submit" class="btn btn-default" value="validate">
-
-    
+    <input type="submit" class="" required="" value="validate">
     </form>
 
 
