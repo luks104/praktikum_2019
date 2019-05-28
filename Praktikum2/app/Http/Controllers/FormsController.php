@@ -8,6 +8,8 @@ use App\Form;
 use App\Input;
 use App\InputTemplate;
 use Auth;
+use Mpdf\Mpdf;
+
 
 class FormsController extends Controller
 {
@@ -57,4 +59,21 @@ class FormsController extends Controller
 
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput);
     }
+
+    public function toPDF($id)
+    {
+        $inputs = Form::find($id)->form_input()->get();
+        $generatedHTMLOutput = "";
+        foreach($inputs as $input){
+            $idInput = $input->input_template_id;
+            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . InputTemplate::find($idInput)->template . "<br>";
+        }
+
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
+        $mpdf->WriteHTML($generatedHTMLOutput);
+        $mpdf->Output();
+    }
+
+
+ 
 }
