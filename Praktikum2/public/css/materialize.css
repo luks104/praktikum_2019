@@ -3,6 +3,11 @@
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+
+ element {
+  --main-color-1: #08AEEA; 
+  --main-color-2: #2AF598;
+}
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -2163,7 +2168,7 @@ html {
  */
 body {
   margin: 0; 
-  
+  background-image: linear-gradient(60deg, rgba(8, 174, 234, 0.2) 0%, rgba(42, 245, 154, 0.2) 100%);
   
 }
 
@@ -4310,7 +4315,9 @@ nav .nav-wrapper {
   position: relative;
   height: 100%;
   font-family: 'Poppins', sans-serif;
-  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  background-color: #08AEEA;
+background-image: linear-gradient(60deg, #08AEEA 0%, #2AF598 100%);
+
 }
 
 @media only screen and (min-width: 993px) {
@@ -7581,8 +7588,10 @@ input[type=range]::-ms-thumb {
   line-height: 48px;
 }
 
+
 .sidenav li.active {
   background-color: rgba(0, 0, 0, 0.05);
+  
 }
 
 .sidenav li > a {
@@ -7593,8 +7602,9 @@ input[type=range]::-ms-thumb {
   height: 48px;
   line-height: 48px;
   padding: 0 32px;
+	
+  
 }
-
 .sidenav li > a:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
@@ -9097,12 +9107,12 @@ input[type=range]::-ms-thumb {
 }
 
 .input-field input[type=text]:focus + label {
-  color: #2196F3 !important;
+  color: #08AEEA !important;
 }
 /* label underline focus color */
 .input-field input[type=text]:focus {
-  border-bottom: 1px solid #2196F3 !important;
-  box-shadow: 0 1px 0 0 #2196F3 !important;
+  border-bottom: 1px solid #08AEEA !important;
+  box-shadow: 0 1px 0 0 #08AEEA !important;
 }
 #login{
   border-left:1px solid white;
@@ -9134,4 +9144,13 @@ html {
   display:flex;
   justify-content: center;
   align-items: center;
+}
+.grad-l{
+  background-color: #08AEEA;
+background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
+
+}
+.grad-r{
+  background-color: #08AEEA;
+  background-image: linear-gradient(90deg, #2AF598 0%, #08AEEA 100%);
 }

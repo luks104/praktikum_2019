@@ -161,15 +161,15 @@ tinymce.init(editor_config);
       <br>
       <div class="row">
         <div class="col l2">
-          <button type="button" id="saveComponent" style="display:none" onclick="saveCurrentComp()"  class="waves-effect waves-light btn blue scale-transition">Save component</button>
+          <button type="button" id="saveComponent" style="display:none;background-color:#08AEEA" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition">Save component</button>
         </div>
         
         <div class="col l3 offset-l7 right-align">
           @guest
-          <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large animated pulse infinite blue">Login to save template</a>
+          <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large"style="background-color:#2AF598">Login to save template</a>
           @else
          
-          <a class="blue waves-effect waves-light btn btn-large modal-trigger scale-transition" id="submitButton"  style="display:none" href="#modal1">SAve as template</a>
+          <a class="waves-effect waves btn btn-large modal-trigger scale-transition" id="submitButton"  style="display:none; background-color:#2AF598;" href="#modal1">Save as template</a>
           @endguest
         </div>
       </div>
@@ -187,10 +187,10 @@ tinymce.init(editor_config);
               </div>
               <div class="row">
                 <div class="col m3">
-                    <button type="button" class="modal-close btn-large btn-floating waves-effect waves-light red darken-2 animated fadeIn delay-0.5s"><i class="large material-icons left">cancel</i></button>
+                    <button type="button" class="modal-close btn-large btn-floating hvr-grow waves-effect waves-light red darken-2 animated fadeIn delay-0.5s tooltipped" data-position="right" data-tooltip="Cancel"><i class="large material-icons left">cancel</i></button>
                 </div>
                 <div class="col m4 offset-m5 right-align">
-                    <button type="submit" class="btn-floating btn-large waves-effect waves-light blue animated fadeIn delay-0.5s"><i class="large material-icons left">check_circle</i></button>
+                    <button type="submit" class="btn-floating hvr-grow btn-large waves-effect waves-light blue animated fadeIn delay-0.5s tooltipped" data-position="left" data-tooltip="Save your template"><i class="large material-icons left">check_circle</i></button>
                 </div>
               </div>
             </div>
