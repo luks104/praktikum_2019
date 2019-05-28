@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Libraries\simple_html_dom;
 use App\Form;
 use App\Input;
+use App\InputTemplate;
 use Auth;
 
 class FormsController extends Controller
@@ -46,6 +47,14 @@ class FormsController extends Controller
 
     public function formWizard($id)
     {
+        $inputs = Form::find($id)->form_input()->get();
+        
+        $genratedHTMLOutput = "";
+        foreach($inputs as $input){
+            $idInput = $input->input_template_id;
+            $genratedHTMLOutput = $genratedHTMLOutput . InputTemplate::find($idInput)->type;
+        }
 
+        return $genratedHTMLOutput;
     }
 }
