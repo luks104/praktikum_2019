@@ -22,10 +22,10 @@ class TableSeeder extends Seeder
         public function run()
         {
             DB::table('input_templates')->insert([
-                'type' => ('<input type="text" >')
+                'template' => ('<input type="text" >')
             ]);
             DB::table('input_templates')->insert([
-                'type' => ('<input type="password" >')
+                'template' => ('<input type="password" >')
             ]);
         }
     }
