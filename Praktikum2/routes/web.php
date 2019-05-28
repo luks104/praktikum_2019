@@ -23,6 +23,10 @@ Route::get('/create', function () {
     return view('create');
 });
 
+Route::get('/wizardtemplate', function () {
+    return view('wizardtemplate');
+});
+
 Route::post('/create', 'FormsController@store')->name('formStore');
 
 Route::get('/form', 'FormsController@returnForms')->name('formList');
