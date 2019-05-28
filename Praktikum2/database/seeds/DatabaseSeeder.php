@@ -22,13 +22,16 @@ class TableSeeder extends Seeder
         public function run()
         {
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" >')
+                'template' => ('<input type="text" >'),
+                'name' => ('basicInput')
             ]);
             DB::table('input_templates')->insert([
-                'template' => ('<input type="password" >')
+                'template' => ('<input type="password" >'),
+                'name' => ('basicInput1')
             ]);
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" class="form-control" name="s" required="" data-parsley-palindrome-jao="">')
+                'template' => ('<input type="text" class="form-control" name="s" required="" data-parsley-palindrome-jao="">'),
+                'name' => ('basicInput2')
             ]);
         }
     }
