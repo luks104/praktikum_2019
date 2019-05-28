@@ -16,6 +16,7 @@ class CreateInputTemplatesTable extends Migration
         Schema::create('input_templates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->longText('template');
+            $table->string('name');
             $table->timestamps();
         });
     }
