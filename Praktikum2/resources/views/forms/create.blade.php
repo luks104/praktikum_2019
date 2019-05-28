@@ -116,7 +116,7 @@ function checkContent(){
               text: 'Component',
               onAction: function(_){
                 let compets = tinymce.activeEditor.dom.select('input.component');
-                editor.insertContent("<input  name='' id="+compets.length+" type='text' class='form-control component' style='width:15%;height:calc(0.59rem + 2px);padding:.375rem .75rem;font-size:.9rem;line-height:1.6;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;margin-left: .5rem;margin-right:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out' placeholder='Enter your label...' data-label=''>");
+                editor.insertContent("<input  name='' id="+compets.length+" type='text' class='form-control component' style='width:15%;height:calc(0.59rem + 2px);padding:.375rem .75rem;font-size:.9rem;line-height:1.6;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;margin-left: .5rem;margin-right:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out' placeholder='Enter your label...' data-label='' data-input-name='basicInput2'>");
                 let compets2 = tinymce.activeEditor.dom.select('input.component');
                 //console.log(compets2);
               }

@@ -26,7 +26,7 @@ class FormsController extends Controller
             $input = new Input;
             $input->label = $element->getAttribute("data-label");
             $input->form_id = $form->id;
-            $input->input_template_id=1;
+            $input->input_template_id = InputTemplate::where('name', $element->getAttribute("data-input-name"))->first()->id;
             $input->save();
         }
         
@@ -49,12 +49,12 @@ class FormsController extends Controller
     {
         $inputs = Form::find($id)->form_input()->get();
         
-        $genratedHTMLOutput = "";
+        $generatedHTMLOutput = "";
         foreach($inputs as $input){
             $idInput = $input->input_template_id;
-            $genratedHTMLOutput = $genratedHTMLOutput . InputTemplate::find($idInput)->type;
+            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . InputTemplate::find($idInput)->template . "<br>";
         }
 
-        return $genratedHTMLOutput;
+        return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput);
     }
 }
