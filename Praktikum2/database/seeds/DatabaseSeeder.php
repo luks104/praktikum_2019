@@ -28,7 +28,7 @@ class TableSeeder extends Seeder
                 'template' => ('<input type="password" >')
             ]);
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" class="form-control" name="s" required="" data-parsley-palindrome-jao="">')
+                'template' => ('<input type="text" data-parsley-palindrome-jao="">')
             ]);
         }
     }

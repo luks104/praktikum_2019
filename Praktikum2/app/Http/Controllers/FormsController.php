@@ -52,7 +52,7 @@ class FormsController extends Controller
         $generatedHTMLOutput = "";
         foreach($inputs as $input){
             $idInput = $input->input_template_id;
-            $generatedHTMLOutput = $generatedHTMLOutput . InputTemplate::find($idInput)->template;
+            $generatedHTMLOutput = $generatedHTMLOutput . $input->label .  InputTemplate::find($idInput)->template . "<br>";
         }
 
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput);
