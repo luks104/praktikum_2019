@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.mainLayout')
 
 @section('content')
 <div class='container'>
-        <h1 class='text-center'>Obrazci</h1>
+        <h1 >Forms</h1>
         @if(count ($forms) > 0 )
             @foreach ($forms as $form)
                 <div class="card card-body bg-light" padding = '3px'>

@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.mainLayout')
 
 @section('content')
 <!doctype html>
 <html lang="en">
   <head>
   <script src={{URL::to('vendor/tinymce/js/tinymce/tinymce.min.js')}}></script>
-  <script src={{URL::to('vendor/parsley/parsley.min.js')}}></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <script src={{URL::to('vendor/parsley/parsley.min.js')}}></script>
   <!--Za vsak slučaj, če bo kdaj rabo lahko namesto poti toti link vstavi not 
   "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=u10v0g64egvz9bbbguv1pg14x0au3nus6yzv88vhiwbfwd8"-->
 
@@ -26,7 +26,7 @@ function setDisabled(button,disabled){
 //Checks if the input has any value. The save component button acts accordingly.
 function checkInputName(e){
 
-  if(e.target.value ==='' || e.target.value === e.target.name)
+  if(e.target.value ==='' /* || e.target.value === e.target.name */)
     {
       setDisabled("saveComponent",true);
       
@@ -156,49 +156,44 @@ tinymce.init(editor_config);
 <body>
 <form action="{{ route('formStore') }}" method="POST" type="hidden" name="_token" class="form-group"  enctype="multipart/form-data">
 {{ csrf_field() }}
-    <div class="container animated fadeInUp">
+    <div class="container animated fadeInUp section">
       <textarea id="editor" style="height:30em;" name="formData" class=""></textarea>
       <br>
       <div class="row">
-        <div class="col-lg-2">
-          <button type="button" id="saveComponent" style="display:none" onclick="saveCurrentComp()"  class="btn btn-success btn-block">Save component</button>
+        <div class="col l2">
+          <button type="button" id="saveComponent" style="display:none" onclick="saveCurrentComp()"  class="waves-effect waves-light btn blue scale-transition">Save component</button>
         </div>
         
-        <div class="col-lg-3 offset-lg-7">
+        <div class="col l3 offset-l7 right-align">
           @guest
-          <a  href="{{ route('login') }}" class=" btn btn-lg btn-primary btn-block animated pulse infinite">Login to save template</a>
+          <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large animated pulse infinite blue">Login to save template</a>
           @else
-          <button type="button" id="submitButton"  style="display:none" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal1">Save as template</button>
+         
+          <a class="blue waves-effect waves-light btn btn-large modal-trigger scale-transition" id="submitButton"  style="display:none" href="#modal1">SAve as template</a>
           @endguest
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modal1" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
+    <div class="modal" id="modal1" tabindex="-1" role="dialog">
         <div class="modal-content">
-          <div class="modal-body">
-            <div class="container">
               <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="form-group animated fadeIn">
-                        <label for="nameTemplate" class="">Template name:</label>
-                        <input type="text" class="form-control form-control-lg" id="nameTemplate" name="formName" required placeholder="My Template">
-                      </div>
+                <div class="col m8 offset-m2">
+                        <div class="input-field col s12 animated fadeIn">
+                            <input id="nameTemplate" type="text">
+                             <label for="nameTemplate">Name your template</label>
+                        </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-3">
-                    <button type="button" class="btn btn-secondary btn-block animated fadeIn delay-1s" data-dismiss="modal">Close</button>
+                <div class="col m3">
+                    <button type="button" class="modal-close btn-large btn-floating waves-effect waves-light red darken-2 animated fadeIn delay-0.5s"><i class="large material-icons left">cancel</i></button>
                 </div>
-                <div class="col-lg-3 offset-lg-6">
-                    <button type="submit" class="btn btn-primary btn-block animated fadeIn delay-1s">Save</button>
+                <div class="col m4 offset-m5 right-align">
+                    <button type="submit" class="btn-floating btn-large waves-effect waves-light blue animated fadeIn delay-0.5s"><i class="large material-icons left">check_circle</i></button>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
     </div>
   </form>
   
