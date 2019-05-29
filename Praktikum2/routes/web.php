@@ -32,11 +32,8 @@ Route::get('/form/{id}', 'FormsController@selectForm')->name('formDetail');
 
 Route::get('/form/{id}/wizard', 'FormsController@formWizard')->name('formWizard');
 
-
-
-
 Route::any('/preloader', function () {
     return view('preloader');
 });
 
-Route::get('/form/{id}/toPDF', 'FormsController@toPDF')->name('formToPDF');
+Route::get('/form/{id}/formToPDF', 'FormsController@formToPDF')->name('formToPDF');
