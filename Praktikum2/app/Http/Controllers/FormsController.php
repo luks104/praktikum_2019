@@ -57,9 +57,7 @@ class FormsController extends Controller
             $generatedHTMLOutput = $generatedHTMLOutput . $input->label . InputTemplate::find($idInput)->template . "<br>";
         }
 
-        $form = Form::find($id);
-
-        return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput)->with('form', $form);
+        return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput)->with('form', $id);
     }
 
     public function formToPDF($id)
