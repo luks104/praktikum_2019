@@ -151,7 +151,7 @@ function checkContent(){
                 addComponent(editor,"naslov","text");
                 //console.log(compets2);
               }
-            }
+            },
           ];
           callback(menuItems);
         }
