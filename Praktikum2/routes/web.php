@@ -34,6 +34,10 @@ Route::get('/form/{id}/wizard', 'FormsController@formWizard')->name('formWizard'
 
 Route::post('/form/{id}/wizard', 'FormsController@formWizardGenerated')->name('formWizardGenerated');
 
+
+
 Route::any('/preloader', function () {
     return view('preloader');
 });
+
+Route::get('/form/{id}/toPDF', 'FormsController@toPDF')->name('formToPDF');

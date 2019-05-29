@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
         <!-- Css -->
+        <link rel="stylesheet" href="{{asset('css/hover-min.css')}}"> 
         <link rel="stylesheet" href="{{asset('css/materialize.css')}}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -23,7 +24,7 @@
             <ul id="slide-out" class="sidenav"><!-- USER NAVBAR -->
                 <li>
                     <div class="user-view">
-                        <div class="background" style="background-color:#8EC5FC">
+                        <div class="background grad-r">
                     
                         </div>
                         <a href="#user"><img class="circle" src="https://materializecss.com/images/yuna.jpg"></a>
@@ -32,15 +33,12 @@
                     </div>
                 </li>
                 <li><a class="subheader">User</a></li>
-                <li><a href="#!"><i class="material-icons">settings</i>User Settings</a></li>
-                <li><a href="#!"><i class="material-icons">folder</i>My Templates</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+                <li><a href="#!" class=""><i class="material-icons">settings</i>User Settings</a></li>
+                <li><a href="#!" class=""><i class="material-icons ">folder</i>My Templates</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Logout</a></li>
                 <li>
-                    <a class="waves-effect" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons">exit_to_app</i>Logout</a>
+                    <a class="waves-effect hvr-underline-from-left" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons">exit_to_app</i>Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -48,8 +46,8 @@
             </ul>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large white sidenav-trigger " data-target="slide-out">
-                    <i class="large material-icons" style="background-color:#E0C3FC">account_circle</i>
+                <a class="btn-floating btn-large white hvr-grow-rotate scale-transition sidenav-trigger tooltipped" data-position="left" data-tooltip="Open profile" data-target="slide-out">
+                    <i class="large material-icons" style="background-color:#2AF598">account_circle</i>
                 </a>
             </div>
         @endif
@@ -140,6 +138,8 @@
   $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.modal').modal();
+    $('.tooltipped').tooltip();
+    $('.collapsible').collapsible();
   });
 
   $(window).on('load',function(){
