@@ -60,15 +60,10 @@ class FormsController extends Controller
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput);
     }
 
-<<<<<<< HEAD
-    public function formWizardGenerated(Request $request)
-    {
-
-    }
-=======
-    public function toPDF($id)
+    public function formToPDF($id)
     {
         $inputs = Form::find($id)->form_input()->get();
+        
         $generatedHTMLOutput = "";
         foreach($inputs as $input){
             $idInput = $input->input_template_id;
@@ -82,5 +77,4 @@ class FormsController extends Controller
 
 
  
->>>>>>> 8cdf5c1e2c3f6ee9879fa4a78f42397c18b4547f
 }
