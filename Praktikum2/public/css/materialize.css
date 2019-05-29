@@ -9106,11 +9106,11 @@ input[type=range]::-ms-thumb {
   }
 }
 
-.input-field input[type=text]:focus + label {
+.input-field input[type=text]:focus + label,.input-field input[type=email]:focus + label,.input-field input[type=password]:focus + label {
   color: #08AEEA !important;
 }
 /* label underline focus color */
-.input-field input[type=text]:focus {
+.input-field input[type=text]:focus,.input-field input[type=email]:focus,.input-field input[type=password]:focus {
   border-bottom: 1px solid #08AEEA !important;
   box-shadow: 0 1px 0 0 #08AEEA !important;
 }
@@ -9154,3 +9154,17 @@ background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
   background-color:  #2AF598;
   background-image: linear-gradient(90deg, #2AF598 0%, #08AEEA 100%);
 }
+.myBlue{
+  color: #08AEEA !important;
+}
+.myGreen{
+  color: #2AF598 !important;
+}
+
+.material-icons.active {
+  color: #08AEEA !important;
+}
+.mojFkingStil{
+  width:15%;height:calc(0.59rem + 2px);padding:.375rem .75rem;font-size:.9rem;line-height:1.6;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;margin-left: .5rem;margin-right:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out'
+}
+
