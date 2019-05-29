@@ -2,7 +2,7 @@
 
 
 
-window.Parsley.addValidator('palindromeJao', {
+window.Parsley.addValidator('palindrome', {
   validateString: function(value) {
     return value.split('').reverse().join('') === value;
   },
@@ -23,21 +23,40 @@ window.Parsley.addValidator('uppercase', {
   }
 });
 
+window.Parsley.addValidator('davcnastevilka', {
+  validateNumber: function(value) {
+    if (value.length != 8) {
+      
 
-
-window.Parsley.addValidator('zmazek', {
-  validateNumber: function(value, requirement) {
-    return value % requirement === 0;
+        return false
+    }
+    
+   
+  
   },
-  requirementType: 'integer',
   messages: {
-    en: 'This value should be a multiple of %s.',
+    en: 'Vpišite 8 mestno davčno številko',
     fr: "Ce nombre n'est pas un multiple de %s."
   }
 });
 
 
+window.Parsley.addValidator('datum', {
+  validateNumber: function(value) {
+    if (value.length != 8) {
+      
 
+        return false
+    }
+    
+   
+  
+  },
+  messages: {
+    en: 'Vpišite 8 mestno davčno številko',
+    fr: "Ce nombre n'est pas un multiple de %s."
+  }
+});
 
 
 
