@@ -2168,9 +2168,13 @@ html {
  */
 body {
   margin: 0; 
-  background-image: linear-gradient(60deg, rgba(8, 174, 234, 0.2) 0%, rgba(42, 245, 154, 0.2) 100%);
-  
+  background-image: linear-gradient(228deg, rgba(8, 174, 234, 0.2) 0%, rgba(42, 245, 154, 0.2) 100%);
+  background-size: 400% 400%;
+
+  -webkit-animation: bgAnimated 45s ease infinite;
+  animation: bgAnimated 45s ease infinite;
 }
+
 
 /**
  * Add the correct display in IE 9-.
@@ -4315,9 +4319,30 @@ nav .nav-wrapper {
   position: relative;
   height: 100%;
   font-family: 'Poppins', sans-serif;
-  background-color: #08AEEA;
-background-image: linear-gradient(60deg, #08AEEA 0%, #2AF598 100%);
+  background: linear-gradient(228deg, #08aeea, #2af598);
+background-size: 400% 400%;
 
+-webkit-animation: bgAnimated 45s ease infinite;
+animation: bgAnimated 45s ease infinite;
+
+}
+.kuadej{
+  background: linear-gradient(228deg, #08aeea, #2af598);
+  background-size: 400% 400%;
+
+-webkit-animation: bgAnimated 45s ease infinite;
+animation: bgAnimated 45s ease infinite;
+}
+
+@-webkit-keyframes bgAnimated {
+  0%{background-position:0% 91%}
+  50%{background-position:100% 10%}
+  100%{background-position:0% 91%}
+}
+@keyframes bgAnimated { 
+  0%{background-position:0% 91%}
+  50%{background-position:100% 10%}
+  100%{background-position:0% 91%}
 }
 
 @media only screen and (min-width: 993px) {
@@ -4399,7 +4424,7 @@ nav .nav-title {
 
 nav ul {
   margin: 0;
-  margin-right:21em;
+  
 }
 
 nav ul li {
@@ -7680,6 +7705,11 @@ input[type=range]::-ms-thumb {
   bottom: 0;
   left: 0;
   z-index: -1;
+  background: linear-gradient(228deg, #08aeea, #2af598);
+background-size: 400% 400%;
+
+-webkit-animation: bgAnimated 45s ease infinite;
+animation: bgAnimated 45s ease infinite;
 }
 
 .sidenav .user-view .circle, .sidenav .user-view .name, .sidenav .user-view .email {
@@ -9114,11 +9144,18 @@ input[type=range]::-ms-thumb {
   border-bottom: 1px solid #08AEEA !important;
   box-shadow: 0 1px 0 0 #08AEEA !important;
 }
-#login{
-  border-left:1px solid white;
+
+#navMar{
+  margin-right:5em;
 }
 .ff-poppins{
   font-family: 'Poppins', sans-serif;
+  color:#576071;
+}
+.ff-opensans{
+  font-family: 'Open Sans',Helvetica Neue,Arial;
+  color:#576071;
+  
 }
 
 html {
@@ -9160,11 +9197,42 @@ background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
 .myGreen{
   color: #2AF598 !important;
 }
+.myGrey{
+  color:#576071 !important;
+}
+.myGrey-50{
+  color:#a4a5a8 !important;
+}
 
 .material-icons.active {
   color: #08AEEA !important;
 }
-.mojFkingStil{
-  width:15%;height:calc(0.59rem + 2px);padding:.375rem .75rem;font-size:.9rem;line-height:1.6;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;margin-left: .5rem;margin-right:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out'
+.gradient-border {
+  --borderWidth: 2px;
+  position: relative;
+  border-radius: var(--borderWidth);
 }
-
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #08AEEA, #2AF598);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

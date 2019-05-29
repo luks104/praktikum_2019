@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,9 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
         <!-- Css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
         <link rel="stylesheet" href="{{asset('css/hover-min.css')}}"> 
         <link rel="stylesheet" href="{{asset('css/materialize.css')}}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -24,21 +26,21 @@
             <ul id="slide-out" class="sidenav"><!-- USER NAVBAR -->
                 <li>
                     <div class="user-view">
-                        <div class="background grad-r">
+                        <div class="background ">
                     
                         </div>
-                        <a href="#user"><img class="circle" src="https://materializecss.com/images/yuna.jpg"></a>
+                        <i class="large material-icons white-text">account_circle</i>
                         <a><span class="white-text name ff-poppins"><h5>{{ Auth::user()->name }}</h5></span></a>
                         <a><span class="white-text email"><h6>{{ Auth::user()->email }}<h6></span></a>
                     </div>
                 </li>
                 <li><a class="subheader">User</a></li>
-                <li><a href="#!" class=""><i class="material-icons">settings</i>User Settings</a></li>
-                <li><a href="#!" class=""><i class="material-icons ">folder</i>My Templates</a></li>
+                <li><a href="#!" class="hvr-glow"><i class="material-icons">settings</i>User Settings</a></li>
+                <li><a href="#" class="hvr-glow"><i class="material-icons ">folder</i>My Templates</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Logout</a></li>
                 <li>
-                    <a class="waves-effect hvr-underline-from-left" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons">exit_to_app</i>Logout</a>
+                    <a class="waves-effect hvr-glow" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons">exit_to_app</i>Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -46,8 +48,8 @@
             </ul>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large white hvr-grow-rotate scale-transition sidenav-trigger tooltipped" data-position="left" data-tooltip="Open profile" data-target="slide-out">
-                    <i class="large material-icons" style="background-color:#2AF598">account_circle</i>
+                <a class="btn-floating btn-large white kuadej scale-transition sidenav-trigger tooltipped animated bounceInUp delay-1s" data-position="left" data-tooltip="Open profile" data-target="slide-out">
+                    <i class="large material-icons">account_circle</i>
                 </a>
             </div>
         @endif
@@ -55,17 +57,20 @@
             <nav><!-- MAIN NAVBAR -->
                 <div class="nav-wrapper blue">
                     <a href="{{ route('home') }}" class="brand-logo">Smart Forms</a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="{{ route('formCreate') }}">Create</a></li>
-                        <li><a href="{{ route('formList')}}">Templates</a></li>
+                    <ul class="right hide-on-med-and-down" >
+                        <li><a href="{{ route('formCreate') }}"><i class="material-icons left ">mode_edit</i>Create</a></li>
+                        <li><a href="{{ route('formList')}}" ><i class="material-icons left ">insert_drive_file</i>Templates</a></li>
                         
                     @guest
-                        <li id="login">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <li style="background-color:white;width:0.04em;height:3em;margin-top:0.5em;margin-right:0.4em;margin-left:0.4em;">
+
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('login') }}"><i class=" material-icons left" style="font-size:2em;">person</i>Sign in</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="">
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                <a class="nav-link" href="{{ route('register') }}"><i class=" material-icons left" style="font-size:2em;">person_add</i>Sign up</a>
                             </li>
                         @endif
                     @else 
@@ -76,20 +81,21 @@
                 </div>
 
                 <ul class="sidenav" id="mobile-demo"><!-- MOBILE NAVBAR -->
-                        <li><a href="{{ route('formCreate') }}">Create</a></li>
-                        <li><a href="{{ route('formList')}}">Templates</a></li>
+                        <li><a href="{{ route('formCreate') }}" class="hvr-glow"><i class="material-icons left">mode_edit</i>Create</a></li>
+                        <li><a href="{{ route('formList')}}" class="hvr-glow"><i class="material-icons left">insert_drive_file</i>Templates</a></li>
                     @guest
+                        <div class="divider" style="margin:0;"></div>
                         <li id="login">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="hvr-glow" href="{{ route('login') }}"><i class=" material-icons left" style="font-size:2em;">person</i>Sign in</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="">
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                <a class="hvr-glow" href="{{ route('register') }}"><i class=" material-icons left" style="font-size:2em;">person_add</i>Sign up</a>
                             </li>
                         @endif
                     @else 
                         <li id="login">
-                            <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <a class="hvr-glow" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -98,8 +104,10 @@
                         </li>
                     @endguest
                 </ul>
-            </nav>        
+            </nav>
+            <div class="ff-opensans">
                 @yield('content')
+            </div>       
             </div>
             <div id="loader">
                     <div class="preloader-wrapper big active">
