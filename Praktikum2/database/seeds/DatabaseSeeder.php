@@ -23,14 +23,15 @@ class TableSeeder extends Seeder
         {
 
             DB::table('input_templates')->insert([
-                'template' => ('<input type="password" data-parsley-minlength="6" data-parsley-required="true">'),
+                'template' => ('<input type="password" data-parsley-minlength="6" data-parsley-required="true"'),
                 'name' => ('basicInput1')
             ]);
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" data-parsley-palindrome-jao="" data-parsley-required="true">'),
+                'template' => ('<input type="text" data-parsley-palindrome-jao="" data-parsley-required="true"'),
                 'name' => ('basicInput2')
             ]);
             DB::table('input_templates')->insert([
+<<<<<<< HEAD
                 'template' => ('<input type="text" data-parsley-uppercase="" data-parsley-required="true">'),
                 'name' => ('ime')
             ]);
@@ -41,11 +42,24 @@ class TableSeeder extends Seeder
             DB::table('input_templates')->insert([
                 'template' => ('<input type="text" data-parsley-required="true" data-parsley-davcnastevilka>'),
                 'name' => ('davcnaStevilka')
+=======
+                'template' => ('<input type="text" data-parsley-minlength="3" data-parsley-uppercase="" data-parsley-required="true"'),
+                'name' => ('priimek')
+            ]);
+            DB::table('input_templates')->insert([
+                'template' => ('<input type="text" data-parsley-minlength="6" data-parsley-uppercase="" data-parsley-required="true"'),
+                'name' => ('naslov')
+>>>>>>> eaeca9535323fc4391292a511df6e524e9f62ba7
             ]);
 
             DB::table('input_templates')->insert([
+<<<<<<< HEAD
                 'template' => ('<input type="text" data-parsley-required="true" data-parsley-datum>'),
                 'name' => ('datum')
+=======
+                'template' => ('<input type="text" data-parsley-uppercase="" data-parsley-required="true"'),
+                'name' => ('ime')
+>>>>>>> eaeca9535323fc4391292a511df6e524e9f62ba7
             ]);
         
         
