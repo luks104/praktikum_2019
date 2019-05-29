@@ -21,17 +21,26 @@ class TableSeeder extends Seeder
     {
         public function run()
         {
+
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" >'),
-                'name' => ('basicInput')
-            ]);
-            DB::table('input_templates')->insert([
-                'template' => ('<input type="password" >'),
+                'template' => ('<input type="password" data-parsley-minlength="6" data-parsley-required="true">'),
                 'name' => ('basicInput1')
             ]);
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" data-parsley-palindrome-jao="">'),
+                'template' => ('<input type="text" data-parsley-palindrome-jao="" data-parsley-required="true">'),
                 'name' => ('basicInput2')
+            ]);
+            DB::table('input_templates')->insert([
+                'template' => ('<input type="text" data-parsley-minlength="3" data-parsley-uppercase="" data-parsley-required="true">'),
+                'name' => ('priimek')
+            ]);
+            DB::table('input_templates')->insert([
+                'template' => ('<input type="text" data-parsley-minlength="6" data-parsley-uppercase="" data-parsley-required="true">'),
+                'name' => ('naslov')
+            ]);
+            DB::table('input_templates')->insert([
+                'template' => ('<input type="text" data-parsley-uppercase="" data-parsley-required="true">'),
+                'name' => ('ime')
             ]);
         }
     }

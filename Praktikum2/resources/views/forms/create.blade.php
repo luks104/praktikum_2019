@@ -125,7 +125,34 @@ function checkContent(){
                 addComponent(editor,"basicInput2","text");
                 //console.log(compets2);
               }
-            }
+            },
+
+            {
+              type: 'menuitem',
+              text: 'Ime',
+              onAction: function(_){
+                addComponent(editor,"ime","text");
+                //console.log(compets2);
+              }
+            },
+
+            {
+              type: 'menuitem',
+              text: 'Priimek',
+              onAction: function(_){
+                addComponent(editor,"priimek","text");
+                //console.log(compets2);
+              }
+            },
+
+            {
+              type: 'menuitem',
+              text: 'Naslov',
+              onAction: function(_){
+                addComponent(editor,"naslov","text");
+                //console.log(compets2);
+              }
+            },
           ];
           callback(menuItems);
         }

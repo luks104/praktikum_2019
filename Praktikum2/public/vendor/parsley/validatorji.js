@@ -13,6 +13,17 @@ window.Parsley.addValidator('palindromeJao', {
 });
 
 
+window.Parsley.addValidator('uppercase', {
+  validateString: function(value) {
+    return value.charAt(0) === value.charAt(0).toUpperCase();
+  },
+  messages: {
+    en: 'This string has a lowercase first letter.',
+    fr: "Cette valeur n'est pas l'inverse d'elle même."
+  }
+});
+
+
 
 window.Parsley.addValidator('zmazek', {
   validateNumber: function(value, requirement) {
