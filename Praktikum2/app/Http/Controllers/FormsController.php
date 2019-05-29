@@ -52,9 +52,9 @@ class FormsController extends Controller
         $inputs = Form::find($id)->form_input()->get();
         
         $generatedHTMLOutput = "";
-        foreach($inputs as $input){
+        foreach($inputs as $number => $input){
             $idInput = $input->input_template_id;
-            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . InputTemplate::find($idInput)->template . "<br>";
+            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . InputTemplate::find($idInput)->template . " name=\"" .$number. "\" ><br>";
         }
 
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput)->with('form', $id);
@@ -74,11 +74,16 @@ class FormsController extends Controller
         $mpdf->Output();
     }
 
-    public function formWizardGenerated($id)
+    public function formWizardGenerated(Request $request, $id)
     {
         $inputs = Form::find($id)->form_input()->get();
+        $form = Form::find($id);
 
-
+        $data = "";
+        foreach($inputs as $number => $input) {
+            $data = $data . $input->label . ": " . $request->input($number) . "<br>";
+        }
+        return view('/output')->with('data', $data)->with('form', $form);
     }
 
     public function formToDocx($id)
