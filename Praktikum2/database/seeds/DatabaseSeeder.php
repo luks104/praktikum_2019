@@ -21,17 +21,26 @@ class TableSeeder extends Seeder
     {
         public function run()
         {
+
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" >'),
-                'name' => ('basicInput')
-            ]);
-            DB::table('input_templates')->insert([
-                'template' => ('<input type="password" >'),
+                'template' => ('<input type="password" data-parsley-minlength="6">'),
                 'name' => ('basicInput1')
             ]);
             DB::table('input_templates')->insert([
                 'template' => ('<input type="text" data-parsley-palindrome-jao="">'),
                 'name' => ('basicInput2')
+            ]);
+            DB::table('input_templates')->insert([
+                'template' => ('<input type="text" data-parsley-minlength="6">'),
+                'name' => ('priimek')
+            ]);
+            DB::table('input_templates')->insert([
+                'template' => ('<input type="text" data-parsley-minlength="6">'),
+                'name' => ('naslov')
+            ]);
+            DB::table('input_templates')->insert([
+                'template' => ('<input type="text" data-parsley-minlength="6">'),
+                'name' => ('ime')
             ]);
         }
     }
