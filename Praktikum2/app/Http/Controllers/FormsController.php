@@ -57,4 +57,9 @@ class FormsController extends Controller
 
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput);
     }
+
+    public function formWizardGenerated(Request $request)
+    {
+
+    }
 }
