@@ -31,16 +31,23 @@ class TableSeeder extends Seeder
                 'name' => ('basicInput2')
             ]);
             DB::table('input_templates')->insert([
+                'template' => ('<input type="text" data-parsley-uppercase="" data-parsley-required="true">'),
+                'name' => ('ime')
+            ]);
+            DB::table('input_templates')->insert([
                 'template' => ('<input type="text" data-parsley-minlength="3" data-parsley-uppercase="" data-parsley-required="true">'),
                 'name' => ('priimek')
             ]);
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" data-parsley-minlength="6" data-parsley-uppercase="" data-parsley-required="true">'),
-                'name' => ('naslov')
+                'template' => ('<input type="text" data-parsley-required="true" data-parsley-davcnastevilka>'),
+                'name' => ('davcnaStevilka')
             ]);
+
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" data-parsley-uppercase="" data-parsley-required="true">'),
-                'name' => ('ime')
+                'template' => ('<input type="text" data-parsley-required="true" data-parsley-datum>'),
+                'name' => ('datum')
             ]);
+        
+        
         }
     }

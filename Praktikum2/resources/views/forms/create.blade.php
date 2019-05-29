@@ -147,9 +147,18 @@ function checkContent(){
 
             {
               type: 'menuitem',
-              text: 'Naslov',
+              text: 'davcnaStevilka',
               onAction: function(_){
-                addComponent(editor,"naslov","text");
+                addComponent(editor,"davcnaStevilka","text");
+                //console.log(compets2);
+              }
+            },
+
+            {
+              type: 'menuitem',
+              text: 'datum',
+              onAction: function(_){
+                addComponent(editor,"datum","text");
                 //console.log(compets2);
               }
             },

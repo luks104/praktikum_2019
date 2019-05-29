@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.mainLayout')
+
 
 @section('content')
 
@@ -11,10 +12,23 @@
 </head>
 
 <body>
+
+<div class='container'>
+    <div>
+        
+    </div>
+
+    <div>
+    
+    </div>
+
     <form action="{{ route('formWizardGenerated', ['id' => $form]) }}" method="POST" type="hidden" name="_token" enctype="multipart/form-data"  data-parsley-validate="">{{ csrf_field() }}
         {!! $generatedHTMLOutput !!}
-        <input type="submit" value="OK">
+        <input type="submit" value="Send" class="btn waves-effect waves-light" class="btn waves-effect waves-light">
     </form>
+    
+    </div>
+    
 </body>
 @endsection
 
