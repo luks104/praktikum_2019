@@ -75,6 +75,9 @@ class FormsController extends Controller
         $mpdf->Output();
     }
 
-
+    public function formWizardGenerated($id)
+    {
+        
+    }
  
 }
