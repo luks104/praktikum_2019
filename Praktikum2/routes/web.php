@@ -39,3 +39,4 @@ Route::any('/preloader', function () {
 });
 
 Route::get('/form/{id}/formToPDF', 'FormsController@formToPDF')->name('formToPDF');
+Route::get('/form/{id}/formToDocx', 'FormsController@formToDocx')->name('formToDocx');
