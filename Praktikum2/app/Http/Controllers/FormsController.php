@@ -63,6 +63,7 @@ class FormsController extends Controller
     public function formToPDF($id)
     {
         $inputs = Form::find($id)->form_input()->get();
+        
         $generatedHTMLOutput = "";
         foreach($inputs as $input){
             $idInput = $input->input_template_id;

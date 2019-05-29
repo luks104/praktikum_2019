@@ -1,5 +1,12 @@
 @extends('layouts.mainLayout')
 
 @section('content')
-    <h5>HOME</h5>
+<style>
+    body{
+        background-image: url(https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png);
+        background-size: cover;
+    }
+} 
+</style>
+
 @endsection
