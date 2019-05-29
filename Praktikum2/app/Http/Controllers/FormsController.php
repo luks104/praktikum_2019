@@ -77,6 +77,8 @@ class FormsController extends Controller
 
     public function formWizardGenerated($id)
     {
+        $inputs = Form::find($id)->form_input()->get();
+
 
     }
  
