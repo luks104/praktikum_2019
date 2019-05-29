@@ -11,8 +11,7 @@
 </head>
 
 <body>
-    Ime forme: {{$form->form_name}}
-    <form action="{{ route('formWizardGenerated', ['id' => $form->id]) }}" method="POST" type="hidden" name="_token" enctype="multipart/form-data" data-parsley-validate="">{{ csrf_field() }}
+    <form action="{{ route('formWizardGenerated', ['id' => $form]) }}" method="POST" type="hidden" name="_token" enctype="multipart/form-data" data-parsley-validate="">{{ csrf_field() }}
         {!! $generatedHTMLOutput !!}
         <input type="submit" value="OK">
     </form>
