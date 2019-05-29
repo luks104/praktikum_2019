@@ -63,7 +63,6 @@ class FormsController extends Controller
     public function formToPDF($id)
     {
         $inputs = Form::find($id)->form_input()->get();
-        
         $generatedHTMLOutput = "";
         foreach($inputs as $input){
             $idInput = $input->input_template_id;
@@ -79,5 +78,17 @@ class FormsController extends Controller
     {
 
     }
- 
+
+    public function formToDocx($id)
+    {
+        $generatedHTMLOutput = Form::find($id)->form_data;
+        $phpWordDocument = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWordDocument->addSection();
+        ob_clean();
+        $content = $section->addText($generatedHTMLOutput);
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWordDocument, 'Word2007');
+        $objWriter->save('Appdividend.docx');
+        return response()->download(public_path('Appdividend.docx'));
+
+    }
 }
