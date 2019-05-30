@@ -2168,7 +2168,7 @@ html {
  */
 body {
   margin: 0; 
-  background-image: linear-gradient(228deg, rgba(8, 174, 234, 0.2) 0%, rgba(42, 245, 154, 0.2) 100%);
+  background-image: linear-gradient(228deg, rgba(42, 245, 154, 0.2) 0%, rgba(8, 174, 234, 0.2) 100%);
   background-size: 400% 400%;
 
   -webkit-animation: bgAnimated 45s ease infinite;
@@ -4319,7 +4319,7 @@ nav .nav-wrapper {
   position: relative;
   height: 100%;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(228deg, #08aeea, #2af598);
+  background: linear-gradient(228deg, #2af598, #08aeea);
 background-size: 400% 400%;
 
 -webkit-animation: bgAnimated 45s ease infinite;
@@ -7703,7 +7703,7 @@ input[type=range]::-ms-thumb {
   bottom: 0;
   left: 0;
   z-index: -1;
-  background: linear-gradient(228deg, #08aeea, #2af598);
+  background: linear-gradient(228deg,#2af598, #08aeea);
 background-size: 400% 400%;
 
 -webkit-animation: bgAnimated 45s ease infinite;
@@ -9165,9 +9165,7 @@ html {
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
 /* Optional: show position indicator in red */
-::-webkit-scrollbar-thumb {
-  background: #FF0000;
-}
+
 
 #loader{
   width: 100%;
@@ -9180,7 +9178,7 @@ html {
   justify-content: center;
   align-items: center;
 }
-.grad-l{
+/* .grad-l{
   background-color: #08AEEA;
 background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
 
@@ -9188,7 +9186,7 @@ background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
 .grad-r{
   background-color:  #2AF598;
   background-image: linear-gradient(90deg, #2AF598 0%, #08AEEA 100%);
-}
+} */
 .myBlue{
   color: #08AEEA !important;
 }
@@ -9234,9 +9232,18 @@ background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
 		background-position: 0% 50%;
 	}
 }
-.fix{
-  width: 100%;
-position: fixed;
+.bgAnim{
+  background-image: linear-gradient(-90deg, rgb(42, 245, 154) 0%, rgb(8, 174, 234));
+
+  background-size: 400% 400%;
+
+  -webkit-animation: bgAnimated 45s ease infinite !important;
+  animation: bgAnimated 45s ease infinite !important;
 
   
 }
+.bgStill{
+  background: linear-gradient(228deg,#2af598, #08aeea);
+}
+
+
