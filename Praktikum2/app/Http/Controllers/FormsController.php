@@ -64,13 +64,9 @@ class FormsController extends Controller
     {
         $inputs = Form::find($id)->form_input()->get();
         $generatedHTMLOutput = "";
-        foreach($inputs as $input){
-            $idInput = $input->input_template_id;
-            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . InputTemplate::find($idInput)->template . "<br>";
-        }
-
+        $doc = Form::find($id)->form_data;
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
-        $mpdf->WriteHTML($generatedHTMLOutput);
+        $mpdf->WriteHTML($doc);
         $mpdf->Output();
     }
 
