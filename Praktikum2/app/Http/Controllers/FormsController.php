@@ -29,6 +29,7 @@ class FormsController extends Controller
         $form->form_data = $request->input('formData');
         $form->user_id = Auth::id();
         $form->form_name = $request->input('formName');
+        $form->categorie_id = Categorie::where('name', $request->input('categorie'))->first()->id;
         $form->save();
 
         foreach($html->find('input') as $element){

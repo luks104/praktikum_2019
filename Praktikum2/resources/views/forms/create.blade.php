@@ -228,11 +228,10 @@ tinymce.init(editor_config);
               </div>
               <div class="row">
                   <div class="input-field col s12 l10 offset-l1 s10 offset-s1">
-                      <select>
-                        <option value="" disabled selected>Category</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                      <select name="categorie">
+                        @foreach($categories as $categorie)
+                          <option value="{{ $categorie->name }}">{{ $categorie->name }}</option>
+                        @endforeach
                       </select>
                       <label>Choose your category</label>
                     </div>
