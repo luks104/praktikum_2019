@@ -5,7 +5,6 @@
 <html lang="en">
   <head>
   <script src={{URL::to('vendor/tinymce/js/tinymce/tinymce.min.js')}}></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <script src={{URL::to('vendor/parsley/parsley.min.js')}}></script>
   <!--Za vsak slučaj, če bo kdaj rabo lahko namesto poti toti link vstavi not 
   "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=u10v0g64egvz9bbbguv1pg14x0au3nus6yzv88vhiwbfwd8"-->
@@ -201,11 +200,11 @@ tinymce.init(editor_config);
       <textarea id="editor" style="height:30em;" name="formData" class=""></textarea>
       <br>
       <div class="row">
-        <div class="col l2">
+        <div class="col l2 m5 s5">
           <button type="button" id="saveComponent" style="display:none;background-color:#08AEEA" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition">Save component</button>
         </div>
         
-        <div class="col l3 offset-l7 right-align">
+        <div class="col l3 offset-l7 right-align m5 offset-m2 s5 offset-s2">
           @guest
           <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large"style="background-color:#2AF598">Login to save template</a>
           @else
@@ -219,10 +218,11 @@ tinymce.init(editor_config);
     <div class="modal" id="modal1" tabindex="-1" role="dialog">
         <div class="modal-content">
               <div class="row">
-                <div class="col m8 offset-m2">
+                <div class="col m10 offset-m1">
                         <div class="input-field col s12 animated fadeIn">
                             <input id="nameTemplate" type="text" name="formName">
                              <label for="nameTemplate">Name your template</label>
+                             <span class="helper-text">This will help other recognize your template!</span>
                         </div>
                 </div>
               </div>
