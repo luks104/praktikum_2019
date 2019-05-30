@@ -44,7 +44,13 @@ class FormsController extends Controller
     public function selectForm($id)
     {
         $form = Form::find($id);
-        return view('forms.form')->with('form', $form);
+        $doc = Form::find($id)->form_data;
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
+        $mpdf->WriteHTML($doc);   
+        $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::STRING_RETURN);
+        echo($path);
+        return view('forms.form')->with('form', $form)->with('path',$path);
+        
     }
 
     public function formWizard($id)
