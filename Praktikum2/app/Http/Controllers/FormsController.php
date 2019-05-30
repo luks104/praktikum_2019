@@ -51,10 +51,21 @@ class FormsController extends Controller
     {
         $inputs = Form::find($id)->form_input()->get();
         
-        $generatedHTMLOutput = "";
-        foreach($inputs as $number => $input){
+        $generatedHTMLOutput = "";        
+        foreach($inputs as $counter => $input){
+            $inputTemplate = new simple_html_dom();
             $idInput = $input->input_template_id;
-            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . InputTemplate::find($idInput)->template . " name=\"" .$number. "\" ><br>";
+            $inputTemplate->load(InputTemplate::find($idInput)->template);
+            
+            if($inputer = $inputTemplate->find('input', 0)) {
+                $inputTemplate->find('input', 0)->name = $counter;
+            }
+
+            if($select = $inputTemplate->find('select', 0)) {
+                $inputTemplate->find('select', 0)->name = $counter;
+            }
+
+            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . $inputTemplate . "<br>";
         }
 
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput)->with('form', $id);

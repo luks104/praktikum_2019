@@ -23,11 +23,11 @@ class TableSeeder extends Seeder
         {
 
             DB::table('input_templates')->insert([
-                'template' => ('<input type="password" data-parsley-minlength="6" data-parsley-required="true"'),
+                'template' => ('<input type="password" data-parsley-minlength="6" data-parsley-required="true">'),
                 'name' => ('basicInput1')
             ]);
             DB::table('input_templates')->insert([
-                'template' => ('<input type="text" data-parsley-palindrome-jao="" data-parsley-required="true"'),
+                'template' => ('<input type="text" data-parsley-palindrome="" data-parsley-required="true">'),
                 'name' => ('basicInput2')
             ]);
             DB::table('input_templates')->insert([
