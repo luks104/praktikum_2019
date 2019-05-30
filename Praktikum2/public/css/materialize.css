@@ -4326,13 +4326,6 @@ background-size: 400% 400%;
 animation: bgAnimated 45s ease infinite;
 
 }
-.kuadej{
-  background: linear-gradient(228deg, #08aeea, #2af598);
-  background-size: 400% 400%;
-
--webkit-animation: bgAnimated 45s ease infinite;
-animation: bgAnimated 45s ease infinite;
-}
 
 @-webkit-keyframes bgAnimated {
   0%{background-position:0% 91%}

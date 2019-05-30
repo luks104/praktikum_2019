@@ -15,7 +15,7 @@
                           <div class="row">
                             <div class="input-field col s8 offset-s2">
                               <i class="material-icons prefix">account_circle</i>
-                              <input id="name" type="text" class="validate @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                              <input id="name" type="text" class="validate @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name  " autofocus>
                               <label for="name" data-error="wrong" data-success="right">Name</label>
                                 @error('name')
                                 <span class="helper-text red-text">{{$message}}</span>
@@ -45,7 +45,7 @@
                           <div class="row">
                             <div class="input-field col s8 offset-s2">
                               <i class="material-icons prefix">lock_outline</i>
-                              <input id="passwordConfirm" type="password" class="validate @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                              <input id="passwordConfirm" type="password" class="validate @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
                               <label for="passwordConfirm">Confirm Password</label>
                             </div>
                           </div>

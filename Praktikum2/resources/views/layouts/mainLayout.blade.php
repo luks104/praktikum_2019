@@ -48,8 +48,8 @@
             </ul>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large white kuadej scale-transition sidenav-trigger tooltipped animated bounceInUp delay-1s" data-position="left" data-tooltip="Open profile" data-target="slide-out">
-                    <i class="large material-icons">account_circle</i>
+                <a class="btn-floating btn-large scale-transition sidenav-trigger tooltipped animated bounceInUp delay-1s" style="background-color:#08aeea" data-position="left" data-tooltip="Open profile" data-target="slide-out">
+                    <i class="large material-icons white-text">account_circle</i>
                 </a>
             </div>
         @endif
