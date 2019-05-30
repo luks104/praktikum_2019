@@ -15,4 +15,8 @@ class Form extends Model
     public function form_input() {
         return $this->hasMany('App\Input');
     }
+
+    public function form_categorie() {
+        return $this->belongsTo('App\Categorie');
+    }
 }

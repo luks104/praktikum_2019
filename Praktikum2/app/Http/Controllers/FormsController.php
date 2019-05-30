@@ -7,12 +7,19 @@ use App\Libraries\simple_html_dom;
 use App\Form;
 use App\Input;
 use App\InputTemplate;
+use App\Categorie;
 use Auth;
 use Mpdf\Mpdf;
 
 
 class FormsController extends Controller
 {
+    public function openEditor()
+    {
+        $categories = Categorie::all();
+        return view("forms.create")->with('categories', $categories);
+    }
+
     public function store(Request $request)
     {
         $html = new simple_html_dom();

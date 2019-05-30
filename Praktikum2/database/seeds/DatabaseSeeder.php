@@ -52,7 +52,17 @@ class TableSeeder extends Seeder
                 'template' => ('<input type="text" data-parsley-required="true" data-parsley-datum>'),
                 'name' => ('datum')
             ]);
-        
-        
+
+            DB::table('categories')->insert([
+                'name' => ('kategorija1')
+            ]);
+            
+            DB::table('categories')->insert([
+                'name' => ('kategorija2')
+            ]); 
+
+            DB::table('categories')->insert([
+                'name' => ('kategorija3')
+            ]); 
         }
     }
