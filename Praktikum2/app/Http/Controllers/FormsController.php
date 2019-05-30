@@ -56,7 +56,7 @@ class FormsController extends Controller
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($doc);   
         $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::STRING_RETURN);
-        echo($path);
+       
         return view('forms.form')->with('form', $form)->with('path',$path);
         
     }
