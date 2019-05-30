@@ -18,7 +18,10 @@
         
     </head>
     <body>
-        
+        <div class="scrollbar" id="style-2">
+                 <div class="force-overflow">
+
+                
         <div id="content">
 
         
@@ -26,7 +29,7 @@
             <ul id="slide-out" class="sidenav"><!-- USER NAVBAR -->
                 <li>
                     <div class="user-view">
-                        <div class="background ">
+                        <div class="background">
                     
                         </div>
                         <i class="large material-icons white-text">account_circle</i>
@@ -48,7 +51,7 @@
             </ul>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large scale-transition sidenav-trigger tooltipped animated bounceInUp delay-1s" style="background-color:#08aeea" data-position="left" data-tooltip="Open profile" data-target="slide-out">
+                <a class="btn-floating btn-large scale-transition sidenav-trigger bgStill tooltipped animated bounceInUp delay-1s " style="background-color:#08aeea" data-position="left" data-tooltip="Open profile" data-target="slide-out">
                     <i class="large material-icons white-text">account_circle</i>
                 </a>
             </div>
@@ -105,6 +108,7 @@
                     @endguest
                 </ul>
             </nav>
+            
             <div class="ff-opensans">
                 @yield('content')
             </div>       
@@ -149,6 +153,13 @@
     $('.tooltipped').tooltip();
     $('.collapsible').collapsible();
     $('select').formSelect();
+    $('input.autocomplete').autocomplete({
+      data: {
+        "Apple":null,
+        "Microsoft":null,
+        "Google":null,
+      },
+    });
   });
 
   $(window).on('load',function(){

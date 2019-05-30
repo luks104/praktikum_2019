@@ -201,15 +201,15 @@ tinymce.init(editor_config);
       <br>
       <div class="row">
         <div class="col l2 m5 s5">
-          <button type="button" id="saveComponent" style="display:none;background-color:#08aeea" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition">Save component</button>
+          <button type="button" id="saveComponent" style="display:none;" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition bgAnim">Save component</button>
         </div>
         
         <div class="col l3 offset-l7 right-align m5 offset-m2 s5 offset-s2">
           @guest
-          <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large"style="background-color:#08aeea">Login to save template</a>
+          <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large bgAnim">Login to save template</a>
           @else
          
-          <a class="waves-effect waves btn btn-large modal-trigger scale-transition" id="submitButton"  style="display:none; background-color:#08aeea;" href="#modal1">Save as template</a>
+          <a class="waves-effect waves btn btn-large modal-trigger scale-transition bgAnim" id="submitButton"  style="display:none;" href="#modal1">Save as template</a>
           @endguest
         </div>
       </div>
@@ -239,7 +239,7 @@ tinymce.init(editor_config);
                 </div>
               <div class="row">
                 <div class="col l10 offset-l1 m10 offset-m1 s10 offset-s1">
-                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s" style="background-color:#08aeea;width:100%" >Create template</button>
+                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s bgAnim" style="width:100%" >Create template</button>
                 </div>
               </div>
 
