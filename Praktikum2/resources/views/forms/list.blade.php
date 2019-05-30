@@ -9,7 +9,7 @@
                 <form>
                                 <div class="row">
                                   <div class="input-field col s12 m5 l12">
-                                    <input id="icon_prefix2" type="text" class="">
+                                    <input id="icon_prefix2" type="text" id="autocomplete-input" class="autocomplete">
                                     <label for="icon_prefix2">Search</label>
                                   </div>
                                   <div class="input-field col s12 m5 l12">
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="row">
                                         <div class="col l10 offset-l1 s8 offset-s2 m8 offset-m1">
-                                                <a class="waves-effect waves-light btn" style="background-color:#08AEEA;width:100%">Save</a>
+                                                <a class="waves-effect waves-light btn bgAnim" style="width:100%">Save</a>
                                         </div>
                                 </div>
 
@@ -49,7 +49,6 @@
  </div>
  <div class="col l9 m12 s12 left-align ">
                 
-                                
                                 @if(count ($forms) > 0 )
                                 @foreach ($forms as $form) 
                                 <div class="row animated fadeInUp left-align" style="margin:0;">
@@ -76,6 +75,5 @@
 </div>
 
 </div>
-
 
 @endsection
