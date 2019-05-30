@@ -148,6 +148,7 @@
     $('.modal').modal();
     $('.tooltipped').tooltip();
     $('.collapsible').collapsible();
+    $('select').formSelect();
   });
 
   $(window).on('load',function(){

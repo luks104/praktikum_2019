@@ -16,9 +16,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/create', function () {
-    return view('forms.create');
-})->name('formCreate');
+Route::get('/create', 'FormsController@openEditor')->name('formCreate');
 
 Route::get('/wizardtemplate', function () {
     return view('wizardtemplate');

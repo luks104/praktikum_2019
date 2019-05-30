@@ -7,12 +7,19 @@ use App\Libraries\simple_html_dom;
 use App\Form;
 use App\Input;
 use App\InputTemplate;
+use App\Categorie;
 use Auth;
 use Mpdf\Mpdf;
 
 
 class FormsController extends Controller
 {
+    public function openEditor()
+    {
+        $categories = Categorie::all();
+        return view("forms.create")->with('categories', $categories);
+    }
+
     public function store(Request $request)
     {
         $html = new simple_html_dom();
@@ -32,7 +39,7 @@ class FormsController extends Controller
             $input->save();
         }
         
-        return redirect('/')->with('success','Uspešno shranjen obrazec!');
+        return redirect('/form')->with('success','Uspešno shranjen obrazec!');
     }
 
     public function returnForms()
@@ -57,10 +64,21 @@ class FormsController extends Controller
     {
         $inputs = Form::find($id)->form_input()->get();
         
-        $generatedHTMLOutput = "";
-        foreach($inputs as $number => $input){
+        $generatedHTMLOutput = "";        
+        foreach($inputs as $counter => $input){
+            $inputTemplate = new simple_html_dom();
             $idInput = $input->input_template_id;
-            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . InputTemplate::find($idInput)->template . " name=\"" .$number. "\" ><br>";
+            $inputTemplate->load(InputTemplate::find($idInput)->template);
+            
+            if($inputer = $inputTemplate->find('input', 0)) {
+                $inputTemplate->find('input', 0)->name = $counter;
+            }
+
+            if($select = $inputTemplate->find('select', 0)) {
+                $inputTemplate->find('select', 0)->name = $counter;
+            }
+
+            $generatedHTMLOutput = $generatedHTMLOutput . $input->label . $inputTemplate . "<br>";
         }
 
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput)->with('form', $id);

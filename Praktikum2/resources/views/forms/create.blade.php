@@ -201,24 +201,24 @@ tinymce.init(editor_config);
       <br>
       <div class="row">
         <div class="col l2 m5 s5">
-          <button type="button" id="saveComponent" style="display:none;background-color:#08AEEA" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition">Save component</button>
+          <button type="button" id="saveComponent" style="display:none;background-color:#08aeea" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition">Save component</button>
         </div>
         
         <div class="col l3 offset-l7 right-align m5 offset-m2 s5 offset-s2">
           @guest
-          <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large"style="background-color:#2AF598">Login to save template</a>
+          <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large"style="background-color:#08aeea">Login to save template</a>
           @else
          
-          <a class="waves-effect waves btn btn-large modal-trigger scale-transition" id="submitButton"  style="display:none; background-color:#2AF598;" href="#modal1">Save as template</a>
+          <a class="waves-effect waves btn btn-large modal-trigger scale-transition" id="submitButton"  style="display:none; background-color:#08aeea;" href="#modal1">Save as template</a>
           @endguest
         </div>
       </div>
     </div>
 
-    <div class="modal" id="modal1" tabindex="-1" role="dialog">
+    <div class="modal col l12 s12 m12" id="modal1" tabindex="-1" role="dialog" >
         <div class="modal-content">
               <div class="row">
-                <div class="col m10 offset-m1">
+                <div class="col m10 offset-m1 s10 offset-s1">
                         <div class="input-field col s12 animated fadeIn">
                             <input id="nameTemplate" type="text" name="formName">
                              <label for="nameTemplate">Name your template</label>
@@ -227,14 +227,27 @@ tinymce.init(editor_config);
                 </div>
               </div>
               <div class="row">
-                <div class="col m3">
-                    <button type="button" class="modal-close btn-large btn-floating hvr-grow waves-effect waves-light red darken-2 animated fadeIn delay-0.5s tooltipped" data-position="right" data-tooltip="Cancel"><i class="large material-icons left">cancel</i></button>
+                  <div class="input-field col s12 l10 offset-l1 s10 offset-s1">
+                      <select>
+                        <option value="" disabled selected>Category</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
+                      <label>Choose your category</label>
+                    </div>
                 </div>
-                <div class="col m4 offset-m5 right-align">
-                    <button type="submit" class="btn-floating hvr-grow btn-large waves-effect waves-light blue animated fadeIn delay-0.5s tooltipped" data-position="left" data-tooltip="Save your template"><i class="large material-icons left">check_circle</i></button>
+              <div class="row">
+                <div class="col l10 offset-l1 m10 offset-m1 s10 offset-s1">
+                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s" style="background-color:#08aeea;width:100%" >Create template</button>
                 </div>
               </div>
-            </div>
+
+              <div class="row">
+                <div class="col l10 offset-l1 m10 offset-m1 s10 offset-s1">
+                  <button type="button" class="modal-close btn waves-effect waves-light darken-2 animated fadeIn delay-1s" style="background-color:#a4a5a8;width:100%" >Cancel</button>
+                </div>
+              </div>
     </div>
   </form>
   
