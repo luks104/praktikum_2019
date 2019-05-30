@@ -32,7 +32,7 @@ class FormsController extends Controller
             $input->save();
         }
         
-        return redirect('/')->with('success','Uspešno shranjen obrazec!');
+        return redirect('/form')->with('success','Uspešno shranjen obrazec!');
     }
 
     public function returnForms()

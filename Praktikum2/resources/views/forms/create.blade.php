@@ -227,7 +227,7 @@ tinymce.init(editor_config);
                 </div>
               </div>
               <div class="row">
-                  <div class="input-field col s12 l10 offset-l1">
+                  <div class="input-field col s12 l10 offset-l1 s10 offset-s1">
                       <select>
                         <option value="" disabled selected>Category</option>
                         <option value="1">Option 1</option>

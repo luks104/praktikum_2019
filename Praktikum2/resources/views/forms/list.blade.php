@@ -38,6 +38,11 @@
                                         </p>
                                   </div>
                                 </div>
+                                <div class="row">
+                                        <div class="col l10 offset-l1 s8 offset-s2 m8 offset-m1">
+                                                <a class="waves-effect waves-light btn" style="background-color:#08AEEA;width:100%">Save</a>
+                                        </div>
+                                </div>
 
                                 
                 </form>     
@@ -65,7 +70,7 @@
                                 @endforeach
                                
                                 @else
-                                <h6 class="ff-poppins truncate" style="letter-spacing:1.5px;padding:0;margin;color:#576071;min-height:1.2em;"> No templates found :C</h6> 
+                                <h6 class="ff-poppins center-align" style="letter-spacing:1.5px;padding:0;margin;color:#576071;min-height:1.2em;"> No templates found :C</h6> 
                                 @endif
                         </div>    
 </div>
