@@ -24,7 +24,7 @@
 
     <form action="{{ route('formWizardGenerated', ['id' => $form]) }}" method="POST" type="hidden" name="_token" enctype="multipart/form-data"  data-parsley-validate="">{{ csrf_field() }}
         {!! $generatedHTMLOutput !!}
-        <input type="submit" value="Send" class="btn waves-effect waves-light" class="btn waves-effect waves-light">
+        <button type="submit" class="btn waves-effect waves-light" class="btn waves-effect waves-light">Send</button>
     </form>
     
     </div>
