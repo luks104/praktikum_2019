@@ -41,11 +41,7 @@
                                 </div>
                                 <div class="row">
                                         <div class="col l10 offset-l1 s8 offset-s2 m8 offset-m1">
-<<<<<<< HEAD
-                                                <a class="waves-effect waves-light btn bgStill" style="width:100%">Save</a>
-=======
                                                 <button type="submit" class="waves-effect waves-light btn bgAnim" style="width:100%">Send</button>
->>>>>>> 3da7d6f80352d7e354b49d10c063b25e3ce5b4b8
                                         </div>
                                 </div>
 
