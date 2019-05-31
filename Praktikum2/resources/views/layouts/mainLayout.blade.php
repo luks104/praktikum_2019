@@ -62,7 +62,7 @@
                     <a href="{{ route('home') }}" class="brand-logo">Smart Forms</a>
                     <ul class="right hide-on-med-and-down" >
                         <li><a href="{{ route('formCreate') }}"><i class="material-icons left ">mode_edit</i>Create</a></li>
-                        <li><a href="{{ route('formList')}}" ><i class="material-icons left ">insert_drive_file</i>Templates</a></li>
+                        <li><a href="{{ route('formIndex')}}" ><i class="material-icons left ">insert_drive_file</i>Templates</a></li>
                         
                     @guest
                         <li style="background-color:white;width:0.04em;height:3em;margin-top:0.5em;margin-right:0.4em;margin-left:0.4em;">
@@ -85,7 +85,7 @@
 
                 <ul class="sidenav" id="mobile-demo"><!-- MOBILE NAVBAR -->
                         <li><a href="{{ route('formCreate') }}" class="hvr-glow"><i class="material-icons left">mode_edit</i>Create</a></li>
-                        <li><a href="{{ route('formList')}}" class="hvr-glow"><i class="material-icons left">insert_drive_file</i>Templates</a></li>
+                        <li><a href="{{ route('formIndex')}}" class="hvr-glow"><i class="material-icons left">insert_drive_file</i>Templates</a></li>
                     @guest
                         <div class="divider" style="margin:0;"></div>
                         <li id="login">

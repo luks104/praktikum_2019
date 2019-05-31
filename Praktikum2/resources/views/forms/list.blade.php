@@ -6,21 +6,22 @@
         </div>
 <div class="row">
  <div class="col l2 m10 offset-m2 offset-l1 s10 offset-s1 animated fadeInLeft" style="">
-                <form>
+        <form action="{{ route('formSearch') }}" method="POST" type="hidden" name="_token" class="form-group"  enctype="multipart/form-data">
+                {{ csrf_field() }}
                                 <div class="row">
                                   <div class="input-field col s12 m5 l12">
                                     <input id="icon_prefix2" type="text" id="autocomplete-input" class="autocomplete">
                                     <label for="icon_prefix2">Search</label>
                                   </div>
                                   <div class="input-field col s12 m5 l12">
-                                               
-                                                <select>
-                                                        <option value="" disabled selected>Category</option>
-                                                        <option value="1">Option 1</option>
-                                                        <option value="2">Option 2</option>
-                                                        <option value="3">Option 3</option>
-                                                </select>
-                                                <label>Category</label>
+                                  <h1>asdasd{{ old("categorie") }}</h1>
+                                <select id="categorie" name="categorie">
+                                        <option value="Vse" {{ ($categorieOld == 'Vse' ? "selected":"") }}>Vse</option>
+                                        @foreach($categories as $categorie)                                     
+                                                <option value="{{ $categorie->name }}" {{ ($categorieOld == $categorie->name ? "selected":"") }}>{{ $categorie->name }}</option>
+                                        @endforeach
+                                </select>
+                                <label>Category</label>
                                   </div>
                                   
                                   <div class="input-field col l10 s10 m12" >
@@ -40,7 +41,11 @@
                                 </div>
                                 <div class="row">
                                         <div class="col l10 offset-l1 s8 offset-s2 m8 offset-m1">
+<<<<<<< HEAD
                                                 <a class="waves-effect waves-light btn bgStill" style="width:100%">Save</a>
+=======
+                                                <button type="submit" class="waves-effect waves-light btn bgAnim" style="width:100%">Send</button>
+>>>>>>> 3da7d6f80352d7e354b49d10c063b25e3ce5b4b8
                                         </div>
                                 </div>
 
