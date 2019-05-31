@@ -14,7 +14,6 @@
                                     <label for="icon_prefix2">Search</label>
                                   </div>
                                   <div class="input-field col s12 m5 l12">
-                                  <h1>asdasd{{ old("categorie") }}</h1>
                                 <select id="categorie" name="categorie">
                                         <option value="Vse" {{ ($categorieOld == 'Vse' ? "selected":"") }}>Vse</option>
                                         @foreach($categories as $categorie)                                     
@@ -41,7 +40,7 @@
                                 </div>
                                 <div class="row">
                                         <div class="col l10 offset-l1 s8 offset-s2 m8 offset-m1">
-                                                <button type="submit" class="waves-effect waves-light btn bgAnim" style="width:100%">Send</button>
+                                                <button type="submit" class="waves-effect waves-light btn bgStill" style="width:100%">Send</button>
                                         </div>
                                 </div>
 
@@ -58,10 +57,9 @@
                                           <div class="card-panel hoverable valign-wrapper" style="padding:0.1em;margin:0.3em;margin-top:0.6em;" >
                                             <div class="col" style="border-right:1px solid #576071;">
                                                     <i class="material-icons" class="bgStill">insert_drive_file</i>
-                                            </div>
-                                            
+                                            </div>                                            
                                             <div class="col  s12 m12 l12 left-align">
-                                                  <h6 class="ff-poppins" style="letter-spacing:1.5px;padding:0;margin;color:#576071;min-height:1.2em;"> {{$form->form_name}}</h6> 
+                                                  <h6 class="ff-poppins" style="letter-spacing:1.5px;padding:0;color:#576071;min-height:1.2em;"> {{$form->form_name}} + <span class="red-text">$form->categories->name (ZMAZEK ZRIHTI HAS MANY/BELONGS ZA CATEGORIJE)</span></h6>
                                             </div>
                                           </div>
                                         </a>
