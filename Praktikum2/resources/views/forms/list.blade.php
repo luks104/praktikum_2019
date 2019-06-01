@@ -10,7 +10,7 @@
                 {{ csrf_field() }}
                                 <div class="row">
                                   <div class="input-field col s12 m5 l12">
-                                    <input id="icon_prefix2" type="text" id="autocomplete-input" class="autocomplete">
+                                    <input id="icon_prefix2" type="text" id="autocomplete-input" class="autocomplete" name="searchInput" value="{{  $searchInputOld  }}">
                                     <label for="icon_prefix2">Search</label>
                                   </div>
                                   <div class="input-field col s12 m5 l12">
@@ -59,7 +59,7 @@
                                                     <i class="material-icons" class="bgStill">insert_drive_file</i>
                                             </div>                                            
                                             <div class="col  s12 m12 l12 left-align">
-                                                  <h6 class="ff-poppins" style="letter-spacing:1.5px;padding:0;color:#576071;min-height:1.2em;"> {{$form->form_name}} + <span class="red-text">$form->categories->name (ZMAZEK ZRIHTI HAS MANY/BELONGS ZA CATEGORIJE)</span></h6>
+                                                  <h6 class="ff-poppins" style="letter-spacing:1.5px;padding:0;color:#576071;min-height:1.2em;"> {{$form->form_name}} + <span class="red-text">{{  $form->categorie_name  }}</span></h6>
                                             </div>
                                           </div>
                                         </a>

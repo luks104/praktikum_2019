@@ -8,29 +8,34 @@ use App\Input;
 use App\InputTemplate;
 use App\Categorie;
 use Auth;
+use DB;
 
 class SearchController extends Controller
 {
     public function formIndex()
     {
-        $forms = Form::orderBy('form_name')->paginate(10);
+        $forms = Form::join('categories', 'categories.id', '=', 'categorie_id')->select('forms.id', 'forms.form_name', 'forms.form_data', 'categories.name as categorie_name')->orderBy('forms.form_name')->get();
         $categories = Categorie::all();
-        return view('forms.list')->with(array('forms' => $forms, 'categories' => $categories, 'categorieOld' => 'Vse'));
+        return view('forms.list')->with(array('forms' => $forms, 'categories' => $categories, 'categorieOld' => 'Vse', 'searchInputOld' => null));
     }
 
     public function formSearch(Request $request)
     {
-        if($request->categorie == 'Vse')
+        $forms = Form::join('categories', 'categories.id', '=', 'categorie_id')->select('forms.id', 'forms.form_name', 'forms.form_data', 'categories.name as categorie_name')->orderBy('forms.form_name')->get();
+
+        if($request->categorie != 'Vse')
         {
-            $forms = Form::orderBy('form_name')->paginate(10);
-        }
-        else
-        {
-            $categorieId = Categorie::where('name', $request->categorie)->first()->id;
-            $forms = Form::where('categorie_id', $categorieId)->orderBy('form_name')->paginate(10);
+            $forms = $forms->where('categorie_name', $request->categorie);
         }            
-        
+        if($request->searchInput != null)
+        {
+            $searchString = $request->searchInput;
+            $forms = $forms->filter(function ($form) use ($searchString) {
+                return str_contains($form->form_name, $searchString);
+            });
+        }
+
         $categories = Categorie::all();
-        return view('forms.list')->with(array('forms' => $forms, 'categories' => $categories, 'categorieOld' => $request->categorie));
+        return view('forms.list')->with(array('forms' => $forms, 'categories' => $categories, 'categorieOld' => $request->categorie, 'searchInputOld' => $request->searchInput));
     }
 }
