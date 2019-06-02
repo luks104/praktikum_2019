@@ -42,5 +42,5 @@ Route::get('/output', function (){
     return view('output');
 })->name('output');
 
-Route::get('/form/{id}/formToPDF', 'FormsController@formToPDF')->name('formToPDF');
+Route::get('/form/{id}/wizard/formToPDF', 'FormsController@formToPDF')->name('formToPDF');
 Route::get('/form/{id}/formToDocx', 'FormsController@formToDocx')->name('formToDocx');

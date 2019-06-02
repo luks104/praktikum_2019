@@ -43,17 +43,25 @@ class FormsController extends Controller
         return redirect('/form')->with('success','Uspešno shranjen obrazec!');
     }
 
-    public function selectForm($id)
+    public function selectForm(Request $request, $id)
     {
+      
         $form = Form::find($id);
         $document = Form::find($id)->form_data;
+        $inputs = Form::find($id)->form_input()->get();
+
+        $data = "";
+        foreach($inputs as $number => $input) {
+            $data = $data . $input->label . ":" . $request->input($number) . "<br>";
+        }
+
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
         $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::STRING_RETURN);
       
         $encodedPDF = chunk_split(base64_encode($path));
         //echo($encodedPDF);
-        return view('forms.form')->with('form', $form)->with('encodedPDF',$encodedPDF);
+        return view('forms.form')->with('form', $form)->with('encodedPDF',$encodedPDF)->with('data',$data);
         
     }
 
@@ -61,12 +69,12 @@ class FormsController extends Controller
     {
         $inputs = Form::find($id)->form_input()->get();
         
+    
         $generatedHTMLOutput = "";        
         foreach($inputs as $counter => $input){
             $inputTemplate = new simple_html_dom();
             $idInput = $input->input_template_id;
             $inputTemplate->load(InputTemplate::find($idInput)->template);
-            
             if($inputer = $inputTemplate->find('input', 0)) {
                 $inputTemplate->find('input', 0)->name = $counter;
             }
@@ -83,12 +91,20 @@ class FormsController extends Controller
 
     public function formToPDF($id)
     {
+         
+        $form = Form::find($id);
+       
+        $document = $form->form_data;
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
+        $mpdf->WriteHTML($document);   
+        $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+/*
         $inputs = Form::find($id)->form_input()->get();
         $generatedHTMLOutput = "";
         $doc = Form::find($id)->form_data;
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($doc);
-        $mpdf->Output();
+        $mpdf->Output();*/
     }
 
     public function formWizardGenerated(Request $request, $id)
