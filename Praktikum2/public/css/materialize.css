@@ -2171,8 +2171,7 @@ body {
   background-image: linear-gradient(228deg, rgba(42, 245, 154, 0.2) 0%, rgba(8, 174, 234, 0.2) 100%);
   background-size: 400% 400%;
 
-  -webkit-animation: bgAnimated 45s ease infinite;
-  animation: bgAnimated 45s ease infinite;
+  
 }
 
 
@@ -4320,10 +4319,8 @@ nav .nav-wrapper {
   height: 100%;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(228deg, #2af598, #08aeea);
-background-size: 400% 400%;
+background-size: 250% 250%;
 
--webkit-animation: bgAnimated 45s ease infinite;
-animation: bgAnimated 45s ease infinite;
 
 }
 
@@ -5623,7 +5620,7 @@ button.btn-floating {
 
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 16px;
-  color: #08AEEA;
+  color: #576071;
   display: block;
   line-height: 22px;
   padding: 14px 16px;
@@ -6742,7 +6739,7 @@ textarea.materialize-textarea {
 
 /* Autocomplete */
 .autocomplete-content li .highlight {
-  color: #444;
+  color:#08aeea;
 }
 
 .autocomplete-content li img {
@@ -7212,6 +7209,7 @@ select {
 
 .select-wrapper input.select-dropdown {
   position: relative;
+  
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -7703,11 +7701,10 @@ input[type=range]::-ms-thumb {
   bottom: 0;
   left: 0;
   z-index: -1;
-  background: linear-gradient(228deg,#2af598, #08aeea);
+  background: linear-gradient(228deg,#2af59a9a 0%, #08aeea 100%);
 background-size: 400% 400%;
 
--webkit-animation: bgAnimated 45s ease infinite;
-animation: bgAnimated 45s ease infinite;
+
 }
 
 .sidenav .user-view .circle, .sidenav .user-view .name, .sidenav .user-view .email {
@@ -9243,7 +9240,7 @@ background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
   
 }
 .bgStill{
-  background: linear-gradient(228deg,#2af598, #08aeea);
+  background-image: linear-gradient(-30deg, rgba(153, 248, 205, 0.432) 0%, rgb(8, 174, 234));
 }
 
 

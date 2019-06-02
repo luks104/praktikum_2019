@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="{{asset('css/hover-min.css')}}"> 
         <link rel="stylesheet" href="{{asset('css/materialize.css')}}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+        <script src="{{asset('js/jquery.js')}}"></script>
         
     </head>
     <body>
@@ -62,7 +62,7 @@
                     <a href="{{ route('home') }}" class="brand-logo">Smart Forms</a>
                     <ul class="right hide-on-med-and-down" >
                         <li><a href="{{ route('formCreate') }}"><i class="material-icons left ">mode_edit</i>Create</a></li>
-                        <li><a href="{{ route('formList')}}" ><i class="material-icons left ">insert_drive_file</i>Templates</a></li>
+                        <li><a href="{{ route('formIndex')}}" ><i class="material-icons left ">insert_drive_file</i>Templates</a></li>
                         
                     @guest
                         <li style="background-color:white;width:0.04em;height:3em;margin-top:0.5em;margin-right:0.4em;margin-left:0.4em;">
@@ -85,7 +85,7 @@
 
                 <ul class="sidenav" id="mobile-demo"><!-- MOBILE NAVBAR -->
                         <li><a href="{{ route('formCreate') }}" class="hvr-glow"><i class="material-icons left">mode_edit</i>Create</a></li>
-                        <li><a href="{{ route('formList')}}" class="hvr-glow"><i class="material-icons left">insert_drive_file</i>Templates</a></li>
+                        <li><a href="{{ route('formIndex')}}" class="hvr-glow"><i class="material-icons left">insert_drive_file</i>Templates</a></li>
                     @guest
                         <div class="divider" style="margin:0;"></div>
                         <li id="login">
@@ -114,21 +114,19 @@
             </div>       
             </div>
             <div id="loader">
-                    <div class="preloader-wrapper big active">
-                            <div class="spinner-layer spinner-blue-only">
-                              <div class="circle-clipper left">
-                                <div class="circle"></div>
-                              </div><div class="gap-patch">
-                                <div class="circle"></div>
-                              </div><div class="circle-clipper right">
-                                <div class="circle"></div>
-                              </div>
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col l4 offset-l4">
+                            <div class="progress white">
+                                <div class="indeterminate" style="background-color:#08aeea"></div>
                             </div>
-                          </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         
     </body>
-    <script src="{{asset('js/jquery.js')}}"></script>
+    
     <script src="{{asset('js/materialize.js')}}"></script>
     
     <script>
@@ -153,13 +151,7 @@
     $('.tooltipped').tooltip();
     $('.collapsible').collapsible();
     $('select').formSelect();
-    $('input.autocomplete').autocomplete({
-      data: {
-        "Apple":null,
-        "Microsoft":null,
-        "Google":null,
-      },
-    });
+    
   });
 
   $(window).on('load',function(){

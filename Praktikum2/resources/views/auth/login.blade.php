@@ -35,7 +35,7 @@
                           
                           <div class="row center-align">
                                 <div class="col l12 s10 offset-s1 m10 offset-m1">
-                                    <button type="submit" class="btn-large btn" style="background-color:#08AEEA">Login</button>
+                                    <button type="submit" class="btn-large btn bgStill" style="background-color:#08AEEA">Login</button>
                                 </div>
                           </div>
                     </form>

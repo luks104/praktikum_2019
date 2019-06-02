@@ -24,13 +24,15 @@ Route::get('/wizardtemplate', function () {
 
 Route::post('/create', 'FormsController@store')->name('formStore');
 
-Route::get('/form', 'FormsController@returnForms')->name('formList');
-
 Route::get('/form/{id}', 'FormsController@selectForm')->name('formDetail');
 
 Route::get('/form/{id}/wizard', 'FormsController@formWizard')->name('formWizard');
 
 Route::post('/form/{id}/wizard', 'FormsController@formWizardGenerated')->name('formWizardGenerated');
+
+Route::get('/form', 'SearchController@formIndex')->name('formIndex');
+
+Route::post('/form', 'SearchController@formSearch')->name('formSearch');
 
 Route::any('/preloader', function () {
     return view('preloader');
