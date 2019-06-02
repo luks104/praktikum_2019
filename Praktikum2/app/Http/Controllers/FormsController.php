@@ -52,12 +52,14 @@ class FormsController extends Controller
     public function selectForm($id)
     {
         $form = Form::find($id);
-        $doc = Form::find($id)->form_data;
+        $document = Form::find($id)->form_data;
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
-        $mpdf->WriteHTML($doc);   
+        $mpdf->WriteHTML($document);   
         $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::STRING_RETURN);
-       
-        return view('forms.form')->with('form', $form)->with('path',$path);
+      
+        $encodedPDF = chunk_split(base64_encode($path));
+        //echo($encodedPDF);
+        return view('forms.form')->with('form', $form)->with('encodedPDF',$encodedPDF);
         
     }
 
