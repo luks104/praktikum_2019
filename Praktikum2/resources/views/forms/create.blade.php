@@ -245,6 +245,7 @@ tinymce.init(editor_config);
                   <button type="button" class="modal-close btn waves-effect waves-light darken-2 animated fadeIn delay-1s" style="background-color:#a4a5a8;width:100%" >Cancel</button>
                 </div>
               </div>
+      </div>
     </div>
   </form>
   <script> 
