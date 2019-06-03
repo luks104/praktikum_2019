@@ -121,36 +121,36 @@ function checkContent(){
 
             {
               type: 'menuitem',
-              text: 'Ime',
+              text: 'Name',
               onAction: function(_){
-                addComponent(editor,"ime","text");
+                addComponent(editor,"name","text");
                 //console.log(compets2);
               }
             },
 
             {
               type: 'menuitem',
-              text: 'Priimek',
+              text: 'Surname',
               onAction: function(_){
-                addComponent(editor,"priimek","text");
+                addComponent(editor,"surname","text");
                 //console.log(compets2);
               }
             },
 
             {
               type: 'menuitem',
-              text: 'davcnaStevilka',
+              text: 'Tax Number',
               onAction: function(_){
-                addComponent(editor,"davcnaStevilka","text");
+                addComponent(editor,"tax","text");
                 //console.log(compets2);
               }
             },
 
             {
               type: 'menuitem',
-              text: 'datum',
+              text: 'Date',
               onAction: function(_){
-                addComponent(editor,"datum","text");
+                addComponent(editor,"date","text");
                 //console.log(compets2);
               }
             },

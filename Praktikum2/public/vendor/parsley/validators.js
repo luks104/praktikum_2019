@@ -7,8 +7,7 @@ window.Parsley.addValidator('palindrome', {
     return value.split('').reverse().join('') === value;
   },
   messages: {
-    en: 'This string is not the reverse of itself',
-    fr: "Cette valeur n'est pas l'inverse d'elle même."
+    en: 'This string is not the reverse of itself'
   }
 });
 
@@ -18,43 +17,27 @@ window.Parsley.addValidator('uppercase', {
     return value.charAt(0) === value.charAt(0).toUpperCase();
   },
   messages: {
-    en: 'This string has a lowercase first letter.',
-    fr: "Cette valeur n'est pas l'inverse d'elle même."
+    en: 'This string has a lowercase first letter.'
   }
 });
 
-window.Parsley.addValidator('davcnastevilka', {
+window.Parsley.addValidator('tax', {
   validateNumber: function(value) {
     if (value.length != 8) {
-      
-
         return false
     }
-    
-   
-  
   },
   messages: {
-    en: 'Vpišite 8 mestno davčno številko',
-    fr: "Ce nombre n'est pas un multiple de %s."
+    en: 'Tax number must be 8 digits long!'
   }
 });
 
 
-window.Parsley.addValidator('datum', {
-  validateNumber: function(value) {
-    if (value.length != 8) {
-      
-
-        return false
-    }
-    
-   
-  
+window.Parsley.addValidator('date', {
+  validateDate: function(value) {
   },
   messages: {
-    en: 'Vpišite 8 mestno davčno številko',
-    fr: "Ce nombre n'est pas un multiple de %s."
+    en: 'Please enter date in correct date format \"YYYY-MM-DD\"'
   }
 });
 
