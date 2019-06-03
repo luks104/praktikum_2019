@@ -171,7 +171,7 @@ class FormsController extends Controller
         $userId = Auth::id();
         $userForms = Form::where('user_id', $userId)->get();
         
-        return view('/userList')->with('forms', $userForms)->with('success','Successfully updated template!');
+        return view('/forms')->with('success','Successfully updated template!');
     }
 
     public function formDelete(Request $request, $id)
@@ -187,6 +187,6 @@ class FormsController extends Controller
         $userId = Auth::id();
         $userForms = Form::where('user_id', $userId)->get();
 
-        return view('userList')->with('forms', $userForms)->with('success', 'Successfully deleted template');
+        return redirect('forms')->with('success', 'Successfully deleted template');
     }
 }
