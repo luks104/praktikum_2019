@@ -23,41 +23,33 @@ function setDisabled(button,disabled){
       document.getElementById(button).removeAttribute("disabled");
   }
 }
-//Checks if the input has any value. The save component button acts accordingly.
-function checkInputName(e){
 
-  if(e.target.value ==='' /* || e.target.value === e.target.name */)
-    {
-      setDisabled("saveComponent",true);
-      
-    }
-    else{
-      setDisabled("saveComponent",false);
-    }
-}
 //Adds component: Input-> Type of input, Type: Text,Password,Email...
 function addComponent(editor,input,type){
   let compets = tinymce.activeEditor.dom.select('input.component');
-  editor.insertContent("<input data-label='' data-input-name="+input+" name='' id="+compets.length+" type="+type+" class='form-control component'  placeholder='Enter your label...' "+stil+">");
+  editor.insertContent("<input data-label='' data-input-name="+input+" name='' readonly id="+compets.length+" type="+type+" class='form-control component'  placeholder='' "+stil+">");
   let compets2 = tinymce.activeEditor.dom.select('input.component');
 }
 //When user enters an input.
 function leaveInput(){
   //document.getElementById("saveComponent").style.visibility = "hidden";
-  $("#saveComponent").fadeOut("slow");
+  $("#saveComponent").fadeOut("");
+  $("#nameInput").fadeOut("");
   currentComponent=-1;
 }
 //When user leaves an input.
 function enterInput(e){
   
   //document.getElementById("saveComponent").style.visibility = "visible";
-  $("#saveComponent").fadeIn("slow");
+  $("#saveComponent").fadeIn("");
+  $("#nameInput").fadeIn("");
   currentComponent=e.target.id;
 }
 //Saves the name of current selected component.
 function saveCurrentComp(){
-  let v = tinymce.activeEditor.dom.get(currentComponent).value;
+  let v = $('#componentName').val();
   tinymce.activeEditor.dom.setAttribs(currentComponent, {'data-label': v, placeholder: v});
+  $('#componentName').val("");
   leaveInput();
   checkContent();
 }
@@ -73,6 +65,7 @@ function enableSumbit(enable){
   }
   
 }
+
 //Checks if all components are named.
 function checkContent(){
   let comps = tinymce.activeEditor.dom.select('input.component');
@@ -168,7 +161,7 @@ function checkContent(){
       //Adding click & keyUp events for inputs.
       editor.on('click', function (e) {//Clicking on input selects current component.
         if(e.target.nodeName === 'INPUT'){
-          checkInputName(e);
+          checkInputName();
           enterInput(e);
         }
         else{
@@ -176,10 +169,7 @@ function checkContent(){
         }
       });
       editor.on('keyup', function (e) {//Writing on input changes its name.
-      if(e.target.nodeName === 'INPUT'){
-        checkInputName(e);
-      }
-      else{
+      if(e.target.nodeName !== 'INPUT'){
         leaveInput();
       }
       }); 
@@ -199,12 +189,20 @@ tinymce.init(editor_config);
     <div class="container animated fadeInUp section">
       <textarea id="editor" style="height:30em;" name="formData" class=""></textarea>
       <br>
-      <div class="row">
-        <div class="col l2 m5 s5">
-          <button type="button" id="saveComponent" style="display:none;" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition bgStill">Save component</button>
+      <div class="row" style="min-height:8em;">
+        <div class="col l6 m6 s10 offset-s1">
+          <div class="input-field" id="nameInput" style="display:none;">
+            <input id="componentName" type="text" name="">
+             <label for="componentName">Name your component</label>
+             <span class="helper-text red-text" style="display:none;" id="nameHelp"></span>
+          </div>
         </div>
-        
-        <div class="col l3 offset-l7 right-align m5 offset-m2 s5 offset-s2">
+      </div>
+      <div class="row">
+        <div class="col l3 m5 s5 left-align">
+          <button type="button" id="saveComponent" style="display:none;" onclick="saveCurrentComp()"  class="waves-effect btn btn-large scale-transition bgStill">Save component</button>
+        </div>
+        <div class="col l3 offset-l6 right-align m4 offset-m1 s5 offset-s2">
           @guest
           <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large bgStill">Login to save template</a>
           @else
@@ -214,7 +212,7 @@ tinymce.init(editor_config);
         </div>
       </div>
     </div>
-
+    
     <div class="modal col l12 s12 m12" id="modal1" tabindex="-1" role="dialog" >
         <div class="modal-content">
               <div class="row">
@@ -238,7 +236,7 @@ tinymce.init(editor_config);
                 </div>
               <div class="row">
                 <div class="col l10 offset-l1 m10 offset-m1 s10 offset-s1">
-                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s bgstill" style="width:100%" >Create template</button>
+                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s bgStill" style="width:100%" >Create template</button>
                 </div>
               </div>
 
@@ -249,6 +247,31 @@ tinymce.init(editor_config);
               </div>
     </div>
   </form>
-  
-</body>
+  <script> 
+  //KeyUp for input
+$('#componentName').keyup(function() {
+    checkInputName();
+});
+//Checks if the input has any value. The save component button acts accordingly.
+function checkInputName(){
+  var value = $('#componentName').val();
+  var editorComponent = tinymce.activeEditor.dom.getAttrib(currentComponent, 'data-label');
+  if(value ==='' || value===editorComponent)
+    {
+      if(value===editorComponent &&  editorComponent !== ''){
+        $("#nameHelp").text("Name is already set!")
+        $("#nameHelp").fadeIn("");
+      }
+      if(value===''){
+        $("#nameHelp").text("Name can not be unset!")
+      }
+      setDisabled("saveComponent",true);
+      
+    }
+    else{
+      setDisabled("saveComponent",false);
+      $("#nameHelp").fadeOut("");
+    }
+}
+  </script>
 @endsection
