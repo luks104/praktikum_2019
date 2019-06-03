@@ -27,7 +27,7 @@ function setDisabled(button,disabled){
 //Adds component: Input-> Type of input, Type: Text,Password,Email...
 function addComponent(editor,input,type){
   let compets = tinymce.activeEditor.dom.select('input.component');
-  editor.insertContent("<input data-label='' data-input-name="+input+" name='' readonly id="+compets.length+" type="+type+" class='form-control component'  placeholder='' "+stil+">");
+  editor.insertContent("<input data-label='' data-input-name="+input+" name=a'' readonly id="+compets.length+" type="+type+" class='form-control component'  placeholder='' "+stil+" readonly>");
   let compets2 = tinymce.activeEditor.dom.select('input.component');
 }
 //When user enters an input.
@@ -97,7 +97,7 @@ function checkContent(){
 }
  var editor_config = {
   selector: 'textarea#editor',
-  toolbar: 'components | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media| button1',
+  toolbar: ' components | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent ',
   plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -118,6 +118,13 @@ function checkContent(){
                 //console.log(compets2);
               }
             },
+            
+            {
+            type: 'nestedmenuitem',
+            text: 'Personal data',
+            getSubmenuItems: function () {
+              return [
+                
 
             {
               type: 'menuitem',
@@ -154,6 +161,9 @@ function checkContent(){
                 //console.log(compets2);
               }
             },
+              ];
+            }
+          }
           ];
           callback(menuItems);
         }

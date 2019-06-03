@@ -167,11 +167,8 @@ class FormsController extends Controller
             $input->input_template_id = InputTemplate::where('name', $element->getAttribute("data-input-name"))->first()->id;
             $input->save();
         }
-
-        $userId = Auth::id();
-        $userForms = Form::where('user_id', $userId)->get();
         
-        return view('/form')->with('success','Successfully updated template!');
+        return redirect('form')->with('success','Successfully updated template!');
     }
 
     public function formDelete(Request $request, $id)
@@ -183,10 +180,7 @@ class FormsController extends Controller
         foreach($inputs as $input){
             $input->delete();
         }
-
-        $userId = Auth::id();
-        $userForms = Form::where('user_id', $userId)->get();
-
+        
         return redirect('form')->with('success', 'Successfully deleted template');
     }
 }
