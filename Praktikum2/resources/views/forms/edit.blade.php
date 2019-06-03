@@ -40,7 +40,7 @@ function checkInputName(e){
 //Adds component: Input-> Type of input, Type: Text,Password,Email...
 function addComponent(editor,input,type){
   let compets = tinymce.activeEditor.dom.select('input.component');
-  editor.insertContent("<input data-label='' data-input-name="+input+" name='' id="+compets.length+" type="+type+" class='form-control component'  placeholder='Enter your label...' "+stil+">");
+  editor.insertContent("<input data-label='' data-input-name="+input+" name='' id="+compets.length+" type="+type+" class='form-control component'  placeholder='Enter your label...' "+stil+" readonly>");
   let compets2 = tinymce.activeEditor.dom.select('input.component');
 }
 //When user enters an input.
