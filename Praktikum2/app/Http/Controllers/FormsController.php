@@ -177,7 +177,12 @@ class FormsController extends Controller
     public function formDelete(Request $request, $id)
     {
         $form = Form::find($id);
+        $inputs = $form->form_input()->get();
         $form->delete();
+
+        foreach($inputs as $input){
+            $input->delete();
+        }
 
         $userId = Auth::id();
         $userForms = Form::where('user_id', $userId)->get();
