@@ -40,7 +40,7 @@ class FormsController extends Controller
             $input->save();
         }
         
-        return redirect('/form')->with('success','Uspešno shranjen obrazec!');
+        return redirect('/form')->with('success','Successfully save template!');
     }
 
     public function selectForm(Request $request, $id)
@@ -130,5 +130,58 @@ class FormsController extends Controller
         $objWriter->save('Appdividend.docx');
         return response()->download(public_path('Appdividend.docx'));
 
+    }
+
+    public function formEdit(Request $request, $id)
+    {
+        $form = Form::find($id);
+        if(Auth::id() !== $form->user_id){
+            return redirect('/')->with('error', 'Nedovoljeno urejanje!');
+        }
+        else {
+            $categories = Categorie::all();
+            return view('forms.edit')->with('form', $form)->with('categories', $categories)->with('form', $form);
+        }
+    }
+
+    public function formUpdate(Request $request, $id)
+    {
+        $html = new simple_html_dom();
+        $html->load($request->input('formData'));
+
+        $form = Form::find($id);
+        $form->form_data = $request->input('formData');
+        $form->form_name = $request->input('formName');
+        $form->categorie_id = Categorie::where('name', $request->input('categorie'))->first()->id;
+        $form->save();
+
+        $inputs = $form->form_input()->get();
+        foreach($inputs as $input){
+            $input->delete();
+        }
+
+        foreach($html->find('input') as $element){
+            $input = new Input;
+            $input->label = $element->getAttribute("data-label");
+            $input->form_id = $form->id;
+            $input->input_template_id = InputTemplate::where('name', $element->getAttribute("data-input-name"))->first()->id;
+            $input->save();
+        }
+
+        $userId = Auth::id();
+        $userForms = Form::where('user_id', $userId)->get();
+        
+        return view('/userList')->with('forms', $userForms)->with('success','Successfully updated template!');
+    }
+
+    public function formDelete(Request $request, $id)
+    {
+        $form = Form::find($id);
+        $form->delete();
+
+        $userId = Auth::id();
+        $userForms = Form::where('user_id', $userId)->get();
+
+        return view('userList')->with('forms', $userForms)->with('success', 'Successfully deleted template');
     }
 }

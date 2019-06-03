@@ -38,4 +38,11 @@ class SearchController extends Controller
         $categories = Categorie::all();
         return view('forms.list')->with(array('forms' => $forms, 'categories' => $categories, 'categorieOld' => $request->categorie, 'searchInputOld' => $request->searchInput));
     }
+
+    public function userFormIndex()
+    {
+        $userId = Auth::id();
+        $userForms = Form::where('user_id', $userId)->get();
+        return view('userList')->with('forms', $userForms);
+    }
 }
