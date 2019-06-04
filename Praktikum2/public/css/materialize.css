@@ -9243,7 +9243,31 @@ background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
   background-image: linear-gradient(-30deg, rgba(153, 248, 205, 0.432) 0%, rgb(8, 174, 234));
 }
 
-iframe{
-  overflow:hidden;
-  border:none;
+/* background-image:  url("../imgs/code2.jpg"); */
+.parallax-container h6{
+  font-size: 4em;
+  font-family: 'Poppins', sans-serif;
+  color:#08AEEA !important;
+}
+.parallax-container a{
+  color:#576071 !important;
+  
+}
+.parallax-container .card-panel{
+  border: 1px solid #08AEEA;
+  
+}
+.section p{
+  font-size: 1.2em; 
+}
+.section h2{
+  margin:0; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.5em;
+  color:#576071;
+}
+.footerino{
+  background: linear-gradient(228deg, #2af598, #08aeea);
+  background-size: 250% 250%;
 }
