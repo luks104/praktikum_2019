@@ -18,9 +18,6 @@
         
     </head>
     <body>
-        <div class="scrollbar" id="style-2">
-                 <div class="force-overflow">
-
                 
         <div id="content">
 
@@ -38,7 +35,7 @@
                     </div>
                 </li>
                 <li><a class="subheader">User</a></li>
-                <li><a href="#!" class="hvr-glow"><i class="material-icons">settings</i>User Settings</a></li>
+                <li><a href="{{ route('userIndex') }}" class="hvr-glow"><i class="material-icons">settings</i>User Settings</a></li>
                 <li><a href="{{ route('userFormIndex') }}" class="hvr-glow"><i class="material-icons ">folder</i>My Templates</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Logout</a></li>
@@ -57,8 +54,8 @@
             </div>
         @endif
 
-            <nav><!-- MAIN NAVBAR -->
-                <div class="nav-wrapper blue">
+            <nav class=""><!-- MAIN NAVBAR -->
+                <div class="nav-wrapper ">
                     <a href="{{ route('home') }}" class="brand-logo">Smart Forms</a>
                     <ul class="right hide-on-med-and-down" >
                         <li><a href="{{ route('formCreate') }}"><i class="material-icons left ">mode_edit</i>Create</a></li>
@@ -151,7 +148,7 @@
     $('.tooltipped').tooltip();
     $('.collapsible').collapsible();
     $('select').formSelect();
-    
+    $('.parallax').parallax();
   });
 
   $(window).on('load',function(){

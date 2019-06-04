@@ -53,3 +53,11 @@ Route::get('/myForm/{id}/edit', 'FormsController@formEdit')->name('userFormEdit'
 Route::post('/myForm/{id}/edit', 'FormsController@formUpdate')->name('userFormUpdate');
 
 Route::get('/myForm/{id}/delete', 'FormsController@formDelete')->name('userFormDelete');
+
+Route::get('/user', 'UserController@userIndex')->name('userIndex');
+
+Route::post('/userEmail', 'UserController@userEditEmail')->name('emailEdit');
+
+Route::post('/userName', 'UserController@userEditName')->name('usernameEdit');
+
+Route::post('/userPassword', 'UserController@userEditPassword')->name('passwordEdit');
