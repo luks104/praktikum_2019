@@ -9,7 +9,8 @@
     <div class="col s5">
     <h3>Form: {{$form->form_name}}</h3>
     <font color="black"><h4 font color="black">Form data:</h4></font>
-    {!! $data !!}
+    {!! $document !!}
+
        
     </div>
 
