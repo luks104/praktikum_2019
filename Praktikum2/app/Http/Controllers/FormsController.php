@@ -55,6 +55,7 @@ class FormsController extends Controller
             $data = $data . $input->label . ":" . $request->input($number) . "<br>";
         }
 
+        
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
         $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::STRING_RETURN);
@@ -75,9 +76,10 @@ class FormsController extends Controller
             $inputTemplate = new simple_html_dom();
             $idInput = $input->input_template_id;
             $inputTemplate->load(InputTemplate::find($idInput)->template);
+
             if($inputer = $inputTemplate->find('input', 0)) {
                 $inputTemplate->find('input', 0)->name = $counter;
-            }
+            }   
 
             if($select = $inputTemplate->find('select', 0)) {
                 $inputTemplate->find('select', 0)->name = $counter;
@@ -97,14 +99,7 @@ class FormsController extends Controller
         $document = $form->form_data;
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
-        $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::DOWNLOAD);
-/*
-        $inputs = Form::find($id)->form_input()->get();
-        $generatedHTMLOutput = "";
-        $doc = Form::find($id)->form_data;
-        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
-        $mpdf->WriteHTML($doc);
-        $mpdf->Output();*/
+        $path=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
     }
 
     public function formWizardGenerated(Request $request, $id)
@@ -112,11 +107,21 @@ class FormsController extends Controller
         $inputs = Form::find($id)->form_input()->get();
         $form = Form::find($id);
 
-        $data = "";
+        $formBlank= $form->form_data;
+        $document = new simple_html_dom();
+        $document->load($formBlank);
+      
+
+        
         foreach($inputs as $number => $input) {
-            $data = $data . $input->label . ": " . $request->input($number) . "<br>";
+            $newElement=new simple_html_dom();
+            $newElement->load("<a>".$request->input($number)."</a>");
+            $document->find('input', $number)->outertext=' '.$request->input($number).' ';
         }
-        return view('/output')->with('data', $data)->with('form', $form);
+     
+        
+      
+        return view('/output')->with('form', $form)->with('document', $document);
     }
 
     public function formToDocx($id)

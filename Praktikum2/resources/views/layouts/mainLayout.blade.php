@@ -35,7 +35,7 @@
                     </div>
                 </li>
                 <li><a class="subheader">User</a></li>
-                <li><a href="#!" class="hvr-glow"><i class="material-icons">settings</i>User Settings</a></li>
+                <li><a href="{{ route('userIndex') }}" class="hvr-glow"><i class="material-icons">settings</i>User Settings</a></li>
                 <li><a href="{{ route('userFormIndex') }}" class="hvr-glow"><i class="material-icons ">folder</i>My Templates</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Logout</a></li>
