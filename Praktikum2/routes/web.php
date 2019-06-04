@@ -43,4 +43,13 @@ Route::get('/output', function (){
 })->name('output');
 
 Route::get('/form/{id}/wizard/formToPDF', 'FormsController@formToPDF')->name('formToPDF');
+
 Route::get('/form/{id}/formToDocx', 'FormsController@formToDocx')->name('formToDocx');
+
+Route::get('/myForm', 'SearchController@userFormIndex')->name('userFormIndex');
+
+Route::get('/myForm/{id}/edit', 'FormsController@formEdit')->name('userFormEdit');
+
+Route::post('/myForm/{id}/edit', 'FormsController@formUpdate')->name('userFormUpdate');
+
+Route::get('/myForm/{id}/delete', 'FormsController@formDelete')->name('userFormDelete');

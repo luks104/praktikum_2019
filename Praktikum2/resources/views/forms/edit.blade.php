@@ -1,6 +1,7 @@
 @extends('layouts.mainLayout')
 
 @section('content')
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,6 +13,7 @@
 <script>
 let currentComponent= -1;
 let stil = "style='width:15%;height:calc(0.59rem + 2px);padding:.375rem .75rem;font-size:.9rem;line-height:1.6;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;margin-left: .5rem;margin-right:.5rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out'"
+let form_data = {!! json_encode($form->form_data) !!};
 //Enables/Disables button depending on condition.
 function setDisabled(button,disabled){
   if(disabled){
@@ -23,33 +25,41 @@ function setDisabled(button,disabled){
       document.getElementById(button).removeAttribute("disabled");
   }
 }
+//Checks if the input has any value. The save component button acts accordingly.
+function checkInputName(e){
 
+  if(e.target.value ==='' /* || e.target.value === e.target.name */)
+    {
+      setDisabled("saveComponent",true);
+      
+    }
+    else{
+      setDisabled("saveComponent",false);
+    }
+}
 //Adds component: Input-> Type of input, Type: Text,Password,Email...
 function addComponent(editor,input,type){
   let compets = tinymce.activeEditor.dom.select('input.component');
-  editor.insertContent("<input data-label='' data-input-name="+input+" name=a'' readonly id="+compets.length+" type="+type+" class='form-control component'  placeholder='' "+stil+" readonly>");
+  editor.insertContent("<input data-label='' data-input-name="+input+" name='' id="+compets.length+" type="+type+" class='form-control component'  placeholder='Enter your label...' "+stil+" readonly>");
   let compets2 = tinymce.activeEditor.dom.select('input.component');
 }
 //When user enters an input.
 function leaveInput(){
   //document.getElementById("saveComponent").style.visibility = "hidden";
-  $("#saveComponent").fadeOut("");
-  $("#nameInput").fadeOut("");
+  $("#saveComponent").fadeOut("slow");
   currentComponent=-1;
 }
 //When user leaves an input.
 function enterInput(e){
   
   //document.getElementById("saveComponent").style.visibility = "visible";
-  $("#saveComponent").fadeIn("");
-  $("#nameInput").fadeIn("");
+  $("#saveComponent").fadeIn("slow");
   currentComponent=e.target.id;
 }
 //Saves the name of current selected component.
 function saveCurrentComp(){
-  let v = $('#componentName').val();
+  let v = tinymce.activeEditor.dom.get(currentComponent).value;
   tinymce.activeEditor.dom.setAttribs(currentComponent, {'data-label': v, placeholder: v});
-  $('#componentName').val("");
   leaveInput();
   checkContent();
 }
@@ -65,7 +75,6 @@ function enableSumbit(enable){
   }
   
 }
-
 //Checks if all components are named.
 function checkContent(){
   let comps = tinymce.activeEditor.dom.select('input.component');
@@ -97,7 +106,7 @@ function checkContent(){
 }
  var editor_config = {
   selector: 'textarea#editor',
-  toolbar: ' components | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent ',
+  toolbar: 'components | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media| button1',
   plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -118,60 +127,55 @@ function checkContent(){
                 //console.log(compets2);
               }
             },
-            
-            {
-            type: 'nestedmenuitem',
-            text: 'Personal data',
-            getSubmenuItems: function () {
-              return [
-                
 
             {
               type: 'menuitem',
-              text: 'Name',
+              text: 'Ime',
               onAction: function(_){
-                addComponent(editor,"name","text");
+                addComponent(editor,"ime","text");
                 //console.log(compets2);
               }
             },
 
             {
               type: 'menuitem',
-              text: 'Surname',
+              text: 'Priimek',
               onAction: function(_){
-                addComponent(editor,"surname","text");
+                addComponent(editor,"priimek","text");
                 //console.log(compets2);
               }
             },
 
             {
               type: 'menuitem',
-              text: 'Tax Number',
+              text: 'davcnaStevilka',
               onAction: function(_){
-                addComponent(editor,"tax","text");
+                addComponent(editor,"davcnaStevilka","text");
                 //console.log(compets2);
               }
             },
 
             {
               type: 'menuitem',
-              text: 'Date',
+              text: 'datum',
               onAction: function(_){
-                addComponent(editor,"date","text");
+                addComponent(editor,"datum","text");
                 //console.log(compets2);
               }
             },
-              ];
-            }
-          }
           ];
           callback(menuItems);
         }
       });
+      //Adding content to editor
+      editor.on('init', function (e) {
+        tinymce.activeEditor.execCommand('mceInsertContent', false, form_data);
+      });
+
       //Adding click & keyUp events for inputs.
       editor.on('click', function (e) {//Clicking on input selects current component.
         if(e.target.nodeName === 'INPUT'){
-          checkInputName();
+          checkInputName(e);
           enterInput(e);
         }
         else{
@@ -179,7 +183,10 @@ function checkContent(){
         }
       });
       editor.on('keyup', function (e) {//Writing on input changes its name.
-      if(e.target.nodeName !== 'INPUT'){
+      if(e.target.nodeName === 'INPUT'){
+        checkInputName(e);
+      }
+      else{
         leaveInput();
       }
       }); 
@@ -194,25 +201,17 @@ tinymce.init(editor_config);
 </script> 
 </head>
 <body>
-<form action="{{ route('formStore') }}" method="POST" type="hidden" name="_token" class="form-group"  enctype="multipart/form-data">
+<form action="{{ route('userFormUpdate', ['id' => $form->id]) }}" method="POST" type="hidden" name="_token" class="form-group"  enctype="multipart/form-data">
 {{ csrf_field() }}
     <div class="container animated fadeInUp section">
       <textarea id="editor" style="height:30em;" name="formData" class=""></textarea>
       <br>
-      <div class="row" style="min-height:8em;">
-        <div class="col l6 m6 s10 offset-s1">
-          <div class="input-field" id="nameInput" style="display:none;">
-            <input id="componentName" type="text" name="">
-             <label for="componentName">Name your component</label>
-             <span class="helper-text red-text" style="display:none;" id="nameHelp"></span>
-          </div>
-        </div>
-      </div>
       <div class="row">
-        <div class="col l3 m5 s5 left-align">
-          <button type="button" id="saveComponent" style="display:none;" onclick="saveCurrentComp()"  class="waves-effect btn btn-large scale-transition bgStill">Save component</button>
+        <div class="col l2 m5 s5">
+          <button type="button" id="saveComponent" style="display:none;" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition bgStill">Save component</button>
         </div>
-        <div class="col l3 offset-l6 right-align m4 offset-m1 s5 offset-s2">
+        
+        <div class="col l3 offset-l7 right-align m5 offset-m2 s5 offset-s2">
           @guest
           <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large bgStill">Login to save template</a>
           @else
@@ -222,14 +221,14 @@ tinymce.init(editor_config);
         </div>
       </div>
     </div>
-    
+
     <div class="modal col l12 s12 m12" id="modal1" tabindex="-1" role="dialog" >
         <div class="modal-content">
               <div class="row">
                 <div class="col m10 offset-m1 s10 offset-s1">
                         <div class="input-field col s12 animated fadeIn">
-                            <input id="nameTemplate" type="text" name="formName">
-                             <label for="nameTemplate">Name your template</label>
+                            <input id="nameTemplate" type="text" name="formName" value="{{ $form->form_name }}">
+                             <!--<label for="nameTemplate"></label>-->
                              <span class="helper-text">This will help other recognize your template!</span>
                         </div>
                 </div>
@@ -246,7 +245,7 @@ tinymce.init(editor_config);
                 </div>
               <div class="row">
                 <div class="col l10 offset-l1 m10 offset-m1 s10 offset-s1">
-                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s bgStill" style="width:100%" >Create template</button>
+                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s bgstill" style="width:100%" >Update template</button>
                 </div>
               </div>
 
@@ -255,34 +254,9 @@ tinymce.init(editor_config);
                   <button type="button" class="modal-close btn waves-effect waves-light darken-2 animated fadeIn delay-1s" style="background-color:#a4a5a8;width:100%" >Cancel</button>
                 </div>
               </div>
-      </div>
     </div>
   </form>
-  <script> 
-  //KeyUp for input
-$('#componentName').keyup(function() {
-    checkInputName();
-});
-//Checks if the input has any value. The save component button acts accordingly.
-function checkInputName(){
-  var value = $('#componentName').val();
-  var editorComponent = tinymce.activeEditor.dom.getAttrib(currentComponent, 'data-label');
-  if(value ==='' || value===editorComponent)
-    {
-      if(value===editorComponent &&  editorComponent !== ''){
-        $("#nameHelp").text("Name is already set!")
-        $("#nameHelp").fadeIn("");
-      }
-      if(value===''){
-        $("#nameHelp").text("Name can not be unset!")
-      }
-      setDisabled("saveComponent",true);
-      
-    }
-    else{
-      setDisabled("saveComponent",false);
-      $("#nameHelp").fadeOut("");
-    }
-}
-  </script>
+  
+</body>
+
 @endsection

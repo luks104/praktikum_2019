@@ -21,9 +21,12 @@ Pametni obrazci so namenjeni uporabnikom, ki želijo sestaviti obrazce oziroma v
 - Visual Studio Code
 - mySql
 
-### Avtorji
+### Ekipa
 
-[<img alt="Tomaž Zajc" src="https://avatars2.githubusercontent.com/u/49161955?s=400&v=4" width="117">](https://github.com/KnightFury1)
-[<img alt="Jure Turk" src="https://avatars3.githubusercontent.com/u/50578730?s=400&v=4" width="117">](https://github.com/Ajerspajz)
-[<img alt="Marko Zmazek" src="https://avatars0.githubusercontent.com/u/39406652?s=400&v=4" width="117">](https://github.com/zmazk123)
-[<img alt="Luka Gričar" src="https://avatars2.githubusercontent.com/u/33715913?s=400&v=4" width="117">](https://github.com/luks104)
+
+| [<img alt="Tomaž Zajc" src="https://avatars2.githubusercontent.com/u/49161955?s=400&v=4" width="117">](https://github.com/KnightFury1) | [<img alt="Jure Turk" src="https://github.com/Jurkko.png" width="117">](https://github.com/Jurkko) | [<img alt="Marko Zmazek" src="https://avatars0.githubusercontent.com/u/39406652?s=400&v=4" width="117">](https://github.com/zmazk123) | [<img alt="Luka Gričar" src="https://avatars2.githubusercontent.com/u/33715913?s=400&v=4" width="117">](https://github.com/luks104) |
+| ------------- | ------------- | ------------- | ------------- |
+| <b>Kowalski</b> | <b>Private</b> | <b>Skipper</b> | <b>Rico</b> |
+| Tomaž Zajc | Jure Turk | Marko Zmazek | Luka Gričar |
+
+
