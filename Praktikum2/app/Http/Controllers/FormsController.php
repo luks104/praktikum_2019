@@ -10,6 +10,8 @@ use App\InputTemplate;
 use App\Categorie;
 use Auth;
 use Mpdf\Mpdf;
+use Html2text\html2text;
+
 
 
 class FormsController extends Controller
@@ -91,12 +93,12 @@ class FormsController extends Controller
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput)->with('form', $id);
     }
 
-    public function formToPDF($id)
+    public function formToPDF(Request $request, $id)
     {
-         
+      
         $form = Form::find($id);
-       
-        $document = $form->form_data;
+        $document2 = $request->input('test');
+        $document = (string)$document2;
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
         $path=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
@@ -104,6 +106,7 @@ class FormsController extends Controller
 
     public function formWizardGenerated(Request $request, $id)
     {
+       
         $inputs = Form::find($id)->form_input()->get();
         $form = Form::find($id);
 
@@ -111,29 +114,40 @@ class FormsController extends Controller
         $document = new simple_html_dom();
         $document->load($formBlank);
       
-
-        
         foreach($inputs as $number => $input) {
-            $newElement=new simple_html_dom();
-            $newElement->load("<a>".$request->input($number)."</a>");
+    
             $document->find('input', $number)->outertext=' '.$request->input($number).' ';
         }
-     
-        
-      
         return view('/output')->with('form', $form)->with('document', $document);
     }
 
-    public function formToDocx($id)
+    public function formToDocx(Request $request,$id)
     {
-        $generatedHTMLOutput = Form::find($id)->form_data;
-        $phpWordDocument = new \PhpOffice\PhpWord\PhpWord();
-        $section = $phpWordDocument->addSection();
+        //Name of file
+        $form = Form::find($id);
+        $filename=$form->form_name.'.docx';
+        
+        //Creates new phpword object
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+        $document2 = $request->input('test');
+
+        //Necessary headers for .docx output
+        header( "Content-Type: application/vnd.openxmlformats-officedocument.wordprocessing‌​ml.document" );
+        header( 'Content-Disposition: attachment; filename='.$filename );
+        $h2d_file_uri = tempnam( "", "htd" );
+
+        //Decoding so it's compatible  for phpword parser to read
+        $temp=html_entity_decode($document2,ENT_HTML5,'UTF-8');
+        $finalDoc = htmlspecialchars(trim(strip_tags($temp)));
+
+
+        $section->addText($finalDoc);
         ob_clean();
-        $content = $section->addText($generatedHTMLOutput);
-        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWordDocument, 'Word2007');
-        $objWriter->save('Appdividend.docx');
-        return response()->download(public_path('Appdividend.docx'));
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save( "php://output" );
+        //$objWriter->save($naslov.'.docx');
+        exit;
 
     }
 
