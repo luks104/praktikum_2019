@@ -34,10 +34,6 @@ Route::get('/form', 'SearchController@formIndex')->name('formIndex');
 
 Route::post('/form', 'SearchController@formSearch')->name('formSearch');
 
-Route::any('/preloader', function () {
-    return view('preloader');
-});
-
 Route::get('/output', function (){
     return view('output');
 })->name('output');
