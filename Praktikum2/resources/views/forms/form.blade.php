@@ -14,7 +14,7 @@
                   
                 </div>
                 <div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos culpa ad cum harum, asperiores corporis quis neque nisi sunt unde eveniet aliquid itaque dolorem laboriosam accusantium, eum quod dignissimos suscipit?</p>
+                    <p>{{$form->form_description}}</p>
                 </div>
                 <div class="divider"></div>
                 <div id="displayPDF">
