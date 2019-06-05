@@ -124,46 +124,72 @@ function checkContent(){
             text: 'Personal data',
             getSubmenuItems: function () {
               return [
-                
+                {
+                  type: 'menuitem',
+                  text: 'Name',
+                  onAction: function(_){
+                  addComponent(editor,"uppercaseInitial","text");
+                  }
+                },
 
-            {
-              type: 'menuitem',
-              text: 'Name',
-              onAction: function(_){
-                addComponent(editor,"name","text");
-                //console.log(compets2);
-              }
-            },
+                {
+                  type: 'menuitem',
+                  text: 'Surame',
+                  onAction: function(_){
+                  addComponent(editor,"uppercaseInitial","text");
+                  }
+                },
 
-            {
-              type: 'menuitem',
-              text: 'Surname',
-              onAction: function(_){
-                addComponent(editor,"surname","text");
-                //console.log(compets2);
-              }
-            },
+                {
+                  type: 'menuitem',
+                  text: 'Date of birth',
+                  onAction: function(_){
+                  addComponent(editor,"date","text");
+                  }
+                },
 
-            {
-              type: 'menuitem',
-              text: 'Tax Number',
-              onAction: function(_){
-                addComponent(editor,"tax","text");
-                //console.log(compets2);
-              }
-            },
+                {
+                  type: 'menuitem',
+                  text: 'Addres',
+                  onAction: function(_){
+                  addComponent(editor,"required","text");
+                  }
+                },
 
-            {
-              type: 'menuitem',
-              text: 'Date',
-              onAction: function(_){
-                addComponent(editor,"date","text");
-                //console.log(compets2);
-              }
-            },
+                {
+                  type: 'menuitem',
+                  text: 'EMSO',
+                  onAction: function(_){
+                  addComponent(editor,"emso","text");
+                  }
+                },
               ];
             }
-          }
+          },
+
+          {
+            type: 'nestedmenuitem',
+            text: 'Car data',
+            getSubmenuItems: function () {
+              return [
+                {
+                  type: 'menuitem',
+                  text: 'Registration Plate',
+                  onAction: function(_){
+                  addComponent(editor,"registrationPlate","text");
+                  }
+                },
+
+                {
+                  type: 'menuitem',
+                  text: 'Vin',
+                  onAction: function(_){
+                  addComponent(editor,"vin","text");
+                  }
+                },
+              ];
+            }
+          },
           ];
           callback(menuItems);
         }

@@ -1,7 +1,3 @@
-
-
-
-
 window.Parsley.addValidator('palindrome', {
   validateString: function(value) {
     return value.split('').reverse().join('') === value;
@@ -11,39 +7,49 @@ window.Parsley.addValidator('palindrome', {
   }
 });
 
-
-window.Parsley.addValidator('uppercase', {
+window.Parsley.addValidator('uppercaseInitial', {
   validateString: function(value) {
-    return value.charAt(0) === value.charAt(0).toUpperCase();
+    return value[0] == value[0].toUpperCase();
   },
   messages: {
-    en: 'This string has a lowercase first letter.'
+    en: 'First letter must be uppercase'
   }
 });
 
-window.Parsley.addValidator('tax', {
-  validateNumber: function(value) {
-    if (value.length != 8) {
-        return false
+window.Parsley.addValidator('registrationPlate', {
+  validateString: function(value) {
+    var patt = /^[a-zA-Z]{2}[-]{1}/;
+    return patt.test(value);
+  },
+  messages: {
+    en: 'Must be of type CC-N...'
+  }
+});
+
+window.Parsley.addValidator('vin', {
+  validateString: function(value) {
+    return value.length == 17;
+  },
+  messages: {
+    en: 'Must be of 17 character lenght'
+  }
+});
+
+window.Parsley.addValidator('emso', {
+  validateString: function(value) {
+    var sum = value[0]*7 + value[1]*6 + value[2]*5 + value[3]*4 + value[4]*3 + value[5]*2 + value[6]*7 + value[7]*6 + value[8]*5 + value[9]*4 + value[10]*3 + value[11]*2;
+    var controlNo;
+    if(sum%11==0)
+    {
+      controlNo=0;
     }
+    else{
+      controlNo=11 - (sum%11);
+    }
+    console.log(controlNo);
+    return controlNo == value[12] && value.length == 13;;
   },
   messages: {
-    en: 'Tax number must be 8 digits long!'
+    en: 'Control number is invalid'
   }
 });
-
-
-window.Parsley.addValidator('date', {
-  validateDate: function(value) {
-  },
-  messages: {
-    en: 'Please enter date in correct date format \"YYYY-MM-DD\"'
-  }
-});
-
-
-
-
-
-
-
