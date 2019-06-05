@@ -55,12 +55,17 @@
                                         <div class="col s12 m10 offset-m1 l10 ">
                                         <a href="/form/{{$form->id}}">
                                           <div class="card-panel hoverable valign-wrapper" style="padding:0.1em;margin:0.3em;margin-top:0.6em;" >
-                                            <div class="col" style="border-right:1px solid #576071;">
+                                             <div class="col" style="border-right:1px solid #576071;">
                                                     <i class="material-icons" class="bgStill">insert_drive_file</i>
-                                            </div>                                            
-                                            <div class="col  s12 m12 l12 left-align">
-                                                  <h6 class="ff-poppins" style="letter-spacing:1.5px;padding:0;color:#576071;min-height:1.2em;"> {{$form->form_name}} + <span class="red-text">{{  $form->categorie_name  }}</span></h6>
+                                             </div> 
+                                                                                      
+                                            <div class="col  s11 m11 l11 left-align">
+                                                  <h6 class="ff-poppins" style="letter-spacing:1.5px;padding:0;color:#576071;min-height:1.2em;"> {{$form->form_name}}</h6>
+                                                  
                                             </div>
+                                            <div class="col l2 right-align" >
+                                                <span class="helper-text grey-text text-lighten-1" data-error="wrong" data-success="right">{{$form->categorie_name}}</span>
+                                            </div>  
                                           </div>
                                         </a>
                                         </div>

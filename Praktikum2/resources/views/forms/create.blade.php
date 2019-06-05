@@ -212,7 +212,7 @@ tinymce.init(editor_config);
         <div class="col l3 m5 s5 left-align">
           <button type="button" id="saveComponent" style="display:none;" onclick="saveCurrentComp()"  class="waves-effect btn btn-large scale-transition bgStill">Save component</button>
         </div>
-        <div class="col l3 offset-l6 right-align m4 offset-m1 s5 offset-s2">
+        <div class="col l3 offset-l6 right-align m4 offset-m3 s5 offset-s2">
           @guest
           <a  href="{{ route('login') }}" class=" waves-effect waves-light btn-large bgStill">Login to save template</a>
           @else
@@ -235,7 +235,18 @@ tinymce.init(editor_config);
                 </div>
               </div>
               <div class="row">
-                  <div class="input-field col s12 l10 offset-l1 s10 offset-s1">
+                <div class="col l10 offset-l1 m12 s10 offset-s1">
+                        <div class="input-field col s12 animated fadeIn">
+                            <div class="input-field col s12 ">
+                              <textarea id="form_description" class="materialize-textarea" name="formDescription"></textarea>
+                              <label for="form_description">Description</label>
+                              <span class="helper-text">This will help other recognize your template!</span>
+                            </div>
+                        </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s10 l10 offset-l1 s10 offset-s1">
                       <select name="categorie">
                         @foreach($categories as $categorie)
                           <option value="{{ $categorie->name }}">{{ $categorie->name }}</option>

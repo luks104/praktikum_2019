@@ -118,8 +118,10 @@
                                 <div class="indeterminate" style="background-color:#08aeea"></div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
+                
             </div>
         
     </body>

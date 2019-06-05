@@ -13,8 +13,6 @@
             <div style="margin-top:5em;margin-bottom:5em;">
                 <div class="row" >
                     <div class="col l8 offset-l2">
-
-                           
                             <form action="{{ route('formToPDF', ['id' => $form->id]) }}">
                             {{csrf_field()}}
                             <input type="hidden" id="test" name="test" value="{{ $document }}">
