@@ -57,15 +57,35 @@ class TableSeeder extends Seeder
             ]);
 
             DB::table('categories')->insert([
-                'name' => ('kategorija1')
+                'name' => ('Certificate')
             ]);
             
             DB::table('categories')->insert([
-                'name' => ('kategorija2')
+                'name' => ('Guaranty')
             ]); 
 
             DB::table('categories')->insert([
-                'name' => ('kategorija3')
+                'name' => ('Warrant')
             ]); 
+
+            DB::table('categories')->insert([
+                'name' => ('Constitution')
+            ]); 
+
+            DB::table('categories')->insert([
+                'name' => ('Statement')
+            ]); 
+
+            DB::table('categories')->insert([
+                'name' => ('Guideline')
+            ]); 
+
+            DB::table('categories')->insert([
+                'name' => ('Agreement')
+            ]); 
+
+            DB::table('categories')->insert([
+                'name' => ('Contract')
+            ]);
         }
     }
