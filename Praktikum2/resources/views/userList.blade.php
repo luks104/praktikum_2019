@@ -2,9 +2,7 @@
 
 @section('content')
 <div class='container'>
-        <div>
-            <h3 class="ff-poppins grey-text text-darken-3" style="text-transform:uppercase;">Templates</h3>
-        </div>
+        
         @if(count ($forms) > 0 )
         @foreach ($forms as $form) 
         <div class="row animated fadeInUp" style="margin:0;">
@@ -43,7 +41,8 @@
             </div>
         @endforeach
         @else
-        <h6 class="ff-poppins truncate" style="letter-spacing:1.5px;padding:0;margin;color:#576071;min-height:1.2em;"> No templates found :C</h6> 
+        <h6 class="ff-poppins center-align" style="letter-spacing:1.5px;padding:0;margin;color:#576071;min-height:1.2em;"> You currently have not templates</h6>
+        <p class="helper-text center-align">To create a template go to"Create"</p>
         @endif
 </div>
 @endsection

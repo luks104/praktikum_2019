@@ -111,15 +111,6 @@ function checkContent(){
         fetch: function (callback) {
           var menuItems =[
             {
-              type: 'menuitem',
-              text: 'Component',
-              onAction: function(_){
-                addComponent(editor,"basicInput2","text");
-                //console.log(compets2);
-              }
-            },
-            
-            {
             type: 'nestedmenuitem',
             text: 'Personal data',
             getSubmenuItems: function () {
@@ -256,7 +247,7 @@ tinymce.init(editor_config);
                         <div class="input-field col s12 animated fadeIn">
                             <input id="nameTemplate" type="text" name="formName">
                              <label for="nameTemplate">Name your template</label>
-                             <span class="helper-text">This will help other recognize your template!</span>
+                             <span class="helper-text">This will help other recognize your template</span>
                         </div>
                 </div>
               </div>
@@ -266,7 +257,7 @@ tinymce.init(editor_config);
                             <div class="input-field col s12 ">
                               <textarea id="form_description" class="materialize-textarea" name="formDescription"></textarea>
                               <label for="form_description">Description</label>
-                              <span class="helper-text">This will help other recognize your template!</span>
+                              <span class="helper-text">This will help understanding your template</span>
                             </div>
                         </div>
                 </div>
