@@ -61,3 +61,9 @@ Route::post('/userEmail', 'UserController@userEditEmail')->name('emailEdit');
 Route::post('/userName', 'UserController@userEditName')->name('usernameEdit');
 
 Route::post('/userPassword', 'UserController@userEditPassword')->name('passwordEdit');
+
+Route::get('/form/{id}/mail/sendOnMyMail','FormsController@sendOnMyMail')->name('sendOnMyMail');
+
+Route::get('/form/{id}/wizard/mail', 'FormsController@returnViewMail')->name('viewMail');
+
+Route::post('/form/{id}/wizard/mail/sent', 'FormsController@sendMail')->name('sendMail');

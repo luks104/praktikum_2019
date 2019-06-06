@@ -11,7 +11,8 @@ use App\Categorie;
 use Auth;
 use Mpdf\Mpdf;
 use Html2text\html2text;
-
+use Mail;
+use App\User;
 
 
 class FormsController extends Controller
@@ -94,16 +95,6 @@ class FormsController extends Controller
         return view('wizardTemplate')->with('generatedHTMLOutput', $generatedHTMLOutput)->with('form', $id);
     }
 
-    public function formToPDF(Request $request, $id)
-    {
-      
-        $form = Form::find($id);
-        $document2 = $request->input('test');
-        $document = (string)$document2;
-        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
-        $mpdf->WriteHTML($document);   
-        $path=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
-    }
 
     public function formWizardGenerated(Request $request, $id)
     {
@@ -120,6 +111,19 @@ class FormsController extends Controller
             $document->find('input', $number)->outertext=' '.$request->input($number).' ';
         }
         return view('/output')->with('form', $form)->with('document', $document);
+    }
+
+    //PDF in DOCX
+    public function formToPDF(Request $request, $id)
+    {
+     
+        $form = Form::find($id);
+        $document2 = $request->input('test');
+        $document = (string)$document2;
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
+        $mpdf->WriteHTML($document);   
+        $path=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);  
+     
     }
 
     public function formToDocx(Request $request,$id)
@@ -202,5 +206,89 @@ class FormsController extends Controller
         }
         
         return redirect('form')->with('success', 'Successfully deleted template');
+    }
+
+
+
+
+
+    //Mail
+    public function returnViewMail(Request $request, $id)
+    {   
+        $form = Form::find($id);
+        $documentRaw = $request->input('test');
+        $document = (string)$documentRaw;
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
+        $mpdf->WriteHTML($document);   
+        $document=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
+        return view('sendMail')->with('document', $document)->with('form', $form);
+    }
+
+    
+    public function sendOnMyMail(Request $request, $id){
+        $form = Form::find($id);
+        $recipient=User::find(Auth::id())->email;
+        $documentName=$form->name;
+        $documentRaw = $request->input('test');
+        $document = (string)$documentRaw;
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
+        $mpdf->WriteHTML($document);   
+        $path=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
+        $path2=base64_encode($path);
+
+        $data=array(
+            'email'=>'smartformsinfo@gmail.com',
+            'subject'=>'Requested form',
+            'bodyMessage'=>'This is the form that you have requested to be sent on your mail address',
+            'documentName'=>$documentName,
+            'path2'=>$path2,
+            'recipient'=>$recipient,
+        );
+
+    
+        Mail::send('emails.email',$data,function($message) use ($data){
+            $message->from($data['email']);
+            $message->to($data['recipient']);
+            $message->subject($data['subject']);
+            $message->attachData(base64_decode($data['path2']), $documentName.'.pdf');
+        });
+
+        
+    }
+    public function sendMail(Request $request, $id){
+        
+        $form = Form::find($id);
+        $recipient=User::find(Auth::id())->email;
+        $sender=User::find(Auth::id())->name;
+        $documentName=$form->form_name;
+
+        $documentRaw = $request->input('test');
+        $document = (string)$documentRaw;
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
+        $mpdf->WriteHTML($document);   
+        $PDFstring=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
+        $encodedPDF=base64_encode($PDFstring);
+    
+        $data=array(
+            'receiptant'=>$request->receiptant,
+            'email'=>'smartformsinfo@gmail.com',
+            'subject'=>$request->subject,
+            'bodyMessage'=>$request->message. 'This form was sent to you by '.$sender,
+            'documentName'=>$documentName,
+            'file'=>$encodedPDF,
+        );
+
+        Mail::send('emails.email',$data,function($message) use ($data)
+        {
+            $message->from($data['email']);
+            $message->to($data['receiptant']);
+            $message->subject($data['subject']);
+            $message->attachData(base64_decode($data['file']), ($data['documentName']).'.pdf');
+               
+           
+            
+        });
+        
+
     }
 }

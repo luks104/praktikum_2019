@@ -13,7 +13,7 @@
             <div style="margin-top:5em;margin-bottom:5em;">
                 <div class="row" >
                     <div class="col l8 offset-l2">
-                            <form action="{{ route('formToPDF', ['id' => $form->id]) }}">
+                            <form action="{{ route('formToPDF',['id' => $form->id]) }}">
                             {{csrf_field()}}
                             <input type="hidden" id="test" name="test" value="{{ $document }}">
                                 <button type="submit" class="btn waves-effect waves-light">Export as a PDF file
@@ -32,9 +32,36 @@
                             <button type="submit" class="btn waves-effect waves-light">Export as a DOC file
                                     <i class="material-icons blue-text left">description</i>
                             </button>
+                        </form>
+                    </div>
+                </div>
+    
+
+                <div class="row ">
+                    <div class="col l8 offset-l2">
+                    <form action="{{ route('sendOnMyMail',['id' => $form->id]) }}">
+                            {{csrf_field()}}
+                            <input type="hidden" id="test" name="test" value="{{ $document }}">
+                                
+                            <button type="submit" class="btn waves-effect waves-light">Send to my mail address
+                                    <i class="material-icons blue-text left">email</i>
+                            </button>
+                        </form>
+                    
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col l8 offset-l2">
+                    <a href="{{ route('viewMail', ['id' => $form->id]) }} ">
+                            <button class="btn waves-effect waves-light">Send as a mail to different mail address
+                                    <i class="material-icons orange-text left">email</i>
+                            </button>
+                    </a>
                     </div>
                 </div>
 <!--
+
                     <div class="row ">
                             <div class="col l8 offset-l2">
                                     <a href="/form/{{$form->id}}/wizard/formToPDF">
