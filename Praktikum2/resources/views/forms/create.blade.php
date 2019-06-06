@@ -111,6 +111,15 @@ function checkContent(){
         fetch: function (callback) {
           var menuItems =[
             {
+              type: 'menuitem',
+              text: 'Component',
+              onAction: function(_){
+                addComponent(editor,"basicInput2","text");
+                //console.log(compets2);
+              }
+            },
+            
+            {
             type: 'nestedmenuitem',
             text: 'Personal data',
             getSubmenuItems: function () {
