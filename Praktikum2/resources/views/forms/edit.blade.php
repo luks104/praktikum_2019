@@ -47,6 +47,7 @@ function addComponent(editor,input,type){
 function leaveInput(){
   //document.getElementById("saveComponent").style.visibility = "hidden";
   $("#saveComponent").fadeOut("slow");
+  $("#nameInput").fadeOut("");
   currentComponent=-1;
 }
 //When user leaves an input.
@@ -54,12 +55,14 @@ function enterInput(e){
   
   //document.getElementById("saveComponent").style.visibility = "visible";
   $("#saveComponent").fadeIn("slow");
+  $("#nameInput").fadeIn("");
   currentComponent=e.target.id;
 }
 //Saves the name of current selected component.
 function saveCurrentComp(){
-  let v = tinymce.activeEditor.dom.get(currentComponent).value;
+  let v = $('#componentName').val();
   tinymce.activeEditor.dom.setAttribs(currentComponent, {'data-label': v, placeholder: v});
+  $('#componentName').val("");
   leaveInput();
   checkContent();
 }
@@ -242,6 +245,15 @@ tinymce.init(editor_config);
     <div class="container animated fadeInUp section">
       <textarea id="editor" style="height:30em;" name="formData" class=""></textarea>
       <br>
+      <div class="row" style="min-height:8em;">
+        <div class="col l6 m6 s10 offset-s1">
+          <div class="input-field" id="nameInput" style="display:none;">
+            <input id="componentName" type="text" name="">
+             <label for="componentName">Name your component</label>
+             <span class="helper-text red-text" style="display:none;" id="nameHelp"></span>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col l2 m5 s5">
           <button type="button" id="saveComponent" style="display:none;" onclick="saveCurrentComp()"  class="waves-effect btn scale-transition bgStill">Save component</button>
@@ -263,9 +275,19 @@ tinymce.init(editor_config);
               <div class="row">
                 <div class="col m10 offset-m1 s10 offset-s1">
                         <div class="input-field col s12 animated fadeIn">
-                            <input id="nameTemplate" type="text" name="formName" value="{{ $form->form_name }}">
+                            <input id="nameTemplate" type="text" name="formName" value="{{ $form->form_name }}" required>
                              <!--<label for="nameTemplate"></label>-->
                              <span class="helper-text">This will help other recognize your template!</span>
+                        </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col l10 offset-l1 m12 s10 offset-s1">
+                        <div class="input-field col s12 animated fadeIn">
+                            <div class="input-field col s12 ">
+                              <textarea id="form_description" class="materialize-textarea" name="formDescription" required>{{$form->form_description}}</textarea>
+                              <span class="helper-text">This will help other recognize your template!</span>
+                            </div>
                         </div>
                 </div>
               </div>
@@ -281,7 +303,7 @@ tinymce.init(editor_config);
                 </div>
               <div class="row">
                 <div class="col l10 offset-l1 m10 offset-m1 s10 offset-s1">
-                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s bgstill" style="width:100%" >Update template</button>
+                  <button type="submit" class="modal-close btn-large waves-effect waves-light darken-2 animated fadeIn delay-0.5s bgStill" style="width:100%" >Update template</button>
                 </div>
               </div>
 
@@ -294,5 +316,31 @@ tinymce.init(editor_config);
   </form>
   
 </body>
-
+<script> 
+  //KeyUp for input
+$('#componentName').keyup(function() {
+    checkInputName();
+});
+//Checks if the input has any value. The save component button acts accordingly.
+function checkInputName(){
+  var value = $('#componentName').val();
+  var editorComponent = tinymce.activeEditor.dom.getAttrib(currentComponent, 'data-label');
+  if(value ==='' || value===editorComponent)
+    {
+      if(value===editorComponent &&  editorComponent !== ''){
+        $("#nameHelp").text("Name is already set!")
+        $("#nameHelp").fadeIn("");
+      }
+      if(value===''){
+        $("#nameHelp").text("Name can not be unset!")
+      }
+      setDisabled("saveComponent",true);
+      
+    }
+    else{
+      setDisabled("saveComponent",false);
+      $("#nameHelp").fadeOut("");
+    }
+}
+  </script>
 @endsection

@@ -176,6 +176,7 @@ class FormsController extends Controller
         $form = Form::find($id);
         $form->form_data = $request->input('formData');
         $form->form_name = $request->input('formName');
+        $form->form_description = $request->input('formDescription');
         $form->categorie_id = Categorie::where('name', $request->input('categorie'))->first()->id;
         $form->save();
 
