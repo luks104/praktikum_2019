@@ -23,20 +23,6 @@
                                 <label>Category</label>
                                   </div>
                                   
-                                  <div class="input-field col l10 s10 m12" >
-                                        <p class="col m2 l12 s3">
-                                                <label >
-                                                        <input type="checkbox" />
-                                                        <span>Red</span>
-                                                </label>
-                                        </p>
-                                        <p class="col m2 l12 s3">
-                                                <label>
-                                                        <input type="checkbox" checked="checked" />
-                                                        <span>Yellow</span>
-                                                </label>
-                                        </p>
-                                  </div>
                                 </div>
                                 <div class="row">
                                         <div class="col l10 offset-l1 s8 offset-s2 m8 offset-m1">

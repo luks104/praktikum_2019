@@ -275,7 +275,7 @@ tinymce.init(editor_config);
               <div class="row">
                 <div class="col m10 offset-m1 s10 offset-s1">
                         <div class="input-field col s12 animated fadeIn">
-                            <input id="nameTemplate" type="text" name="formName" value="{{ $form->form_name }}">
+                            <input id="nameTemplate" type="text" name="formName" value="{{ $form->form_name }}" required>
                              <!--<label for="nameTemplate"></label>-->
                              <span class="helper-text">This will help other recognize your template!</span>
                         </div>
@@ -285,8 +285,7 @@ tinymce.init(editor_config);
                 <div class="col l10 offset-l1 m12 s10 offset-s1">
                         <div class="input-field col s12 animated fadeIn">
                             <div class="input-field col s12 ">
-                              <textarea id="form_description" class="materialize-textarea" name="formDescription"></textarea>
-                              <label for="form_description">{{$form->form_description}}</label>
+                              <textarea id="form_description" class="materialize-textarea" name="formDescription" required>{{$form->form_description}}</textarea>
                               <span class="helper-text">This will help other recognize your template!</span>
                             </div>
                         </div>
