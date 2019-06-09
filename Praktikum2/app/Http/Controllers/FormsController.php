@@ -126,32 +126,54 @@ class FormsController extends Controller
      
     }
 
-    public function formToDocx(Request $request,$id)
+
+    public function formToOdf(Request $request,$id)
     {
-        //Name of file
+
         $form = Form::find($id);
-        $filename=$form->form_name.'.docx';
+        $filename=$form->form_name.'.odt';
         
-        //Creates new phpword object
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection();
         $document2 = $request->input('document');
 
-        //Necessary headers for .docx output
+        //Necessary headers
         header( "Content-Type: application/vnd.openxmlformats-officedocument.wordprocessing‌​ml.document" );
         header( 'Content-Disposition: attachment; filename='.$filename );
         $h2d_file_uri = tempnam( "", "htd" );
 
-        //Decoding so it's compatible  for phpword parser to read
-        $temp=html_entity_decode($document2,ENT_HTML5,'UTF-8');
-        $finalDoc = htmlspecialchars(trim(strip_tags($temp)));
+        
+        \PhpOffice\PhpWord\Shared\Html::addHtml($section, $document2, false, false);
+        ob_clean();
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
+        $objWriter->save( "php://output" );
+    
+        exit;
+
+    }
 
 
-        $section->addText($finalDoc);
+    public function formToDocx(Request $request,$id)
+    {
+
+        $form = Form::find($id);
+        $filename=$form->form_name.'.docx';
+        
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+        $document2 = $request->input('document');
+
+        //Necessary headers
+        header( "Content-Type: application/vnd.openxmlformats-officedocument.wordprocessing‌​ml.document" );
+        header( 'Content-Disposition: attachment; filename='.$filename );
+        $h2d_file_uri = tempnam( "", "htd" );
+
+        
+        \PhpOffice\PhpWord\Shared\Html::addHtml($section, $document2, false, false);
         ob_clean();
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         $objWriter->save( "php://output" );
-        //$objWriter->save($naslov.'.docx');
+    
         exit;
 
     }

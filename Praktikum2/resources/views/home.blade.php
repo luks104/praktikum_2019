@@ -64,7 +64,7 @@
               <i class="medium material-icons myBlue">search</i>
           </div>
           <div class="col l11">
-            <p class="ff-poppins"> In our collection of pre-designed forms choose the one that suits your needs and if you would like to change it, don't worry we've got you covered, Smart Forms is designed in the way that you can modify existing forms.</p>
+            <p class="ff-poppins"> In our collection of pre-designed forms choose the one that suits your needs and if you would like to change it, don't worry we've got you covered, Smart Forms is designed in the way, that you can modify and adjust existing forms.</p>
           </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
               <i class="medium material-icons myBlue">file_download</i>
           </div>
           <div class="col l11">
-            <p class="ff-poppins">The generated document can then be downloaded in various dacument formats and saved on your device.</p>
+            <p class="ff-poppins">The generated document can then be downloaded in various document formats and saved on your device.</p>
           </div>
         </div>
     </div>

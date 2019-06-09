@@ -42,6 +42,8 @@ Route::get('/form/{id}/wizard/formToPDF', 'FormsController@formToPDF')->name('fo
 
 Route::get('/form/{id}/formToDocx', 'FormsController@formToDocx')->name('formToDocx');
 
+Route::get('/form/{id}/formToOdf', 'FormsController@formToOdf')->name('formToOdf');
+
 Route::get('/myForm', 'SearchController@userFormIndex')->name('userFormIndex');
 
 Route::get('/myForm/{id}/edit', 'FormsController@formEdit')->name('userFormEdit');

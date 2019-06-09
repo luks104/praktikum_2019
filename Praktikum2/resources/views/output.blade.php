@@ -38,6 +38,20 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="row ">
+                    <div class="col l8 offset-l2">
+                        <form action="{{ route('formToOdf', ['id' => $form->id]) }}">
+                        <input type="hidden" id="document" name="document" value="{{ $document }}" >
+                            {{csrf_field()}}
+                                <div class="col l6 m8 s10 offset-l3 offset-m2 offset-s1">
+                                    <button type="submit" class="btn waves-effect waves-light"  style="width:100%;">Export as a OOXML file
+                                            <i class="material-icons blue-text left">description</i>
+                                    </button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
     
 
                 <div class="row ">
