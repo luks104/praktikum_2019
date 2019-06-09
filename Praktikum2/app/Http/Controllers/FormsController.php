@@ -118,7 +118,7 @@ class FormsController extends Controller
     {
      
         $form = Form::find($id);
-        $document2 = $request->input('test');
+        $document2 = $request->input('document');
         $document = (string)$document2;
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
@@ -135,7 +135,7 @@ class FormsController extends Controller
         //Creates new phpword object
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection();
-        $document2 = $request->input('test');
+        $document2 = $request->input('document');
 
         //Necessary headers for .docx output
         header( "Content-Type: application/vnd.openxmlformats-officedocument.wordprocessing‌​ml.document" );
@@ -217,11 +217,7 @@ class FormsController extends Controller
     public function returnViewMail(Request $request, $id)
     {   
         $form = Form::find($id);
-        $documentRaw = $request->input('test');
-        $document = (string)$documentRaw;
-        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
-        $mpdf->WriteHTML($document);   
-        $document=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
+        $document = $request->input('document');
         return view('sendMail')->with('document', $document)->with('form', $form);
     }
 
@@ -229,9 +225,9 @@ class FormsController extends Controller
     public function sendOnMyMail(Request $request, $id){
         $form = Form::find($id);
         $recipient=User::find(Auth::id())->email;
-        $documentName=$form->name;
-        $documentRaw = $request->input('test');
-        $document = (string)$documentRaw;
+        $documentName=$form->form_name;
+        $documentRaw = $request->input('document');
+        $document = (string)$documentRaw;   
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
         $path=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
@@ -247,29 +243,32 @@ class FormsController extends Controller
         );
 
     
-        Mail::send('emails.email',$data,function($message) use ($data){
+        Mail::send('other.email',$data,function($message) use ($data){
             $message->from($data['email']);
             $message->to($data['recipient']);
             $message->subject($data['subject']);
-            $message->attachData(base64_decode($data['path2']), $documentName.'.pdf');
+            $message->attachData(base64_decode($data['path2']), ($data['documentName']).'.pdf');
         });
 
+        return view('/output')->with('form', $form)->with('document', $document);
         
     }
     public function sendMail(Request $request, $id){
+
         
         $form = Form::find($id);
-        $recipient=User::find(Auth::id())->email;
         $sender=User::find(Auth::id())->name;
         $documentName=$form->form_name;
-
         $documentRaw = $request->input('test');
-        $document = (string)$documentRaw;
+        $documentTrimmed = substr($documentRaw, 1, -1);
+        $document = (string)$documentTrimmed;
+   
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
         $PDFstring=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
         $encodedPDF=base64_encode($PDFstring);
-    
+        $lulek=base64_decode($encodedPDF);
+        
         $data=array(
             'receiptant'=>$request->receiptant,
             'email'=>'smartformsinfo@gmail.com',
@@ -279,7 +278,7 @@ class FormsController extends Controller
             'file'=>$encodedPDF,
         );
 
-        Mail::send('emails.email',$data,function($message) use ($data)
+        Mail::send('other.email',$data,function($message) use ($data)
         {
             $message->from($data['email']);
             $message->to($data['receiptant']);
@@ -290,6 +289,6 @@ class FormsController extends Controller
             
         });
         
-
+        return view('/output')->with('form', $form)->with('document', $document);
     }
 }

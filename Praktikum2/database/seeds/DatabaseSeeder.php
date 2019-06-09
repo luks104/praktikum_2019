@@ -66,29 +66,6 @@ class TableSeeder extends Seeder
 
             DB::table('categories')->insert([
                 'name' => ('Warrant')
-<<<<<<< HEAD
-            ]); 
-
-            DB::table('categories')->insert([
-                'name' => ('Constitution')
-            ]); 
-
-            DB::table('categories')->insert([
-                'name' => ('Statement')
-            ]); 
-
-            DB::table('categories')->insert([
-                'name' => ('Guideline')
-            ]); 
-
-            DB::table('categories')->insert([
-                'name' => ('Agreement')
-            ]); 
-
-            DB::table('categories')->insert([
-                'name' => ('Contract')
-=======
->>>>>>> 3961465191cbc44d203183c6845676b444daa8c6
             ]); 
 
             DB::table('categories')->insert([

@@ -63,3 +63,5 @@ Route::get('/form/{id}/mail/sendOnMyMail','FormsController@sendOnMyMail')->name(
 Route::get('/form/{id}/wizard/mail', 'FormsController@returnViewMail')->name('viewMail');
 
 Route::post('/form/{id}/wizard/mail/sent', 'FormsController@sendMail')->name('sendMail');
+
+Route::get('/PrivacyPolicy', 'HomeController@privacyPolicy')->name('privacyPolicy');

@@ -14,11 +14,13 @@
                 <div class="row" >
                     <div class="col l8 offset-l2">
                             <form action="{{ route('formToPDF',['id' => $form->id]) }}">
+                            <input type="hidden" id="document" name="document" value="{{ $document }}" >
                             {{csrf_field()}}
-                            <input type="hidden" id="test" name="test" value="{{ $document }}">
-                                <button type="submit" class="btn waves-effect waves-light">Export as a PDF file
-                                    <i class="material-icons red-text left">picture_as_pdf</i>
-                                </button>
+                                <div class="col l6 m8 s10 offset-l3 offset-m2 offset-s1">
+                                    <button type="submit" class="btn waves-effect waves-light"  style="width:100%;">Export as a PDF file
+                                        <i class="material-icons red-text left">picture_as_pdf</i>
+                                    </button>
+                                </div>
                             </form>
                             
                     </div>
@@ -26,12 +28,13 @@
                 <div class="row ">
                     <div class="col l8 offset-l2">
                         <form action="{{ route('formToDocx', ['id' => $form->id]) }}">
+                        <input type="hidden" id="document" name="document" value="{{ $document }}" >
                             {{csrf_field()}}
-                            <input type="hidden" id="test" name="test" value="{{ $document }}">
-                                
-                            <button type="submit" class="btn waves-effect waves-light">Export as a DOC file
-                                    <i class="material-icons blue-text left">description</i>
-                            </button>
+                                <div class="col l6 m8 s10 offset-l3 offset-m2 offset-s1">
+                                    <button type="submit" class="btn waves-effect waves-light"  style="width:100%;">Export as a DOC file
+                                            <i class="material-icons blue-text left">description</i>
+                                    </button>
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -40,12 +43,13 @@
                 <div class="row ">
                     <div class="col l8 offset-l2">
                     <form action="{{ route('sendOnMyMail',['id' => $form->id]) }}">
+                    <input type="hidden" id="document" name="document" value="{{ $document }}" >
                             {{csrf_field()}}
-                            <input type="hidden" id="test" name="test" value="{{ $document }}">
-                                
-                            <button type="submit" class="btn waves-effect waves-light">Send to my mail address
-                                    <i class="material-icons blue-text left">email</i>
-                            </button>
+                                <div class="col l6 m8 s10 offset-l3 offset-m2 offset-s1">
+                                    <button type="submit" class="btn waves-effect waves-light">Send to my mail address
+                                            <i class="material-icons blue-text left">email</i>
+                                    </button>
+                                </div>
                         </form>
                     
                     </div>
@@ -53,11 +57,15 @@
 
                 <div class="row ">
                     <div class="col l8 offset-l2">
-                    <a href="{{ route('viewMail', ['id' => $form->id]) }} ">
-                            <button class="btn waves-effect waves-light">Send as a mail to different mail address
+                    <form action="{{ route('viewMail', ['id' => $form->id]) }} ">
+                    <input type="hidden" id="document" name="document" value="{{ $document }}" >
+                    {{csrf_field()}}
+                        <div class="col l6 m8 s10 offset-l3 offset-m2 offset-s1">
+                            <button type="submit"  class="btn waves-effect waves-light">Send as a mail to different mail address
                                     <i class="material-icons orange-text left">email</i>
                             </button>
-                    </a>
+                        </div>
+                    </form>
                     </div>
                 </div>
 <!--
