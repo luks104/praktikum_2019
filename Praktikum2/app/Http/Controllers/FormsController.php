@@ -55,18 +55,25 @@ class FormsController extends Controller
         $inputs = Form::find($id)->form_input()->get();
 
         $data = "";
+        /*
         foreach($inputs as $number => $input) {
             $data = $data . $input->label . ":" . $request->input($number) . "<br>";
         }
-
+        */
+        $collection = [];
+        foreach($inputs as $number => $input) {
+          
+            array_push($collection, $input->label);
+        }
+        //return $collection;
         
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
         $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::STRING_RETURN);
       
         $encodedPDF = chunk_split(base64_encode($path));
-        //echo($encodedPDF);
-        return view('forms.form')->with('form', $form)->with('encodedPDF',$encodedPDF)->with('data',$data);
+        
+        return view('forms.form')->with('form', $form)->with('encodedPDF',$encodedPDF)->with('data',$collection);
         
     }
 
@@ -251,7 +258,7 @@ class FormsController extends Controller
         $documentRaw = $request->input('document');
         $document = (string)$documentRaw;   
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
-        $mpdf->WriteHTML($document);   
+        $mpdf->WriteHTML($document);    
         $path=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
         $path2=base64_encode($path);
 

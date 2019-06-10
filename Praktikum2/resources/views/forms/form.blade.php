@@ -3,37 +3,60 @@
 @section('content')
     
 <div class="container">
+    <div class="row">
+        <div class="col l5 m10 offset-m1 s12">
+            <div class="row">
+                <div class="col l12 s12 ">
+                  <div class="card-panel white z-depth-5 animated fadeInLeft" style="min-height:15em;">
+                      <div class="myGrey ff-poppins center-align" style="font-size:2em;">
+                            {{$form->form_name}}
+                      </div>
+                      <div class="divider" style="margin-bottom:1em;">
 
-    <div class="row " style="margin-top:2em;">
-        <div class="col s12 m10 offset-m1 l8 offset-l2 ">
-            <div class="card-panel white hoverable">
-                <div class="center-align">
-                    <h5>{{$form->form_name}}</h5>
+                      </div>
+                    <p class="myGrey">{{$form->form_description}}
+                    </p>
+                    
+                    <div class="row " style="margin-top:2em;">
+                            <div class="col l12 m8 s6 offset-m2 offset-s3">
+                                <a href="{{ route('formWizard', ['id' => $form->id]) }}" class="btn bgStill btn-large " style="width:100%">Fill the form "{{$form->form_name}}"</a>                    
+                            </div>
+                        </div>  
+                  </div>
                 </div>
-                <div class="divider">
-                  
-                </div>
-                <div>
-                    <p>{{$form->form_description}}</p>
-                </div>
-                <div class="divider"></div>
-                <div id="displayPDF">
-
-                </div>
-                <div>
-                    <h6>Requirements:</h6>
-                    {!!$data!!} 
-                </div>
-                <ul class="collection">
-                    <li class="collection-item">Alvin</li>
-                    <li class="collection-item">Alvin</li>
-                    <li class="collection-item">Alvin</li>
-                    <li class="collection-item">Alvin</li>
-                  </ul>
-                <div class="row right-align">
-                        <a href="{{ route('formWizard', ['id' => $form->id]) }}" class="btn bgStill">Fill the form "{{$form->form_name}}"</a>
+              
+                <div class="col l12 m10 offset-m1 s12">
+                  <div class="card-panel white z-depth-5 animated fadeInUp" >
+                      <div class="myGrey ff-poppins center-align" style="font-size:1.3em;">
+                            Requirements
+                      </div>
+                      
+                      <div class="divider" style="margin-bottom:1em;">
+                            
+                      </div>
+                      
+                      <div class="row">
+                            @foreach($data as $item)
+                          <div class="col l6 s6 m6">
+                                <div class="card-panel blue lighten-4" style="padding:0.5em;border:1px solid #08aeea66;width:100%">
+                                        <div class="myGrey ff-opensans center-align" style="font-weight:bold;">
+                                                {{$item}}
+                                          </div>
+                                </div>
+                          </div>
+                          @endforeach
+                      </div>
+                  </div>
                 </div>
             </div>
+            
+        </div>
+
+        <div class="col l7 m10 offset-m1 s12 ">
+            <div class="card-panel white z-depth-5">
+                    <div id="displayPDF"></div>
+            </div>
+                        
         </div>
     </div>
 </div>

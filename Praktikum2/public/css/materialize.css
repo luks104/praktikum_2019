@@ -9130,6 +9130,7 @@ background-size: 400% 400%;
     text-align: center;
     margin-top: 1.2rem;
   }
+  
 }
 
 .input-field input[type=text]:focus + label,.input-field input[type=email]:focus + label,.input-field input[type=password]:focus + label,.input-field textarea:focus + label {
@@ -9186,7 +9187,7 @@ background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
   background-image: linear-gradient(90deg, #2AF598 0%, #08AEEA 100%);
 } */
 .myBlue{
-  color: #08AEEA !important;
+  color: #08aeea66 !important;
 }
 .myGreen{
   color: #2AF598 !important;
@@ -9275,3 +9276,7 @@ background-image: linear-gradient(90deg, #08AEEA 0%, #2AF598 100%);
 .parsley-errors-list li{
   color:red;
 }
+#displayPDF{
+  border:1px solid #576071;
+}
+
