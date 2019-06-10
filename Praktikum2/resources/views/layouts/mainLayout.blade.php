@@ -151,6 +151,7 @@
     $('.collapsible').collapsible();
     $('select').formSelect();
     $('.parallax').parallax();
+    $('.tabs').tabs();
   });
 
   $(window).on('load',function(){

@@ -52,7 +52,7 @@
 
         <div class="row valign-wrapper center-align" style="margin:0;">
       
-          <div class="col l11">
+          <div class="col l12">
             <p class="ff-poppins"><h3> How to use Smart Forms?</h3></p>
           </div>
         </div>

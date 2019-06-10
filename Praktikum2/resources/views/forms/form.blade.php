@@ -24,6 +24,12 @@
                     <h6>Requirements:</h6>
                     {!!$data!!} 
                 </div>
+                <ul class="collection">
+                    <li class="collection-item">Alvin</li>
+                    <li class="collection-item">Alvin</li>
+                    <li class="collection-item">Alvin</li>
+                    <li class="collection-item">Alvin</li>
+                  </ul>
                 <div class="row right-align">
                         <a href="{{ route('formWizard', ['id' => $form->id]) }}" class="btn bgStill">Fill the form "{{$form->form_name}}"</a>
                 </div>
