@@ -1,8 +1,8 @@
-# Praktikum-2
+# Smart Forms
 
 
 ### Naslov projekta:
-Pametni Obrazci
+Smart Forms 
 
 ### Naša naloga
 Pametni obrazci so namenjeni uporabnikom, ki želijo sestaviti obrazce oziroma vloge in osebam, ki želijo izpolniti vloge. S pomočjo spletnega urejevalnika lahko ustvarimo željeno vsebino in s pomočjo gradnikov definiramo vnosna polja za potrebne podatke. Pri izpolnjevanju takšne vloge ni klasičnega pisanja na list papirja, ampak nas čarovnik za izpolnjevanje vodi skozi celotno vsebino pri čemer vnašamo podatke v vnosna polja. Po končanem postopku imamo opcijo shranjevanja izpolnjene vloge v naš profil in pretvorbo v pdf obliko.
@@ -13,13 +13,21 @@ Pametni obrazci so namenjeni uporabnikom, ki želijo sestaviti obrazce oziroma v
 - Pregled in iskanje vlog
 - Izpolnjevanje
 - Shranjevanje izpolnjenih obrazcev
-- Prenos izpolnjenih vlog v pdf obliki
+- Prenos izpolnjenih vlog v .pdf, .docx, .odf obliki
+- Pošiljanje vlog po E-pošti
 
 ### Tehnologije
 - Laravel
-- php
+- Php
+- Materialize
+- Eloquent (ORM)
+
+
+### Okolje
 - Visual Studio Code
-- mySql
+- Xampp
+
+
 
 ### Ekipa
 

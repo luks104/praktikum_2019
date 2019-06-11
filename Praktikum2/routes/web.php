@@ -42,6 +42,8 @@ Route::get('/form/{id}/wizard/formToPDF', 'FormsController@formToPDF')->name('fo
 
 Route::get('/form/{id}/formToDocx', 'FormsController@formToDocx')->name('formToDocx');
 
+Route::get('/form/{id}/formToOdf', 'FormsController@formToOdf')->name('formToOdf');
+
 Route::get('/myForm', 'SearchController@userFormIndex')->name('userFormIndex');
 
 Route::get('/myForm/{id}/edit', 'FormsController@formEdit')->name('userFormEdit');
@@ -63,3 +65,5 @@ Route::get('/form/{id}/mail/sendOnMyMail','FormsController@sendOnMyMail')->name(
 Route::get('/form/{id}/wizard/mail', 'FormsController@returnViewMail')->name('viewMail');
 
 Route::post('/form/{id}/wizard/mail/sent', 'FormsController@sendMail')->name('sendMail');
+
+Route::get('/PrivacyPolicy', 'HomeController@privacyPolicy')->name('privacyPolicy');

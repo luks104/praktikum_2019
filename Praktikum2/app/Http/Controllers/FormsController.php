@@ -55,18 +55,25 @@ class FormsController extends Controller
         $inputs = Form::find($id)->form_input()->get();
 
         $data = "";
+        /*
         foreach($inputs as $number => $input) {
             $data = $data . $input->label . ":" . $request->input($number) . "<br>";
         }
-
+        */
+        $collection = [];
+        foreach($inputs as $number => $input) {
+          
+            array_push($collection, $input->label);
+        }
+        //return $collection;
         
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
         $path=$mpdf->Output('filename.pdf', \Mpdf\Output\Destination::STRING_RETURN);
       
         $encodedPDF = chunk_split(base64_encode($path));
-        //echo($encodedPDF);
-        return view('forms.form')->with('form', $form)->with('encodedPDF',$encodedPDF)->with('data',$data);
+        
+        return view('forms.form')->with('form', $form)->with('encodedPDF',$encodedPDF)->with('data',$collection);
         
     }
 
@@ -118,7 +125,7 @@ class FormsController extends Controller
     {
      
         $form = Form::find($id);
-        $document2 = $request->input('test');
+        $document2 = $request->input('document');
         $document = (string)$document2;
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
@@ -126,32 +133,54 @@ class FormsController extends Controller
      
     }
 
-    public function formToDocx(Request $request,$id)
+
+    public function formToOdf(Request $request,$id)
     {
-        //Name of file
+
         $form = Form::find($id);
-        $filename=$form->form_name.'.docx';
+        $filename=$form->form_name.'.odt';
         
-        //Creates new phpword object
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection();
-        $document2 = $request->input('test');
+        $document2 = $request->input('document');
 
-        //Necessary headers for .docx output
+        //Necessary headers
         header( "Content-Type: application/vnd.openxmlformats-officedocument.wordprocessing‌​ml.document" );
         header( 'Content-Disposition: attachment; filename='.$filename );
         $h2d_file_uri = tempnam( "", "htd" );
 
-        //Decoding so it's compatible  for phpword parser to read
-        $temp=html_entity_decode($document2,ENT_HTML5,'UTF-8');
-        $finalDoc = htmlspecialchars(trim(strip_tags($temp)));
+        
+        \PhpOffice\PhpWord\Shared\Html::addHtml($section, $document2, false, false);
+        ob_clean();
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'ODText');
+        $objWriter->save( "php://output" );
+    
+        exit;
+
+    }
 
 
-        $section->addText($finalDoc);
+    public function formToDocx(Request $request,$id)
+    {
+
+        $form = Form::find($id);
+        $filename=$form->form_name.'.docx';
+        
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+        $document2 = $request->input('document');
+
+        //Necessary headers
+        header( "Content-Type: application/vnd.openxmlformats-officedocument.wordprocessing‌​ml.document" );
+        header( 'Content-Disposition: attachment; filename='.$filename );
+        $h2d_file_uri = tempnam( "", "htd" );
+
+        
+        \PhpOffice\PhpWord\Shared\Html::addHtml($section, $document2, false, false);
         ob_clean();
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         $objWriter->save( "php://output" );
-        //$objWriter->save($naslov.'.docx');
+    
         exit;
 
     }
@@ -217,11 +246,7 @@ class FormsController extends Controller
     public function returnViewMail(Request $request, $id)
     {   
         $form = Form::find($id);
-        $documentRaw = $request->input('test');
-        $document = (string)$documentRaw;
-        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
-        $mpdf->WriteHTML($document);   
-        $document=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
+        $document = $request->input('document');
         return view('sendMail')->with('document', $document)->with('form', $form);
     }
 
@@ -229,11 +254,11 @@ class FormsController extends Controller
     public function sendOnMyMail(Request $request, $id){
         $form = Form::find($id);
         $recipient=User::find(Auth::id())->email;
-        $documentName=$form->name;
-        $documentRaw = $request->input('test');
-        $document = (string)$documentRaw;
+        $documentName=$form->form_name;
+        $documentRaw = $request->input('document');
+        $document = (string)$documentRaw;   
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
-        $mpdf->WriteHTML($document);   
+        $mpdf->WriteHTML($document);    
         $path=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
         $path2=base64_encode($path);
 
@@ -247,29 +272,32 @@ class FormsController extends Controller
         );
 
     
-        Mail::send('emails.email',$data,function($message) use ($data){
+        Mail::send('other.email',$data,function($message) use ($data){
             $message->from($data['email']);
             $message->to($data['recipient']);
             $message->subject($data['subject']);
             $message->attachData(base64_decode($data['path2']), ($data['documentName']).'.pdf');
         });
 
+        return view('/output')->with('form', $form)->with('document', $document);
         
     }
     public function sendMail(Request $request, $id){
+
         
         $form = Form::find($id);
-        $recipient=User::find(Auth::id())->email;
         $sender=User::find(Auth::id())->name;
         $documentName=$form->form_name;
-
         $documentRaw = $request->input('test');
-        $document = (string)$documentRaw;
+        $documentTrimmed = substr($documentRaw, 1, -1);
+        $document = (string)$documentTrimmed;
+   
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   
         $PDFstring=$mpdf->Output($form->form_name.'.pdf', \Mpdf\Output\Destination::STRING_RETURN);
         $encodedPDF=base64_encode($PDFstring);
-    
+        $lulek=base64_decode($encodedPDF);
+        
         $data=array(
             'receiptant'=>$request->receiptant,
             'email'=>'smartformsinfo@gmail.com',
@@ -279,7 +307,7 @@ class FormsController extends Controller
             'file'=>$encodedPDF,
         );
 
-        Mail::send('emails.email',$data,function($message) use ($data)
+        Mail::send('other.email',$data,function($message) use ($data)
         {
             $message->from($data['email']);
             $message->to($data['receiptant']);
@@ -290,6 +318,6 @@ class FormsController extends Controller
             
         });
         
-
+        return view('/output')->with('form', $form)->with('document', $document);
     }
 }

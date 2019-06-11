@@ -53,3 +53,14 @@ window.Parsley.addValidator('emso', {
     en: 'Control number is invalid'
   }
 });
+
+window.Parsley.addValidator('test', {
+  validateString: function(value) {
+    var string = value,
+    substring = "@";
+    return string.includes(substring);
+  },
+  messages: {
+    en: 'Must be valid email address'
+  }
+});
