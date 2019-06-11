@@ -251,7 +251,7 @@ class FormsController extends Controller
             $message->from($data['email']);
             $message->to($data['recipient']);
             $message->subject($data['subject']);
-            $message->attachData(base64_decode($data['path2']), $documentName.'.pdf');
+            $message->attachData(base64_decode($data['path2']), ($data['documentName']).'.pdf');
         });
 
         
