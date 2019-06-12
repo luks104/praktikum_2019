@@ -55,17 +55,12 @@ class FormsController extends Controller
         $inputs = Form::find($id)->form_input()->get();
 
         $data = "";
-        /*
-        foreach($inputs as $number => $input) {
-            $data = $data . $input->label . ":" . $request->input($number) . "<br>";
-        }
-        */
+        
         $collection = [];
         foreach($inputs as $number => $input) {
           
             array_push($collection, $input->label);
         }
-        //return $collection;
         
         $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
         $mpdf->WriteHTML($document);   

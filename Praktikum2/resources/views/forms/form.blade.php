@@ -3,6 +3,9 @@
 @section('content')
     
 <div class="container">
+    <div style="height:2em;">
+
+    </div>
     <div class="row">
         <div class="col l5 m10 offset-m1 s12">
             <div class="row">
@@ -52,7 +55,7 @@
             
         </div>
 
-        <div class="col l7 m10 offset-m1 s12 ">
+        <div class="col l7 m10 offset-m1 s12 fadeInRight animated">
             <div class="card-panel white z-depth-5">
                     <div id="displayPDF"></div>
             </div>
