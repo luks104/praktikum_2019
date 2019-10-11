@@ -128,7 +128,13 @@
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Links</h5>
           <ul>
-            <li><a class="grey-text text-lighten-3" href="{{ route('userIndex') }}">My profile</a></li>
+            <li>
+              @if(Auth::check())
+              <a class="grey-text text-lighten-3" href="{{ route('userIndex') }}">My profile</a>
+              @else
+              <a class="grey-text text-lighten-3" href="{{ route('login') }}">My profile</a>
+              @endif
+            </li>
             <li><a class="grey-text text-lighten-3" href="{{ route('formIndex')}}">Available templates</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">Terms of use</a></li>
             <li><a class="grey-text text-lighten-3" href="{{ route ('privacyPolicy') }}">Privacy policy</a></li>
@@ -145,3 +151,4 @@
   </footer>
 
 @endsection
+
